@@ -130,12 +130,12 @@ Re(\boldsymbol{E}) = \frac{1}{\sqrt{2}} \cos{\varphi_x}
 $$
 
 となり、晴れて実平面で $\frac{\pi}{4}$ だけ傾いた直線偏光が表された。
-そもそも波を複素数で表現するのは実部だけ($\cos$だけ)で考えると計算が面倒になるという問題を解決するためだったので最終的には実部を取るというのは理にかなっている。
+そもそも波を複素数で表現するのは実部だけ( $\cos$ だけ)で考えると計算が面倒になるという問題を解決するためだったので最終的には実部を取るというのは理にかなっている。
 <br>
 
 ## 円偏光
 
-次に $x$ 成分が $y$ 成分より $\frac{\pi}{2}$ だけ進んでいる場合を考える。(例えば $x$ 成分が $\cos{\varphi_x}$ なら$y$ 成分は $\cos{(\varphi_x-\frac{\pi}{2})}=\sin{\varphi_x}$ のように波が $y$ 成分の方が $z$ 軸性の方向にずれている)
+次に $x$ 成分が $y$ 成分より $\frac{\pi}{2}$ だけ進んでいる場合を考える。(例えば $x$ 成分が $\cos{\varphi_x}$ なら $y$ 成分は $\cos{(\varphi_x-\frac{\pi}{2})}=\sin{\varphi_x}$ のように波が $y$ 成分の方が $z$ 軸性の方向にずれている)
 
 $$
 \begin{aligned}
@@ -184,7 +184,7 @@ $$
 
 【補足】
 上ではこのジョーンズベクトルは左回り円偏光を表しているといったが、右回り円偏光を表していると書いてあるものもあるこれは***座標系をどこから見るかによって起こる問題である。***
-座標は右手系が基本なのでz軸が紙面裏面から紙面表面に向かうようにとると垂直方向はx軸に、水平方向はy軸になる。つまり、$z$軸正の方向から見るのか、負の方向から見るのかで回り方が逆転する。
+座標は右手系が基本なのでz軸が紙面裏面から紙面表面に向かうようにとると垂直方向はx軸に、水平方向はy軸になる。つまり、$z$ 軸正の方向から見るのか、負の方向から見るのかで回り方が逆転する。
 
 ～ここに座標系と目の絵を描いて～
 
@@ -748,6 +748,7 @@ $$
 
 ### "Flexible generation of the generalized vector vortex beams"(2021)
 得られるビームのジョーンズベクトルは以下
+
 $$
 \boldsymbol{E} = 
 e^{iA\varphi}[
@@ -769,8 +770,8 @@ $$\boldsymbol{S}(2\psi, 2\chi) =
 $$
 
 SLMに表示させるホログラムは
-- SLM1:$\delta_1 = p\varphi + \delta_{10}$
-- SLM2:$\delta_2 = q\varphi + \delta_{20}$
+- SLM1: $\delta_1 = p\varphi + \delta_{10}$
+- SLM2: $\delta_2 = q\varphi + \delta_{20}$
 
 パラメーターは
 - $\alpha$:1つ目の半波長板を傾ける角度
@@ -781,7 +782,8 @@ SLMに表示させるホログラムは
 - $B = -\frac{q}{2}$
 - $C = -\frac{2\delta_{20} + \pi}{4}$
 
-ここで$\alpha = \frac{\pi}{8}, \beta = 0, \gamma = -\frac{\pi}{4}$とすると
+ここで $\alpha = \frac{\pi}{8}, \beta = 0, \gamma = -\frac{\pi}{4}$ とすると
+
 $$
 \boldsymbol{S_1}(-\frac{\pi}{2}, \frac{\pi}{2}) \propto 
 \begin{bmatrix}
@@ -799,7 +801,7 @@ i
 $$
 
 となる。
-さらに$p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
+さらに $p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
 とすると
 $A = 2, B = -1, C = 0$
 となるので代入すると
@@ -826,9 +828,9 @@ Re(\boldsymbol{E}) = \sqrt{2} \cos{2\varphi}
 \end{bmatrix}
 $$
 
-この偏光分布が時々刻々と変化していくつまりこれに位相項$e^{iX}$をかけて実部を取ったものの形が偏光分布
+この偏光分布が時々刻々と変化していくつまりこれに位相項 $e^{iX}$ をかけて実部を取ったものの形が偏光分布
 
-たしかに種々の$\varphi$に値を代入してみると
+たしかに種々の $\varphi$ に値を代入してみると
 
 $$
 \begin{aligned}
@@ -855,7 +857,7 @@ $$
 のような偏光分布が得られる。
 
 次にパラメーターを変えて同じように考えてみる。
-今度は$\alpha = \frac{\pi}{8}, \beta = -\frac{\pi}{4}, \gamma = -\frac{3\pi}{16}$
+今度は $\alpha = \frac{\pi}{8}, \beta = -\frac{\pi}{4}, \gamma = -\frac{3\pi}{16}$
 
 
 $$
@@ -875,9 +877,9 @@ i[\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} - \cos{\frac{3\pi}{8}} e^{i\frac{\pi}
 $$
 
 
-こっちは先ほどと同じで$p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
+こっちは先ほどと同じで $p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
 ゆえ
-$A = 2, B = -1, C = 0$を代入
+$A = 2, B = -1, C = 0$ を代入
 
 $$
 \boldsymbol{E} \propto 
@@ -907,12 +909,12 @@ i[e^{i\frac{\pi}{2}} \sin{\frac{\pi}{8}} + e^{-\frac{i\pi}{2}} \sin{\frac{3\pi}{
 \end{aligned}
 $$
 
-ここで位相項$e^{i\theta}$をかけて実部を取って$\theta$を$0 \rightarrow 2\pi$と変化させたときの軌跡をプロットすると
+ここで位相項 $e^{i\theta}$ をかけて実部を取って $\theta$を $0\rightarrow 2\pi$ と変化させたときの軌跡をプロットすると
 
 となりこのように傾いた左回りの楕円偏光が得られる。
 論文中では
 
-であり確かに$\varphi = \frac{\pi}{4}$の位置ではこのような楕円になっている。
+であり確かに $\varphi = \frac{\pi}{4}$ の位置ではこのような楕円になっている。
 
 ## ベクトルビームと機械学習
 ### "Machine learning-based classification of vector vortex beams"
@@ -928,8 +930,8 @@ https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%8
 
 ここで以下を満たすとき
 
-変換$\Phi$と変換$g$は **同変:eqvariant** である、と言う。
-また、変換$\pi(g)$が恒等写像、つまり$\pi(g) = g$であるとき変換$\Phi$と変換$g$は **不変:variant** である、という。
+変換 $\Phi$ と変換 $g$ は **同変:eqvariant** である、と言う。
+また、変換 $\pi(g)$ が恒等写像、つまり $\pi(g) = g$ であるとき変換 $\Phi$ と変換 $g$ は **不変:variant** である、という。
 
 ## ベクトルビームと幾何学
 ### "Observation of optical polarization Möbius strips"
@@ -996,7 +998,7 @@ $$
 
 となる。
 
-$\alpha$だけ傾けたHWPのジョーンズ行列は
+$\alpha$ だけ傾けたHWPのジョーンズ行列は
 
 $$
 J_{HWP(\alpha)} = 
@@ -1099,7 +1101,7 @@ $$
 
 $\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
 
-- $\varphi:$方位角(azimuthal angle)
+- $\varphi:$ 方位角(azimuthal angle)
 - $\delta_{10}, \delta_{20}:$ constant phase
 
 とする。(軸対称なベクトルビームを作りたいので変数は$\varphi$(方位角のみ))
@@ -1139,9 +1141,10 @@ $$
 0
 \end{bmatrix}
 $$
+
 SLM1の役割は波面変調
 
-⓷,$\beta$傾けたHWPを通過してSLM2で反射して先ほどと同じHWPを通過してBSに戻ってくるビーム
+⓷, $\beta$ 傾けたHWPを通過してSLM2で反射して先ほどと同じHWPを通過してBSに戻ってくるビーム
 
 $$
 \begin{aligned}
@@ -1195,6 +1198,7 @@ J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
 $$
 
 ⓸各SLMで反射して戻ってきたビームがBSで合わさったビーム
+
 $$
 \begin{aligned}
 \boldsymbol{E}_{out4} &= \boldsymbol{E}_{out2} + \boldsymbol{E}_{out3} \\
@@ -1215,7 +1219,7 @@ $$
 \end{aligned}
 $$
 
-⓹,⓸のビームが$\gamma$傾けたQWPで変換されたビーム
+⓹,⓸のビームが $\gamma$ 傾けたQWPで変換されたビーム
 
 $$
 \begin{aligned}
@@ -1238,7 +1242,7 @@ i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \\
 \end{aligned}
 $$
 
-天下り的に軸対称ビームを作るとき$\beta, \gamma$をどうすればいいか考える。
+天下り的に軸対称ビームを作るとき $\beta, \gamma$ をどうすればいいか考える。
 例えば
 
 $$
@@ -1249,7 +1253,7 @@ $$
 \end{bmatrix}
 $$
 
-というジョーンズベクトルを考えるとこれは各$\varphi$で半径方向を向く直線偏光を表している。今は半径:r=1とすると
+というジョーンズベクトルを考えるとこれは各 $\varphi$ で半径方向を向く直線偏光を表している。今は半径:r=1とすると
 偏光分布は以下のようになる。
 
 また
@@ -1262,7 +1266,7 @@ $$
 \end{bmatrix}
 $$
 
-というジョーンズベクトルは各$\varphi$で円の接線方向を向く直線偏光を表している。また、半径方向には依存性はないので偏光分布は以下のようになる。
+というジョーンズベクトルは各 $\varphi$ で円の接線方向を向く直線偏光を表している。また、半径方向には依存性はないので偏光分布は以下のようになる。
 
 今は一つ目の偏光分布を作ることを考える。
 
@@ -1413,7 +1417,7 @@ $$
 (\boldsymbol{E}_{in} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2})
 $$
 
-今は$PBS$によって
+今は $PBS$ によって
 
 $$
 \boldsymbol{E}_{in} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2} = 
@@ -1619,10 +1623,10 @@ i
 \end{aligned}
 $$
 
-これは各$\phi$でその点と原点を結ぶ方向の直線偏光を表している。
+これは各 $\phi$ でその点と原点を結ぶ方向の直線偏光を表している。
 つまり中心から外側に向かうような偏光分布になる。
 
-$(\cos{\phi}, \sin{\phi})$の点でのベクトル$\boldsymbol{E}_{out}$をプロットしたもの
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
 
 次に
 
@@ -1689,7 +1693,7 @@ i
 \end{aligned}
 $$
 
-これは各$\phi$で円の接線方向を向いた直線偏光を表している。確かに
+これは各 $\phi$ で円の接線方向を向いた直線偏光を表している。確かに
 
 $$
 \begin{bmatrix}
@@ -1704,7 +1708,7 @@ $$
 
 直交している。
 
-$(\cos{\phi}, \sin{\phi})$の点でのベクトル$\boldsymbol{E}_{out}$をプロットしたもの
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
 
 最後に
 
@@ -1761,7 +1765,7 @@ i
 \end{aligned}
 $$
 
-$(\cos{\phi}, \sin{\phi})$の点でのベクトル$\boldsymbol{E}_{out}$をプロットしたもの
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
 
 # 教科書的な立ち位置
 
