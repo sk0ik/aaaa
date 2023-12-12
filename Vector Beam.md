@@ -1025,10 +1025,11 @@ $$
 $$
 \begin{aligned}
 \boldsymbol{E}_{out1} &=
-J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in} \\ &= 
+J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in} \\
+&= 
 \begin{bmatrix}
 1 & 0 \\
-0 & 0
+0 & 0 
 \end{bmatrix}
 \begin{bmatrix}
 \cos{2\alpha} & \sin{2\alpha} \\
@@ -1037,7 +1038,8 @@ J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in} \\ &=
 \begin{bmatrix}
 E_{x0} e^{i\varphi_x} \\
 E_{y0} e^{i\varphi_y}
-\end{bmatrix} \\ &=
+\end{bmatrix} \\
+&=
 \begin{bmatrix}
 \cos{2\alpha} & \sin{2\alpha} \\
 0 & 0
@@ -1046,7 +1048,8 @@ E_{y0} e^{i\varphi_y}
 E_{x0} e^{i\varphi_x} \\
 E_{y0} e^{i\varphi_y}
 \end{bmatrix} \\
-\therefore \boldsymbol{E}_{out1} &=
+\therefore \boldsymbol{E}_{out1}
+&=
 \begin{bmatrix}
 E_{x0} e^{i\varphi_x} \cos{2\alpha} + E_{y0} e^{i\varphi_y} \sin{2\alpha} \\ 0
 \end{bmatrix}
