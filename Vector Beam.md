@@ -1772,4 +1772,4 @@ $(\cos{\phi}, \sin{\phi})$の点でのベクトル$\boldsymbol{E}_{out}$をプ�
 ## SLM
 ### "Creation and detection of optical modes with spatial light modulators"
 
-![Alt text](images/image.png)g)
+![Alt text](images/image.png)
