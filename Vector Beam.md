@@ -1748,3 +1748,6 @@ https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%8
 
 ## 機械学習
 ### "Group Equivariant Convolutional Networks"
+
+
+っわｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｇ
