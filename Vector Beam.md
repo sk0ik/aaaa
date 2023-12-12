@@ -5,18 +5,10 @@
   - [1/2波長板](#12波長板)
   - [1/4波長板](#14波長板)
   - [SLM](#slm)
-- [実験案](#実験案)
-  - [その１](#その１)
-  - [その２](#その２)
-  - [その３](#その３)
 - [偏光子とポアンカレ球](#偏光子とポアンカレ球)
   - [射影演算子](#射影演算子)
   - [パウリ行列展開](#パウリ行列展開)
-- [近軸近似のもとでスカラー場に対するマクスウェル方程式を解く](#近軸近似のもとでスカラー場に対するマクスウェル方程式を解く)
-  - [LGbeam](#lgbeam)
-  - [エルミート多項式](#エルミート多項式)
-- [研究](#研究)
-  - [Equivariant Convolutional Networks](#equivariant-convolutional-networks)
+- [機械学習](#機械学習)
 - [論文解説](#論文解説)
   - [SLM2個使ってベクトルビームを作る](#slm2個使ってベクトルビームを作る)
     - ["Polarization distribution control of parallel femtosecond pulses with spatial light modulators"](#polarization-distribution-control-of-parallel-femtosecond-pulses-with-spatial-light-modulators)
@@ -27,25 +19,44 @@
   - [ベクトルビームと幾何学](#ベクトルビームと幾何学)
     - ["Observation of optical polarization Möbius strips"](#observation-of-optical-polarization-möbius-strips)
     - ["Full Poincare´ beams"](#full-poincare-beams)
+    - ["Generation of A Space-Variant Vector Beam with Catenary-Shaped Polarization States"](#generation-of-a-space-variant-vector-beam-with-catenary-shaped-polarization-states)
   - [Gouy位相](#gouy位相)
     - ["光学におけるベリー位相"](#光学におけるベリー位相)
     - ["Manifestation of the Gouy phase in strongly focused, radially polarized beams"](#manifestation-of-the-gouy-phase-in-strongly-focused-radially-polarized-beams)
   - [高次元ポアンカレ球](#高次元ポアンカレ球)
-    - [](#)
+    - ["Higher-Order Poincaré Sphere, Stokes Parameters, and the Angular Momentum of Light"](#higher-order-poincaré-sphere-stokes-parameters-and-the-angular-momentum-of-light)
+    - ["Generalized Poincare sphere"](#generalized-poincare-sphere)
   - [ベクトルビームの評価方法](#ベクトルビームの評価方法)
     - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams)
     - ["Beam quality measure for vector beams"](#beam-quality-measure-for-vector-beams)
     - ["ENTANGLEMENT OF FORMATION AND CONCURRENCE"](#entanglement-of-formation-and-concurrence)
+  - [近軸近似のもとでスカラー場に対するマクスウェル方程式を解く](#近軸近似のもとでスカラー場に対するマクスウェル方程式を解く)
+    - ["From Maxwell to paraxial wave optics"](#from-maxwell-to-paraxial-wave-optics)
+    - ["Gaussian Beam 計算メモ"](#gaussian-beam-計算メモ)
+    - [HGbeam](#hgbeam)
+    - [LGbeam](#lgbeam)
   - [近軸近似せずにスカラー場のマクスウェル方程式を解く](#近軸近似せずにスカラー場のマクスウェル方程式を解く)
     - ["Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"](#nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space)
     - ["Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"](#closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields)
-  - [機械学習](#機械学習)
+    - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams-1)
+  - [近軸近似のもとでベクトル場に対するマクスウェル方程式を解く](#近軸近似のもとでベクトル場に対するマクスウェル方程式を解く)
+    - ["Vector-beam solutions of Maxwell's wave equation"](#vector-beam-solutions-of-maxwells-wave-equation)
+    - ["Vector Helmholtz–Gauss and vector Laplace–Gauss beams"](#vector-helmholtzgauss-and-vector-laplacegauss-beams)
+    - [エルミート多項式](#エルミート多項式)
+  - [機械学習](#機械学習-1)
     - ["Group Equivariant Convolutional Networks"](#group-equivariant-convolutional-networks)
-
-教科書的な立ち位置
-- ベクトルビーム "Cylindrical vector beams: from mathematical concepts to applications","Vector Beams for Fundamental Physics and Applications"
-- 光渦 "Orbital angular momentum: origins, behavior and applications"
-- SLM "Creation and detection of optical modes with spatial light modulators"
+- [実験案](#実験案)
+  - [その１](#その１)
+  - [その２](#その２)
+  - [その３](#その３)
+- [教科書的な立ち位置](#教科書的な立ち位置)
+  - [ベクトルビーム](#ベクトルビーム)
+    - ["Cylindrical vector beams: from mathematical concepts to applications"](#cylindrical-vector-beams-from-mathematical-concepts-to-applications)
+    - ["Vector Beams for Fundamental Physics and Applications"](#vector-beams-for-fundamental-physics-and-applications)
+  - [光渦](#光渦)
+    - ["Orbital angular momentum: origins, behavior and applications"](#orbital-angular-momentum-origins-behavior-and-applications)
+  - [SLM](#slm-1)
+    - ["Creation and detection of optical modes with spatial light modulators"](#creation-and-detection-of-optical-modes-with-spatial-light-modulators)
 
 # ジョーンズベクトル
 
@@ -509,6 +520,465 @@ $$
 
 <br>
 
+# 偏光子とポアンカレ球
+偏光成分を測るためには$E_x,E_y$が必要だが現実ではこれらの時間平均のみ計測可能である。
+これらを用いると**ストークスパラメーター**というパラメーターを定義できる。
+
+$$
+\begin{align}
+S_0 &= |E_x|^2 + |E_y|^2 \\
+S_1 &= |E_x|^2 - |E_y|^2 \\
+S_2 &= \frac{1}{2}(|E_x + E_y|^2 - |E_x - E_y|^2) \\
+&= E_x^*E_y + E_x^*E_y \\
+S_3 &= \frac{1}{2}(|E_x + iE_y|^2 - |E_x - iE_y|^2) \\
+&= -i(E_x^*E_y - E_x^*E_y)
+\end{align}
+$$
+
+これらをならべたものは**ストークスベクトル**といい
+
+$$
+\boldsymbol{S} = 
+\begin{bmatrix}
+A^2_x + A^2_y \\
+A^2_x - A^2_y \\
+2A_x A_y \cos{\delta} \\
+-2A_x A_y \sin{\delta}
+\end{bmatrix}
+$$
+
+と表す。
+ここで$A_x, A_y$は$x,y$成分の振幅で$\delta$は$y$成分から見て$x$成分の位相のずれを表している。
+
+偏光の軌跡は楕円偏光を考えればいい(直線を完璧な楕円、円をまったく楕円ではないものと考える)ので楕円を表すパラメーターを決めればいい。具体的には
+- $\chi:$楕円率角(どのくらい楕円っぽいか)
+- $\psi:$方位角(楕円がどのくらい傾いているか)
+
+のちに導出するがこれは$S1, S2, S3$という変数を用いて
+
+光学の教科書ではストークスパラメータは以上のように定義されたものとして紹介される。(観測範囲ではすべての教科書でそうだった。)
+そこでこれを導出する。
+## 射影演算子
+## パウリ行列展開
+
+# 機械学習
+
+# 論文解説
+## SLM2個使ってベクトルビームを作る
+### "Polarization distribution control of parallel femtosecond pulses with spatial light modulators"
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &=
+J_{QWP(\frac{\pi}{4})} J_{SLM2(\beta)} J_{HWP(\frac{\pi}{8})} J_{SLM1(\alpha)} \boldsymbol{E}_{in}
+ \\
+ &\propto
+\begin{bmatrix}
+1+i & 1-i \\
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{-i\beta} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+1+i & 1-i \\
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{-i\beta} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+1 
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+1+i & 1-i \\
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{-i\beta} \\
+1 
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+e^{-i\beta}(1+i) + 1-i \\
+e^{-i\beta}(1-i) + 1+i
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\cos{\beta} + \sin{\beta} + 1 \\
+\cos{\beta} - \sin{\beta} + 1
+\end{bmatrix}
++i
+\begin{bmatrix}
+\cos{\beta} - \sin{\beta} - 1 \\
+-(\cos{\beta} + \sin{\beta} - 1)
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &=
+\begin{bmatrix}
+\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} \\
+\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}}
+\end{bmatrix}
++i
+\begin{bmatrix}
+\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}} - 2 \\
+-(\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} - 2)
+\end{bmatrix} \\
+\therefore Re(\boldsymbol{E}_{out}) &=
+\begin{bmatrix}
+\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} \\
+\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}}
+\end{bmatrix}
+\end{aligned}
+$$
+
+$$
+\beta = 2\varphi + \theta
+$$
+
+とすると
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &\propto
+\begin{bmatrix}
+\cos{(\frac{2\varphi + \theta}{2})} + \sin{(\frac{2\varphi + \theta}{2})} \\
+\cos{(\frac{2\varphi + \theta}{2})} - \sin{(\frac{2\varphi + \theta}{2})}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\cos{(\varphi + \frac{\theta}{2})} + \sin{(\varphi + \frac{\theta}{2})} \\
+\cos{(\varphi + \frac{\theta}{2})} - \sin{(\varphi + \frac{\theta}{2})}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &\propto
+\begin{bmatrix}
+\cos{\varphi}(\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}) + \sin{\varphi}(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}) \\
+\cos{\varphi}(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}) - \sin{\varphi}(\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}})
+\end{bmatrix}
+\end{aligned}
+$$
+
+もし$\theta = -\frac{\pi}{2}$なら
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &\propto
+\begin{bmatrix}
+\cos{\varphi}(\cos{\frac{\pi}{4}} - \sin{\frac{\pi}{4}}) + \sin{\varphi}(\cos{\frac{\pi}{4}} + \sin{\frac{\pi}{4}}) \\
+\cos{\varphi}(\cos{\frac{\pi}{4}} + \sin{\frac{\pi}{4}}) - \sin{\varphi}(\cos{\frac{\pi}{4}} - \sin{\frac{\pi}{4}})
+\end{bmatrix} \\
+&\propto
+\begin{bmatrix}
+\sin{\varphi} \\
+\cos{\varphi}
+\end{bmatrix}
+\end{aligned}
+$$
+
+### "Holographic femtosecond laser manipulation for advanced material processing"
+
+$$
+\boldsymbol{E}_{out} \propto 
+\begin{bmatrix}
+-i\cos{\beta} + \sin{\beta} + 1 \\
+-\cos{\beta} -i\sin{\beta} + i
+\end{bmatrix}
+$$
+
+$\beta = \varphi + \theta$とすると
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &\propto 
+\begin{bmatrix}
+-i\cos{(\varphi + \theta)} + \sin{(\varphi + \theta)} + 1 \\
+-\cos{(\varphi + \theta)} -i\sin{(\varphi + \theta)} + i
+\end{bmatrix} \\
+&\propto
+\begin{bmatrix}
+-i(\cos{\varphi} \cos{\theta} -\sin{\varphi} \sin{\theta}) + \sin{\varphi} \cos{\theta} + \cos{\varphi} \sin{\theta} + 1 \\
+-(\cos{\varphi} \cos{\theta} -\sin{\varphi} \sin{\theta}) -i(\sin{\varphi} \cos{\theta} +\cos{\varphi} \sin{\theta})+ i
+\end{bmatrix}
+\end{aligned}
+$$
+
+$\beta = 2\varphi + \theta$とすると
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &\propto 
+\begin{bmatrix}
+-i\cos{(2\varphi + \theta)} + \sin{(2\varphi + \theta)} + 1 \\
+-\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} + i
+\end{bmatrix} \\
+&\propto
+\begin{bmatrix}
+-i(\cos{2\varphi} \cos{\theta} -\sin{2\varphi} \sin{\theta}) + \sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta} + 1 \\
+-(\cos{2\varphi} \cos{\theta} -\sin{2\varphi} \sin{\theta}) -i(\sin{2\varphi} \cos{\theta} +\cos{2\varphi} \sin{\theta})+ i
+\end{bmatrix}
+\end{aligned}
+$$
+
+ここで$\theta = \frac{\pi}{2}$とすると
+
+$$
+\boldsymbol{E}_{out} \propto
+\begin{bmatrix}
+i\sin{2\varphi} + \cos{2\varphi} +1 \\
+\sin{2\varphi} - i\cos{2\varphi} + i
+\end{bmatrix}
+$$
+
+これは
+
+を表す。
+
+### "Flexible generation of the generalized vector vortex beams"(2021)
+得られるビームのジョーンズベクトルは以下
+$$
+\boldsymbol{E} = 
+e^{iA\varphi}[
+\cos{2\alpha}
+e^{-i(B\varphi+C)}
+\boldsymbol{S_1}(2\gamma, 2(2\beta-\gamma))
++\sin{2\alpha}
+e^{i(B\varphi+C)}
+\boldsymbol{S_2}(2\gamma+\pi, -2(2\beta-\gamma))]
+$$
+
+ただし2つのベクトル$\boldsymbol{S}$は
+
+$$\boldsymbol{S}(2\psi, 2\chi) = 
+\begin{bmatrix}
+\frac{1}{\sqrt{2}}[\sin{(\chi + \frac{\pi}{4})} e^{-i\psi} + \cos{(\chi + \frac{\pi}{4}) e^{i\psi}}] \\
+\frac{i}{\sqrt{2}}[\sin{(\chi + \frac{\pi}{4})} e^{-i\psi} - \cos{(\chi + \frac{\pi}{4}) e^{i\psi}}]
+\end{bmatrix}
+$$
+
+SLMに表示させるホログラムは
+- SLM1:$\delta_1 = p\varphi + \delta_{10}$
+- SLM2:$\delta_2 = q\varphi + \delta_{20}$
+
+パラメーターは
+- $\alpha$:1つ目の半波長板を傾ける角度
+- $\beta$:2つ目の半波長板を傾ける角度
+- $\gamma$:4分の1波長板を傾ける角度
+- $\boldsymbol{S_i}(i \in 1, 2)$は互いに直交するベクトル、**波長板を傾けるということは直交基底を選ぶことに対応する。**
+- $A = p + \frac{q}{2}$
+- $B = -\frac{q}{2}$
+- $C = -\frac{2\delta_{20} + \pi}{4}$
+
+ここで$\alpha = \frac{\pi}{8}, \beta = 0, \gamma = -\frac{\pi}{4}$とすると
+$$
+\boldsymbol{S_1}(-\frac{\pi}{2}, \frac{\pi}{2}) \propto 
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}(右回り円偏光)
+$$
+
+$$
+\boldsymbol{S_2}(\frac{\pi}{2}, -\frac{\pi}{2}) \propto 
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix}(左回り円偏光)
+$$
+
+となる。
+さらに$p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
+とすると
+$A = 2, B = -1, C = 0$
+となるので代入すると
+
+$$
+\boldsymbol{E} = 
+\sqrt{2} e^{i2\varphi}
+\begin{bmatrix}
+\cos{\varphi} \\
+\sin{\varphi}
+\end{bmatrix}
+$$
+
+$$
+Re(\boldsymbol{E}) = \sqrt{2} \cos{2\varphi}
+\begin{bmatrix}
+\cos{\varphi}\\
+\sin{\varphi}
+\end{bmatrix}
+\propto
+\begin{bmatrix}
+\cos{\varphi}\\
+\sin{\varphi}
+\end{bmatrix}
+$$
+
+この偏光分布が時々刻々と変化していくつまりこれに位相項$e^{iX}$をかけて実部を取ったものの形が偏光分布
+
+たしかに種々の$\varphi$に値を代入してみると
+
+$$
+\begin{aligned}
+Re(\boldsymbol{E_{\varphi=0}}) &= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} (水平偏光)\\
+Re(\boldsymbol{E_{\varphi=\frac{\pi}{4}}}) &\propto 
+\begin{bmatrix}
+1 \\
+1 
+\end{bmatrix} (\frac{\pi}{4}傾いた直線偏光)\\
+Re(\boldsymbol{E_{\varphi=\frac{\pi}{2}}}) &= 
+\begin{bmatrix}
+0 \\
+1 
+\end{bmatrix} (垂直偏光) \\
+\end{aligned}
+$$
+
+今は偏光分布が中心からの距離に依存しないので結局
+
+のような偏光分布が得られる。
+
+次にパラメーターを変えて同じように考えてみる。
+今度は$\alpha = \frac{\pi}{8}, \beta = -\frac{\pi}{4}, \gamma = -\frac{3\pi}{16}$
+
+
+$$
+\begin{aligned}
+\boldsymbol{S_1}(-\frac{\pi}{2}, -\frac{\pi}{4}) &\propto 
+\begin{bmatrix}
+\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} + \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}} \\
+i[\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} - \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}]
+\end{bmatrix}
+\\
+\boldsymbol{S_2}(\frac{\pi}{2}, \frac{\pi}{4}) &\propto 
+\begin{bmatrix}
+\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} + \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}} \\
+i[\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} - \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}]
+\end{bmatrix}
+\end{aligned}
+$$
+
+
+こっちは先ほどと同じで$p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
+ゆえ
+$A = 2, B = -1, C = 0$を代入
+
+$$
+\boldsymbol{E} \propto 
+\begin{bmatrix}
+e^{i\varphi} [\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} + \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}] + e^{-i\varphi} [\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} + \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}] \\
+i (e^{i\varphi} [\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} - \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}] + e^{-i\varphi} [\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} - \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}])
+\end{bmatrix}
+$$
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{\varphi = \frac{\pi}{4}} &\propto
+\begin{bmatrix}
+e^{i\frac{\pi}{2}} \sin{\frac{\pi}{8}} + e^{-\frac{i\pi}{2}} \sin{\frac{3\pi}{8}} + \cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}}\\
+i[e^{i\frac{\pi}{2}} \sin{\frac{\pi}{8}} + e^{-\frac{i\pi}{2}} \sin{\frac{3\pi}{8}} - \cos{\frac{\pi}{8}} - \cos{\frac{3\pi}{8}}] 
+\end{bmatrix} \\
+&\propto
+\begin{bmatrix}
+\cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}} + i[\sin{\frac{\pi}{8}} - \sin{\frac{3\pi}{8}}]\\
+\sin{\frac{3\pi}{8}} - \sin{\frac{\pi}{8}} - i[\cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}}] 
+\end{bmatrix} \\
+&\propto
+\begin{bmatrix}
+1.3 - i0.54 \\
+0.54 - i1.3
+\end{bmatrix}
+\end{aligned}
+$$
+
+ここで位相項$e^{i\theta}$をかけて実部を取って$\theta$を$0 \rightarrow 2\pi$と変化させたときの軌跡をプロットすると
+
+となりこのように傾いた左回りの楕円偏光が得られる。
+論文中では
+
+であり確かに$\varphi = \frac{\pi}{4}$の位置ではこのような楕円になっている。
+
+## ベクトルビームと機械学習
+### "Machine learning-based classification of vector vortex beams"
+https://blog.tsurubee.tech/entry/2022/enns-overview#%E5%8C%BB%E7%99%82%E7%94%BB%E5%83%8F
+
+https://github.com/Chen-Cai-OSU/awesome-equivariant-network
+
+https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E8%A7%A3%E8%AA%AC%EF%BC%9A%E3%81%9D%E3%81%AE-%EF%BC%91-%E7%BE%A4/
+
+手書きの数字を見分けるという課題を考えた時に同じ数字を描いたものでもちょっとだけずれたものは画素値の場所もずれてしまうので別の画像と認識してしまう。(おんなじ数字を表しているのに。)
+これを解決するために畳み込みという操作を行うことにより領域で画像を見ることによって画素値の平行移動について同じものであるとみなす。**(最後にプーリングを行わない場合)**
+これは **畳み込みをしたとに平行移動させたもの、と平行移動した後に畳み込みをしたものを同一とみなすということ。**
+
+ここで以下を満たすとき
+
+変換$\Phi$と変換$g$は **同変:eqvariant** である、と言う。
+また、変換$\pi(g)$が恒等写像、つまり$\pi(g) = g$であるとき変換$\Phi$と変換$g$は **不変:variant** である、という。
+
+## ベクトルビームと幾何学
+### "Observation of optical polarization Möbius strips"
+
+### "Full Poincare´ beams"
+### "Generation of A Space-Variant Vector Beam with Catenary-Shaped Polarization States"
+
+## Gouy位相
+### "光学におけるベリー位相"
+### "Manifestation of the Gouy phase in strongly focused, radially polarized beams" 
+
+## 高次元ポアンカレ球
+### "Higher-Order Poincaré Sphere, Stokes Parameters, and the Angular Momentum of Light"
+### "Generalized Poincare sphere"
+
+## ベクトルビームの評価方法
+### "Measuring the nonseparability of vector vortex beams"
+### "Beam quality measure for vector beams"
+### "ENTANGLEMENT OF FORMATION AND CONCURRENCE"
+
+## 近軸近似のもとでスカラー場に対するマクスウェル方程式を解く
+### "From Maxwell to paraxial wave optics"
+### "Gaussian Beam 計算メモ"
+### HGbeam
+http://solidstatephysics.blog.fc2.com/blog-entry-47.html
+### LGbeam
+
+## 近軸近似せずにスカラー場のマクスウェル方程式を解く
+### "Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"
+### "Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"
+### "Measuring the nonseparability of vector vortex beams"
+
+## 近軸近似のもとでベクトル場に対するマクスウェル方程式を解く
+### "Vector-beam solutions of Maxwell's wave equation"
+### "Vector Helmholtz–Gauss and vector Laplace–Gauss beams"
+### エルミート多項式
+http://solidstatephysics.blog.fc2.com/blog-entry-31.html
+"腰も砕けよ 膝も折れよ"https://decafish.blog.ss-blog.jp/archive/c2305062484-1
+radial polarizationやazimuthal polarizationはベクトルヘルムホルツ方程式の固有値として与えられる
+
+## 機械学習
+### "Group Equivariant Convolutional Networks"
+
+・データの同変性と不変性に着目したNNが2016年に
+"Group Equivariant Convolutional Networks"<https://arxiv.org/abs/1602.07576>
+として発表された。
+Group:群
+Equivariant:同変の
+"数学では、 **同変**とは、ある空間から別の空間への対称性を持つ関数の対称性の形式です。関数は、その定義域と終域が同じ対称群によって作用され、関数が群の作用と交換する場合、同変写像であると言われます。つまり、**対称変換を適用してから関数を計算すると、関数を計算してから変換を適用した場合と同じ結果が得られます。**"
+
 # 実験案
 ## その１
 
@@ -813,7 +1283,7 @@ $$
 と仮定する。第一式は
 
 $$
-Re[(1 - \sin{2\varphi} \cos^2{2\beta} - \sin^2{2\beta} -i\cos{2\varphi} \cos^2{2\beta}) (i\sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin{4\beta}}{2} (1 - \sin{2\\varphi} - i\cos{2\\varphi})]
+Re[(1 - \sin{2\varphi} \cos^2{2\beta} - \sin^2{2\beta} -i\cos{2\varphi} \cos^2{2\beta}) (i\sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin{4\beta}}{2} (1 - \sin{2\varphi} - i\cos{2\varphi})]
 $$
 
 <br>
@@ -1292,463 +1762,14 @@ $$
 
 $(\cos{\phi}, \sin{\phi})$の点でのベクトル$\boldsymbol{E}_{out}$をプロットしたもの
 
-# 偏光子とポアンカレ球
-偏光成分を測るためには$E_x,E_y$が必要だが現実ではこれらの時間平均のみ計測可能である。
-これらを用いると**ストークスパラメーター**というパラメーターを定義できる。
-
-$$
-\begin{align}
-S_0 &= |E_x|^2 + |E_y|^2 \\
-S_1 &= |E_x|^2 - |E_y|^2 \\
-S_2 &= \frac{1}{2}(|E_x + E_y|^2 - |E_x - E_y|^2) \\
-&= E_x^*E_y + E_x^*E_y \\
-S_3 &= \frac{1}{2}(|E_x + iE_y|^2 - |E_x - iE_y|^2) \\
-&= -i(E_x^*E_y - E_x^*E_y)
-\end{align}
-$$
-
-これらをならべたものは**ストークスベクトル**といい
-
-$$
-\boldsymbol{S} = 
-\begin{bmatrix}
-A^2_x + A^2_y \\
-A^2_x - A^2_y \\
-2A_x A_y \cos{\delta} \\
--2A_x A_y \sin{\delta}
-\end{bmatrix}
-$$
-
-と表す。
-ここで$A_x, A_y$は$x,y$成分の振幅で$\delta$は$y$成分から見て$x$成分の位相のずれを表している。
-
-偏光の軌跡は楕円偏光を考えればいい(直線を完璧な楕円、円をまったく楕円ではないものと考える)ので楕円を表すパラメーターを決めればいい。具体的には
-- $\chi:$楕円率角(どのくらい楕円っぽいか)
-- $\psi:$方位角(楕円がどのくらい傾いているか)
-
-のちに導出するがこれは$S1, S2, S3$という変数を用いて
-
-光学の教科書ではストークスパラメータは以上のように定義されたものとして紹介される。(観測範囲ではすべての教科書でそうだった。)
-そこでこれを導出する。
-## 射影演算子
-## パウリ行列展開
-
-# 近軸近似のもとでスカラー場に対するマクスウェル方程式を解く
-"From Maxwell to paraxial wave optics"
-"Gaussian Beam 計算メモ"
-###HGbeam
-http://solidstatephysics.blog.fc2.com/blog-entry-47.html
-## LGbeam
-<div style="page-break-before:always"></div>
-
-##近軸近似のもとでベクトル場に対するマクスウェル方程式を解く
-"Vector-beam solutions of Maxwell's wave equation"
-"Vector Helmholtz–Gauss and vector Laplace–Gauss beams"
-## エルミート多項式
-http://solidstatephysics.blog.fc2.com/blog-entry-31.html
-"腰も砕けよ 膝も折れよ"https://decafish.blog.ss-blog.jp/archive/c2305062484-1
-radial polarizationやazimuthal polarizationはベクトルヘルムホルツ方程式の固有値として与えられる
-<div style="page-break-before:always"></div>
-
-# 研究
-## Equivariant Convolutional Networks
-・データの同変性と不変性に着目したNNが2016年に
-"Group Equivariant Convolutional Networks"<https://arxiv.org/abs/1602.07576>
-として発表された。
-Group:群
-Equivariant:同変の
-"数学では、 **同変**とは、ある空間から別の空間への対称性を持つ関数の対称性の形式です。関数は、その定義域と終域が同じ対称群によって作用され、関数が群の作用と交換する場合、同変写像であると言われます。つまり、**対称変換を適用してから関数を計算すると、関数を計算してから変換を適用した場合と同じ結果が得られます。**"
-
-# 論文解説
-## SLM2個使ってベクトルビームを作る
-### "Polarization distribution control of parallel femtosecond pulses with spatial light modulators"
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &=
-J_{QWP(\frac{\pi}{4})} J_{SLM2(\beta)} J_{HWP(\frac{\pi}{8})} J_{SLM1(\alpha)} \boldsymbol{E}_{in}
- \\
- &\propto
-\begin{bmatrix}
-1+i & 1-i \\
-1-i & 1+i
-\end{bmatrix}
-\begin{bmatrix}
-e^{-i\beta} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-1 & 1 \\
-1 & -1
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-1+i & 1-i \\
-1-i & 1+i
-\end{bmatrix}
-\begin{bmatrix}
-e^{-i\beta} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-1 
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-1+i & 1-i \\
-1-i & 1+i
-\end{bmatrix}
-\begin{bmatrix}
-e^{-i\beta} \\
-1 
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-e^{-i\beta}(1+i) + 1-i \\
-e^{-i\beta}(1-i) + 1+i
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-\cos{\beta} + \sin{\beta} + 1 \\
-\cos{\beta} - \sin{\beta} + 1
-\end{bmatrix}
-+i
-\begin{bmatrix}
-\cos{\beta} - \sin{\beta} - 1 \\
--(\cos{\beta} + \sin{\beta} - 1)
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &=
-\begin{bmatrix}
-\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} \\
-\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}}
-\end{bmatrix}
-+i
-\begin{bmatrix}
-\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}} - 2 \\
--(\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} - 2)
-\end{bmatrix} \\
-\therefore Re(\boldsymbol{E}_{out}) &=
-\begin{bmatrix}
-\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} \\
-\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}}
-\end{bmatrix}
-\end{aligned}
-$$
-
-$$
-\beta = 2\varphi + \theta
-$$
-
-とすると
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &\propto
-\begin{bmatrix}
-\cos{(\frac{2\varphi + \theta}{2})} + \sin{(\frac{2\varphi + \theta}{2})} \\
-\cos{(\frac{2\varphi + \theta}{2})} - \sin{(\frac{2\varphi + \theta}{2})}
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-\cos{(\varphi + \frac{\theta}{2})} + \sin{(\varphi + \frac{\theta}{2})} \\
-\cos{(\varphi + \frac{\theta}{2})} - \sin{(\varphi + \frac{\theta}{2})}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &\propto
-\begin{bmatrix}
-\cos{\varphi}(\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}) + \sin{\varphi}(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}) \\
-\cos{\varphi}(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}) - \sin{\varphi}(\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}})
-\end{bmatrix}
-\end{aligned}
-$$
-
-もし$\theta = -\frac{\pi}{2}$なら
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &\propto
-\begin{bmatrix}
-\cos{\varphi}(\cos{\frac{\pi}{4}} - \sin{\frac{\pi}{4}}) + \sin{\varphi}(\cos{\frac{\pi}{4}} + \sin{\frac{\pi}{4}}) \\
-\cos{\varphi}(\cos{\frac{\pi}{4}} + \sin{\frac{\pi}{4}}) - \sin{\varphi}(\cos{\frac{\pi}{4}} - \sin{\frac{\pi}{4}})
-\end{bmatrix} \\
-&\propto
-\begin{bmatrix}
-\sin{\varphi} \\
-\cos{\varphi}
-\end{bmatrix}
-\end{aligned}
-$$
-
-### "Holographic femtosecond laser manipulation for advanced material processing"
-
-$$
-\boldsymbol{E}_{out} \propto 
-\begin{bmatrix}
--i\cos{\beta} + \sin{\beta} + 1 \\
--\cos{\beta} -i\sin{\beta} + i
-\end{bmatrix}
-$$
-
-$\beta = \varphi + \theta$とすると
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &\propto 
-\begin{bmatrix}
--i\cos{(\varphi + \theta)} + \sin{(\varphi + \theta)} + 1 \\
--\cos{(\varphi + \theta)} -i\sin{(\varphi + \theta)} + i
-\end{bmatrix} \\
-&\propto
-\begin{bmatrix}
--i(\cos{\varphi} \cos{\theta} -\sin{\varphi} \sin{\theta}) + \sin{\varphi} \cos{\theta} + \cos{\varphi} \sin{\theta} + 1 \\
--(\cos{\varphi} \cos{\theta} -\sin{\varphi} \sin{\theta}) -i(\sin{\varphi} \cos{\theta} +\cos{\varphi} \sin{\theta})+ i
-\end{bmatrix}
-\end{aligned}
-$$
-
-$\beta = 2\varphi + \theta$とすると
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &\propto 
-\begin{bmatrix}
--i\cos{(2\varphi + \theta)} + \sin{(2\varphi + \theta)} + 1 \\
--\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} + i
-\end{bmatrix} \\
-&\propto
-\begin{bmatrix}
--i(\cos{2\varphi} \cos{\theta} -\sin{2\varphi} \sin{\theta}) + \sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta} + 1 \\
--(\cos{2\varphi} \cos{\theta} -\sin{2\varphi} \sin{\theta}) -i(\sin{2\varphi} \cos{\theta} +\cos{2\varphi} \sin{\theta})+ i
-\end{bmatrix}
-\end{aligned}
-$$
-
-ここで$\theta = \frac{\pi}{2}$とすると
-
-$$
-\boldsymbol{E}_{out} \propto
-\begin{bmatrix}
-i\sin{2\varphi} + \cos{2\varphi} +1 \\
-\sin{2\varphi} - i\cos{2\varphi} + i
-\end{bmatrix}
-$$
-
-これは
-
-を表す。
-
-### "Flexible generation of the generalized vector vortex beams"(2021)
-得られるビームのジョーンズベクトルは以下
-$$
-\boldsymbol{E} = 
-e^{iA\varphi}[
-\cos{2\alpha}
-e^{-i(B\varphi+C)}
-\boldsymbol{S_1}(2\gamma, 2(2\beta-\gamma))
-+\sin{2\alpha}
-e^{i(B\varphi+C)}
-\boldsymbol{S_2}(2\gamma+\pi, -2(2\beta-\gamma))]
-$$
-
-ただし2つのベクトル$\boldsymbol{S}$は
-
-$$\boldsymbol{S}(2\psi, 2\chi) = 
-\begin{bmatrix}
-\frac{1}{\sqrt{2}}[\sin{(\chi + \frac{\pi}{4})} e^{-i\psi} + \cos{(\chi + \frac{\pi}{4}) e^{i\psi}}] \\
-\frac{i}{\sqrt{2}}[\sin{(\chi + \frac{\pi}{4})} e^{-i\psi} - \cos{(\chi + \frac{\pi}{4}) e^{i\psi}}]
-\end{bmatrix}
-$$
-
-SLMに表示させるホログラムは
-- SLM1:$\delta_1 = p\varphi + \delta_{10}$
-- SLM2:$\delta_2 = q\varphi + \delta_{20}$
-
-パラメーターは
-- $\alpha$:1つ目の半波長板を傾ける角度
-- $\beta$:2つ目の半波長板を傾ける角度
-- $\gamma$:4分の1波長板を傾ける角度
-- $\boldsymbol{S_i}(i \in 1, 2)$は互いに直交するベクトル、**波長板を傾けるということは直交基底を選ぶことに対応する。**
-- $A = p + \frac{q}{2}$
-- $B = -\frac{q}{2}$
-- $C = -\frac{2\delta_{20} + \pi}{4}$
-
-ここで$\alpha = \frac{\pi}{8}, \beta = 0, \gamma = -\frac{\pi}{4}$とすると
-$$
-\boldsymbol{S_1}(-\frac{\pi}{2}, \frac{\pi}{2}) \propto 
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}(右回り円偏光)
-$$
-
-$$
-\boldsymbol{S_2}(\frac{\pi}{2}, -\frac{\pi}{2}) \propto 
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix}(左回り円偏光)
-$$
-
-となる。
-さらに$p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
-とすると
-$A = 2, B = -1, C = 0$
-となるので代入すると
-
-$$
-\boldsymbol{E} = 
-\sqrt{2} e^{i2\varphi}
-\begin{bmatrix}
-\cos{\varphi} \\
-\sin{\varphi}
-\end{bmatrix}
-$$
-
-$$
-Re(\boldsymbol{E}) = \sqrt{2} \cos{2\varphi}
-\begin{bmatrix}
-\cos{\varphi}\\
-\sin{\varphi}
-\end{bmatrix}
-\propto
-\begin{bmatrix}
-\cos{\varphi}\\
-\sin{\varphi}
-\end{bmatrix}
-$$
-
-この偏光分布が時々刻々と変化していくつまりこれに位相項$e^{iX}$をかけて実部を取ったものの形が偏光分布
-
-たしかに種々の$\varphi$に値を代入してみると
-
-$$
-\begin{aligned}
-Re(\boldsymbol{E_{\varphi=0}}) &= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix} (水平偏光)\\
-Re(\boldsymbol{E_{\varphi=\frac{\pi}{4}}}) &\propto 
-\begin{bmatrix}
-1 \\
-1 
-\end{bmatrix} (\frac{\pi}{4}傾いた直線偏光)\\
-Re(\boldsymbol{E_{\varphi=\frac{\pi}{2}}}) &= 
-\begin{bmatrix}
-0 \\
-1 
-\end{bmatrix} (垂直偏光) \\
-\end{aligned}
-$$
-
-今は偏光分布が中心からの距離に依存しないので結局
-
-のような偏光分布が得られる。
-
-次にパラメーターを変えて同じように考えてみる。
-今度は$\alpha = \frac{\pi}{8}, \beta = -\frac{\pi}{4}, \gamma = -\frac{3\pi}{16}$
-
-
-$$
-\begin{aligned}
-\boldsymbol{S_1}(-\frac{\pi}{2}, -\frac{\pi}{4}) &\propto 
-\begin{bmatrix}
-\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} + \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}} \\
-i[\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} - \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}]
-\end{bmatrix}
-\\
-\boldsymbol{S_2}(\frac{\pi}{2}, \frac{\pi}{4}) &\propto 
-\begin{bmatrix}
-\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} + \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}} \\
-i[\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} - \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}]
-\end{bmatrix}
-\end{aligned}
-$$
-
-
-こっちは先ほどと同じで$p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$
-ゆえ
-$A = 2, B = -1, C = 0$を代入
-
-$$
-\boldsymbol{E} \propto 
-\begin{bmatrix}
-e^{i\varphi} [\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} + \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}] + e^{-i\varphi} [\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} + \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}] \\
-i (e^{i\varphi} [\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} - \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}] + e^{-i\varphi} [\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} - \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}])
-\end{bmatrix}
-$$
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{\varphi = \frac{\pi}{4}} &\propto
-\begin{bmatrix}
-e^{i\frac{\pi}{2}} \sin{\frac{\pi}{8}} + e^{-\frac{i\pi}{2}} \sin{\frac{3\pi}{8}} + \cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}}\\
-i[e^{i\frac{\pi}{2}} \sin{\frac{\pi}{8}} + e^{-\frac{i\pi}{2}} \sin{\frac{3\pi}{8}} - \cos{\frac{\pi}{8}} - \cos{\frac{3\pi}{8}}] 
-\end{bmatrix} \\
-&\propto
-\begin{bmatrix}
-\cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}} + i[\sin{\frac{\pi}{8}} - \sin{\frac{3\pi}{8}}]\\
-\sin{\frac{3\pi}{8}} - \sin{\frac{\pi}{8}} - i[\cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}}] 
-\end{bmatrix} \\
-&\propto
-\begin{bmatrix}
-1.3 - i0.54 \\
-0.54 - i1.3
-\end{bmatrix}
-\end{aligned}
-$$
-
-ここで位相項$e^{i\theta}$をかけて実部を取って$\theta$を$0 \rightarrow 2\pi$と変化させたときの軌跡をプロットすると
-
-となりこのように傾いた左回りの楕円偏光が得られる。
-論文中では
-
-であり確かに$\varphi = \frac{\pi}{4}$の位置ではこのような楕円になっている。
-
-## ベクトルビームと機械学習
-### "Machine learning-based classification of vector vortex beams"
-https://blog.tsurubee.tech/entry/2022/enns-overview#%E5%8C%BB%E7%99%82%E7%94%BB%E5%83%8F
-
-https://github.com/Chen-Cai-OSU/awesome-equivariant-network
-
-https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E8%A7%A3%E8%AA%AC%EF%BC%9A%E3%81%9D%E3%81%AE-%EF%BC%91-%E7%BE%A4/
-
-手書きの数字を見分けるという課題を考えた時に同じ数字を描いたものでもちょっとだけずれたものは画素値の場所もずれてしまうので別の画像と認識してしまう。(おんなじ数字を表しているのに。)
-これを解決するために畳み込みという操作を行うことにより領域で画像を見ることによって画素値の平行移動について同じものであるとみなす。**(最後にプーリングを行わない場合)**
-これは **畳み込みをしたとに平行移動させたもの、と平行移動した後に畳み込みをしたものを同一とみなすということ。**
-
-ここで以下を満たすとき
-
-変換$\Phi$と変換$g$は **同変:eqvariant** である、と言う。
-また、変換$\pi(g)$が恒等写像、つまり$\pi(g) = g$であるとき変換$\Phi$と変換$g$は **不変:variant** である、という。
-
-## ベクトルビームと幾何学
-### "Observation of optical polarization Möbius strips"
-
-### "Full Poincare´ beams"
-
-## Gouy位相
-### "光学におけるベリー位相"
-### "Manifestation of the Gouy phase in strongly focused, radially polarized beams" 
-
-## 高次元ポアンカレ球
-###
-
-## ベクトルビームの評価方法
-### "Measuring the nonseparability of vector vortex beams"
-### "Beam quality measure for vector beams"
-### "ENTANGLEMENT OF FORMATION AND CONCURRENCE"
-
-## 近軸近似せずにスカラー場のマクスウェル方程式を解く
-### "Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"
-### "Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"
-
-## 機械学習
-### "Group Equivariant Convolutional Networks"
-
-
-っわｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｇ
+# 教科書的な立ち位置
+
+## ベクトルビーム
+### "Cylindrical vector beams: from mathematical concepts to applications"
+### "Vector Beams for Fundamental Physics and Applications"
+## 光渦
+### "Orbital angular momentum: origins, behavior and applications"
+## SLM
+### "Creation and detection of optical modes with spatial light modulators"
+
+![Alt text](images/image.png)g)
