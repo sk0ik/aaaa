@@ -1024,7 +1024,7 @@ $$
 
 $$\begin{aligned}
 a &= b \\
-c &= d
+\therefore c &= d
 \end{aligned}$$
 
 $$\begin{aligned}
