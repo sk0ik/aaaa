@@ -1023,12 +1023,12 @@ $$
 となる。これらをかければよいので
 
 $$\begin{aligned}
-\boldsymbol{E}_{aa}\
+\vec{E}_{aa}
 \begin{bmatrix}
 a & b \\
 c & d
 \end{bmatrix}
-\boldsymbol{E}_{aa}\
+\vec{E}_{aa}
 \begin{bmatrix}
 a & b \\
 c & d
