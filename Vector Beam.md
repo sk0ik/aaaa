@@ -1023,11 +1023,11 @@ $$
 となる。これらをかければよいので
 
 $$\begin{aligned}
-\begin{bmatrix}
+\begin{bmatrix} \boldsymbol{E}_{out}
 a & b \\
 c & d
 \end{bmatrix}
-\begin{bmatrix}
+\begin{bmatrix} \boldsymbol{E}_{out}
 a & b \\
 c & d
 \end{bmatrix} \\
