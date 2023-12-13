@@ -1118,7 +1118,7 @@ $$
 \boldsymbol{E}_{out2} &=
 \begin{bmatrix}-e^{i\delta_1} & 0 \\
 0 & 1\end{bmatrix}\boldsymbol{E}_{out1} \\ 
-&=
+\boldsymbol{E}_{out2} &=
 \begin{bmatrix}-e^{i\delta_1} & 0 \\
 0 & 1\end{bmatrix}\begin{bmatrix}1 \\
 0\end{bmatrix} \\
