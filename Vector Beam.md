@@ -1026,7 +1026,7 @@ $$\begin{aligned}
 \begin{bmatrix}
 a & b \\
 c & d
-\end{bmatrix} \\
+\end{bmatrix}
 \begin{bmatrix}
 a & b \\
 c & d
