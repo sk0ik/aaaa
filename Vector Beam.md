@@ -1024,6 +1024,7 @@ $$
 
 $$
 a_b
+\vec{{E}_{aa}}
 $$
 
 $$\begin{aligned}
