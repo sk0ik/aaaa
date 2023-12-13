@@ -1109,7 +1109,7 @@ $\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out2} &=
+\boldsymbol{E}_{out2}&=
 \begin{bmatrix}
 -e^{i\delta_1} & 0 \\
 0 & 1
@@ -1124,7 +1124,7 @@ $$
 1 \\
 0
 \end{bmatrix} \\
-\therefore \boldsymbol{E}_{out2} &=
+\therefore \boldsymbol{E}_{out2}&=
 \begin{bmatrix} 
 -e^{i\delta_1} \\
 0
