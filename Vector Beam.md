@@ -1022,8 +1022,12 @@ $$
 
 となる。これらをかければよいので
 
+$$
+a_b
+$$
+
 $$\begin{aligned}
-\vec{E}_{aa}
+\vec{{E}_{aa}}
 \begin{bmatrix}
 a & b \\
 c & d
