@@ -1027,7 +1027,7 @@ $$\begin{aligned}
 \begin{bmatrix}
 a & b \\
 c & d
-\end{bmatrix}
+\end{bmatrix} \\
 \vec{E}_{aa}
 \begin{bmatrix}
 a & b \\
