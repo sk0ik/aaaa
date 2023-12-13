@@ -1022,8 +1022,8 @@ $$
 
 となる。これらをかければよいので
 
-$$
-\begin{aligned}
+
+$$\begin{aligned}
 \boldsymbol{E}_{out1} &=
 J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in} \\
 &= 
@@ -1053,8 +1053,7 @@ E_{y0} e^{i\varphi_y}
 \begin{bmatrix}
 E_{x0} e^{i\varphi_x} \cos{2\alpha} + E_{y0} e^{i\varphi_y} \sin{2\alpha} \\ 0
 \end{bmatrix}
-\end{aligned}
-$$
+\end{aligned}$$
 
 つまりここではP偏光成分の大きさを決めていている。
 今は偏光を考えているのでここでは便宜上
@@ -1104,7 +1103,7 @@ $\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
 - $\varphi:$ 方位角(azimuthal angle)
 - $\delta_{10}, \delta_{20}:$ constant phase
 
-とする。(軸対称なベクトルビームを作りたいので変数は$\varphi$(方位角のみ))
+とする。(軸対称なベクトルビームを作りたいので変数は $\varphi$ (方位角のみ))
 よってSLM1で反射してBSに戻ってくるビームは
 
 $$
