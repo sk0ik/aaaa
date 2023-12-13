@@ -1023,8 +1023,14 @@ $$
 となる。これらをかければよいので
 
 $$\begin{aligned}
-a &= b \\
-\therefore c &= d
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix} \\
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
 \end{aligned}$$
 
 $$\begin{aligned}
@@ -1108,8 +1114,19 @@ $\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
 よってSLM1で反射してBSに戻ってくるビームは
 
 $$
-\begin{eqnarray}
-\boldsymbol{E}_{out2}&=\begin{bmatrix}-e^{i\delta_1} & 0 \\0 & 1\end{bmatrix}\boldsymbol{E}_{out1} \\ &=\begin{bmatrix}-e^{i\delta_1} & 0 \\0 & 1\end{bmatrix}\begin{bmatrix}1 \\0\end{bmatrix} \\\therefore \boldsymbol{E}_{out2}&=\begin{bmatrix} -e^{i\delta_1} \\0\end{bmatrix}\end{eqnarray}$$
+\begin{aligned}
+\boldsymbol{E}_{out2} &=
+\begin{bmatrix}-e^{i\delta_1} & 0 \\
+0 & 1\end{bmatrix}\boldsymbol{E}_{out1} \\ 
+&=
+\begin{bmatrix}-e^{i\delta_1} & 0 \\
+0 & 1\end{bmatrix}\begin{bmatrix}1 \\
+0\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out2} &=
+\begin{bmatrix} -e^{i\delta_1} \\
+0\end{bmatrix}
+\end{aligned}
+$$
 
 これも偏光だけを考えているので
 
