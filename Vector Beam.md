@@ -1022,6 +1022,10 @@ $$
 
 となる。これらをかければよいので
 
+$$\begin{aligned}
+a &= b \\
+c &= d
+\end{aligned}$$
 
 $$\begin{aligned}
 \boldsymbol{E}_{out1} &=
