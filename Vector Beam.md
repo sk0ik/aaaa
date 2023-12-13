@@ -1038,6 +1038,10 @@ $$
 \vec{a}_{\mathrm{in}} \vec{b}_{\mathrm{out}}
 $$
 
+$$
+\vec{a}_{\text{in}} \quad \vec{b}_{\text{out}}
+$$
+
 $$\begin{aligned}
 \vec{{E}_{aa}}
 \begin{bmatrix}
