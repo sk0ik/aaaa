@@ -1109,28 +1109,7 @@ $\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out2}&=
-\begin{bmatrix}
--e^{i\delta_1} & 0 \\
-0 & 1
-\end{bmatrix}
-\boldsymbol{E}_{out1} \\
-&=
-\begin{bmatrix}
--e^{i\delta_1} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out2}&=
-\begin{bmatrix} 
--e^{i\delta_1} \\
-0
-\end{bmatrix}
-\end{aligned}
-$$
+\boldsymbol{E}_{out2}&=\begin{bmatrix}-e^{i\delta_1} & 0 \\0 & 1\end{bmatrix}\boldsymbol{E}_{out1} \\ &=\begin{bmatrix}-e^{i\delta_1} & 0 \\0 & 1\end{bmatrix}\begin{bmatrix}1 \\0\end{bmatrix} \\\therefore \boldsymbol{E}_{out2}&=\begin{bmatrix} -e^{i\delta_1} \\0\end{bmatrix}\end{aligned}$$
 
 これも偏光だけを考えているので
 
