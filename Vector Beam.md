@@ -1030,6 +1030,10 @@ c & d
 \begin{bmatrix}
 a & b \\
 c & d
+\end{bmatrix} \\
+\begin{bmatrix}
+a & b \\
+c & d
 \end{bmatrix}
 \end{aligned}$$
 
