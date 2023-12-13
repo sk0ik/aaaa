@@ -1023,8 +1023,7 @@ $$
 となる。これらをかければよいので
 
 $$
-a_b
-\vec{{E}_{aa}}
+vec{a} + vec{b}
 $$
 
 $$\begin{aligned}
