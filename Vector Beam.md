@@ -1023,7 +1023,7 @@ $$
 となる。これらをかければよいので
 
 $$
-vec{a} + vec{b}
+\vec{a} + \vec{b}
 $$
 
 $$\begin{aligned}
