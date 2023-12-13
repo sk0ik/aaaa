@@ -1026,6 +1026,14 @@ $$
 \vec{a}_{in} \vec{b}_{out}
 $$
 
+$$
+\vec{a} \stackrel{\text{in}}{\longrightarrow} \vec{b} \stackrel{\text{out}}{\longrightarrow}
+$$
+
+$$
+\vec{a}_{\text{in}} \vec{b}_{\text{out}}
+$$
+
 $$\begin{aligned}
 \vec{{E}_{aa}}
 \begin{bmatrix}
