@@ -1023,7 +1023,7 @@ $$
 となる。これらをかければよいので
 
 $$
-\vec{a} \vec{b}
+\vec{a}_{in} \vec{b}_{out}
 $$
 
 $$\begin{aligned}
