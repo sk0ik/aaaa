@@ -35,14 +35,14 @@
     - ["Gaussian Beam 計算メモ"](#gaussian-beam-計算メモ)
     - [HGbeam](#hgbeam)
     - [LGbeam](#lgbeam)
-  - [近軸近似せずにスカラー場のマクスウェル方程式を解く](#近軸近似せずにスカラー場のマクスウェル方程式を解く)
-    - ["Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"](#nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space)
-    - ["Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"](#closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields)
-    - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams-1)
   - [近軸近似のもとでベクトル場に対するマクスウェル方程式を解く](#近軸近似のもとでベクトル場に対するマクスウェル方程式を解く)
     - ["Vector-beam solutions of Maxwell's wave equation"](#vector-beam-solutions-of-maxwells-wave-equation)
     - ["Vector Helmholtz–Gauss and vector Laplace–Gauss beams"](#vector-helmholtzgauss-and-vector-laplacegauss-beams)
     - [エルミート多項式](#エルミート多項式)
+  - [近軸近似せずにスカラー場のマクスウェル方程式を解く](#近軸近似せずにスカラー場のマクスウェル方程式を解く)
+    - ["Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"](#nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space)
+    - ["Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"](#closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields)
+    - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams-1)
   - [機械学習](#機械学習-1)
     - ["Group Equivariant Convolutional Networks"](#group-equivariant-convolutional-networks)
 - [実験案](#実験案)
@@ -959,10 +959,100 @@ https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%8
 http://solidstatephysics.blog.fc2.com/blog-entry-47.html
 ### LGbeam
 
-## 近軸近似せずにスカラー場のマクスウェル方程式を解く
-### "Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"
-### "Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"
-### "Measuring the nonseparability of vector vortex beams"
+ファラデーの法則
+
+$$
+\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) = -\frac{\partial \boldsymbol {B} (\boldsymbol {r} , t) } {\partial t}
+$$
+
+に対して両辺の回転を取ると
+
+$$
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = - \mu_0 \nabla \times \frac{\partial \boldsymbol {H} (\boldsymbol {r} , t) }{\partial t}
+$$
+
+となるがここでアンペールの法則
+
+$$
+\nabla \times \boldsymbol {H} (\boldsymbol {r} , t) = \epsilon_0 \frac{\partial \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t}
+$$
+
+を代入すると
+
+$$
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2}
+$$
+
+を得る。ここで
+
+$$
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = \nabla(\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) ) - \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t)
+$$
+
+より
+
+$$
+\nabla(\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) ) - \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) = - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2}
+$$
+
+を得る。電荷がない場合を考えているので
+
+$$
+\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) = 0
+$$
+
+より
+
+$$
+\begin{aligned}
+- \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} \\
+\nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} 
+\end{aligned}
+$$
+
+$$
+\therefore \nabla^2 \boldsymbol{E} (\boldsymbol {r} , t) - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t)}{\partial t^2} = 0
+$$
+
+ここで解の形を
+
+$$
+\boldsymbol {E} (\boldsymbol {r} , t) = \boldsymbol {E} (\boldsymbol {r}) f(t)
+$$
+
+と分離できると仮定する。これを代入すると
+
+$$
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) f(t) - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} ) f(t)}{\partial t^2} = 0
+$$
+
+を得る。ここでフーリエ変換
+
+$$
+F(\omega) = \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}f(t) e^{i \omega t}dt
+$$
+
+を考えると
+
+$$
+f(t) = \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega
+$$
+
+であるので代入すると
+
+$$
+\begin{aligned}
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} )}{\partial t^2} \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega + \frac{\epsilon_0 \mu_0 \omega ^2}{\sqrt{2 \pi}} \boldsymbol {E} (\boldsymbol {r} ) \int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \epsilon_0 \mu_0 \omega ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \frac{\omega ^2}{c^2} \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \biggl (\frac{2 \pi f}{f \lambda} \biggr ) ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \biggl (\frac{2 \pi}{\lambda} \biggr ) ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\therefore \nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + k ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0
+\end{aligned}
+$$
+
+これはヘルムホルツ方程式と言うタイプの偏微分方程式。
 
 ## 近軸近似のもとでベクトル場に対するマクスウェル方程式を解く
 ### "Vector-beam solutions of Maxwell's wave equation"
@@ -971,6 +1061,11 @@ http://solidstatephysics.blog.fc2.com/blog-entry-47.html
 http://solidstatephysics.blog.fc2.com/blog-entry-31.html
 "腰も砕けよ 膝も折れよ"https://decafish.blog.ss-blog.jp/archive/c2305062484-1
 radial polarizationやazimuthal polarizationはベクトルヘルムホルツ方程式の固有値として与えられる
+
+## 近軸近似せずにスカラー場のマクスウェル方程式を解く
+### "Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"
+### "Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"
+### "Measuring the nonseparability of vector vortex beams"
 
 ## 機械学習
 ### "Group Equivariant Convolutional Networks"
@@ -1041,6 +1136,8 @@ $$
 $$
 \vec{a}_{\text{in}} \quad \vec{b}_{\text{out}}
 $$
+
+$\vec{a}_{\text{in}}$ $\vec{b}_{\text{out}}$
 
 $$\begin{aligned}
 \vec{{E}_{aa}}
