@@ -8,7 +8,10 @@
 - [偏光子とポアンカレ球](#偏光子とポアンカレ球)
   - [射影演算子](#射影演算子)
   - [パウリ行列展開](#パウリ行列展開)
-- [機械学習](#機械学習)
+  - [ポアンカレ球](#ポアンカレ球)
+  - [高次元ポアンカレ球](#高次元ポアンカレ球)
+- [ブロッホ球](#ブロッホ球)
+  - [高次元ブロッホ球](#高次元ブロッホ球)
 - [論文解説](#論文解説)
   - [SLM2個使ってベクトルビームを作る](#slm2個使ってベクトルビームを作る)
     - ["Polarization distribution control of parallel femtosecond pulses with spatial light modulators"](#polarization-distribution-control-of-parallel-femtosecond-pulses-with-spatial-light-modulators)
@@ -21,9 +24,10 @@
     - ["Full Poincare´ beams"](#full-poincare-beams)
     - ["Generation of A Space-Variant Vector Beam with Catenary-Shaped Polarization States"](#generation-of-a-space-variant-vector-beam-with-catenary-shaped-polarization-states)
   - [Gouy位相](#gouy位相)
+    - [パンチャラトナムベリー位相](#パンチャラトナムベリー位相)
     - ["光学におけるベリー位相"](#光学におけるベリー位相)
     - ["Manifestation of the Gouy phase in strongly focused, radially polarized beams"](#manifestation-of-the-gouy-phase-in-strongly-focused-radially-polarized-beams)
-  - [高次元ポアンカレ球](#高次元ポアンカレ球)
+  - [高次元ポアンカレ球](#高次元ポアンカレ球-1)
     - ["Higher-Order Poincaré Sphere, Stokes Parameters, and the Angular Momentum of Light"](#higher-order-poincaré-sphere-stokes-parameters-and-the-angular-momentum-of-light)
     - ["Generalized Poincare sphere"](#generalized-poincare-sphere)
   - [ベクトルビームの評価方法](#ベクトルビームの評価方法)
@@ -35,6 +39,7 @@
     - ["Gaussian Beam 計算メモ"](#gaussian-beam-計算メモ)
     - [HGbeam](#hgbeam)
     - [LGbeam](#lgbeam)
+    - [解法](#解法)
   - [近軸近似のもとでベクトル場に対するマクスウェル方程式を解く](#近軸近似のもとでベクトル場に対するマクスウェル方程式を解く)
     - ["Vector-beam solutions of Maxwell's wave equation"](#vector-beam-solutions-of-maxwells-wave-equation)
     - ["Vector Helmholtz–Gauss and vector Laplace–Gauss beams"](#vector-helmholtzgauss-and-vector-laplacegauss-beams)
@@ -43,8 +48,6 @@
     - ["Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"](#nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space)
     - ["Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"](#closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields)
     - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams-1)
-  - [機械学習](#機械学習-1)
-    - ["Group Equivariant Convolutional Networks"](#group-equivariant-convolutional-networks)
 - [実験案](#実験案)
   - [その１](#その１)
   - [その２](#その２)
@@ -560,9 +563,145 @@ $$
 光学の教科書ではストークスパラメータは以上のように定義されたものとして紹介される。(観測範囲ではすべての教科書でそうだった。)
 そこでこれを導出する。
 ## 射影演算子
-## パウリ行列展開
+ジョーンズベクトルは複素ベクトルであるがストークスパラメーターは実数であるので複素数の世界から実数の世界に行く必要がある。
 
-# 機械学習
+$$
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix} \; \alpha , \beta \in \mathbb{C}
+$$
+
+もし
+
+$$
+| \alpha | ^2 + | \beta | ^2 = 1
+$$
+
+ならば
+
+$$
+P = 
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^*
+$$
+
+が射影演算子となる。
+ただしどんな行列も射影演算子となるわけではなく以下の2つを満たす必要がある。(線形写像となる条件？)
+
+$$
+\begin{aligned}
+・
+P^2 &= 1 \\
+・
+P^ \dagger &= P
+\end{aligned}
+$$
+
+計算してみると
+
+$$
+\begin{aligned}
+P^2 &= (
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix} 
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^* ) (
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^* ) \\
+&= 
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix} (
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^*  
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix} )
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^*
+\\
+&= 
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix} (
+| \alpha | ^2 + | \beta | ^2 )
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^* \\
+\therefore P^2 &= P
+\end{aligned}
+$$
+
+次に
+
+$$
+\begin{aligned}
+P ^ \dagger &= (
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^* ) ^ \dagger \\
+&= (
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^* ) ^ \dagger \\
+&= (
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix} ^*) ^*
+\begin{bmatrix}
+\alpha \; \;
+\beta 
+\end{bmatrix} ^* \\
+\therefore P ^ \dagger &= P
+\end{aligned}
+$$
+
+## パウリ行列展開
+https://electrodynamics.hatenablog.com/entry/2018/12/01/233744
+https://electrodynamics.hatenablog.com/entry/2018/12/16/000833
+
+## ポアンカレ球
+
+## 高次元ポアンカレ球
+
+# ブロッホ球
+## 高次元ブロッホ球
 
 # 論文解説
 ## SLM2個使ってベクトルビームを作る
@@ -940,6 +1079,7 @@ https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%8
 ### "Generation of A Space-Variant Vector Beam with Catenary-Shaped Polarization States"
 
 ## Gouy位相
+### パンチャラトナムベリー位相
 ### "光学におけるベリー位相"
 ### "Manifestation of the Gouy phase in strongly focused, radially polarized beams" 
 
@@ -958,6 +1098,8 @@ https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%8
 ### HGbeam
 http://solidstatephysics.blog.fc2.com/blog-entry-47.html
 ### LGbeam
+
+### 解法
 
 ファラデーの法則
 
@@ -1066,16 +1208,6 @@ radial polarizationやazimuthal polarizationはベクトルヘルムホルツ方
 ### "Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"
 ### "Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"
 ### "Measuring the nonseparability of vector vortex beams"
-
-## 機械学習
-### "Group Equivariant Convolutional Networks"
-
-・データの同変性と不変性に着目したNNが2016年に
-"Group Equivariant Convolutional Networks"<https://arxiv.org/abs/1602.07576>
-として発表された。
-Group:群
-Equivariant:同変の
-"数学では、 **同変**とは、ある空間から別の空間への対称性を持つ関数の対称性の形式です。関数は、その定義域と終域が同じ対称群によって作用され、関数が群の作用と交換する場合、同変写像であると言われます。つまり、**対称変換を適用してから関数を計算すると、関数を計算してから変換を適用した場合と同じ結果が得られます。**"
 
 # 実験案
 ## その１
