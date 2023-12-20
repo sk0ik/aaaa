@@ -1220,11 +1220,13 @@ $$
 \end{aligned}
 $$
 
-ここで
+ここで近軸近似を考えると
 
 $$
-
+\frac{\partial ^2 u}{\partial ^2 x} + \frac{\partial ^2 u}{\partial ^2 y} + 2ik \frac{\partial u}{\partial z} = 0
 $$
+
+を得る。
 
 ## 近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く
 ### 参考:"Separability and Applications"
@@ -1268,7 +1270,14 @@ $$
 
 のように軸対称な解を考える。
 
-これは円筒座標の方位角が一定のものであるのでナブラは
+円筒座標系でのナブラは
+
+$$
+\nabla = \frac{\partial}{\partial r} \boldsymbol{e}_r + \frac{1}{r} \frac{\partial}{\partial \phi} + \frac{\partial}{\partial z} \boldsymbol{e}_z
+$$
+
+で
+であるが今は $\phi$ が一定であるので
 
 $$
 \nabla = \frac{\partial}{\partial r} \boldsymbol{e}_r + \frac{\partial}{\partial z} \boldsymbol{e}_z
@@ -1324,6 +1333,8 @@ $$
 $$
 \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) - \frac{1}{r^2} U + 2ik \frac{\partial U}{\partial z} = 0
 $$
+
+を得る。
 
 ## 近軸近似せずにスカラー場のヘルムホルツ方程式を解く
 
