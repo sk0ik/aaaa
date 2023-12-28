@@ -8,6 +8,8 @@
 - [偏光子とポアンカレ球](#偏光子とポアンカレ球)
   - [射影演算子](#射影演算子)
   - [パウリ行列展開](#パウリ行列展開)
+  - [パウリ行列と物理量](#パウリ行列と物理量)
+- [\\end{bmatrix}](#endbmatrix)
   - [ポアンカレ球](#ポアンカレ球)
   - [高次元ポアンカレ球](#高次元ポアンカレ球)
 - [ブロッホ球](#ブロッホ球)
@@ -54,6 +56,9 @@
   - [その１](#その１)
   - [その２](#その２)
   - [その３](#その３)
+- [\\end{bmatrix}](#endbmatrix-1)
+- [\\end{bmatrix}](#endbmatrix-2)
+- [\\end{bmatrix}](#endbmatrix-3)
 - [教科書的な立ち位置](#教科書的な立ち位置)
   - [ベクトルビーム](#ベクトルビーム)
     - ["Cylindrical vector beams: from mathematical concepts to applications"](#cylindrical-vector-beams-from-mathematical-concepts-to-applications)
@@ -560,7 +565,7 @@ $$
 - $\chi:$楕円率角(どのくらい楕円っぽいか)
 - $\psi:$方位角(楕円がどのくらい傾いているか)
 
-のちに導出するがこれは $S1, S2, S3$ という変数を用いて
+のちに導出するがこれは $S_1, S_2, S_3$ という変数を用いて
 
 光学の教科書ではストークスパラメータは以上のように定義されたものとして紹介される。(観測範囲ではすべての教科書でそうだった。)
 そこでこれを導出する。
@@ -571,7 +576,7 @@ $$
 \begin{bmatrix}
 \alpha \\
 \beta 
-\end{bmatrix} \; \alpha , \beta \in \mathbb{C}
+\end{bmatrix} \; (\alpha , \beta \in \mathbb{C})
 $$
 
 もし
@@ -589,7 +594,7 @@ P =
 \beta 
 \end{bmatrix}
 \begin{bmatrix}
-\alpha \; \;
+\alpha \;
 \beta 
 \end{bmatrix} ^*
 $$
@@ -616,7 +621,7 @@ P^2 &= (
 \beta 
 \end{bmatrix} 
 \begin{bmatrix}
-\alpha \; \;
+\alpha \;
 \beta 
 \end{bmatrix} ^* ) (
 \begin{bmatrix}
@@ -624,7 +629,7 @@ P^2 &= (
 \beta 
 \end{bmatrix}
 \begin{bmatrix}
-\alpha \; \;
+\alpha \;
 \beta 
 \end{bmatrix} ^* ) \\
 &= 
@@ -633,7 +638,7 @@ P^2 &= (
 \beta 
 \end{bmatrix} (
 \begin{bmatrix}
-\alpha \; \;
+\alpha \;
 \beta 
 \end{bmatrix} ^*  
 \begin{bmatrix}
@@ -641,7 +646,7 @@ P^2 &= (
 \beta 
 \end{bmatrix} )
 \begin{bmatrix}
-\alpha \; \;
+\alpha \;
 \beta 
 \end{bmatrix} ^*
 \\
@@ -652,7 +657,7 @@ P^2 &= (
 \end{bmatrix} (
 | \alpha | ^2 + | \beta | ^2 )
 \begin{bmatrix}
-\alpha \; \;
+\alpha \;
 \beta 
 \end{bmatrix} ^* \\
 \therefore P^2 &= P
@@ -698,6 +703,414 @@ $$
 https://electrodynamics.hatenablog.com/entry/2018/12/01/233744
 https://electrodynamics.hatenablog.com/entry/2018/12/16/000833
 
+パウリ行列は
+
+$$
+\sigma_0 =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}, \quad
+\sigma_1 =
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}, \quad
+\sigma_2 =
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}, \quad
+\sigma_3 =
+\begin{bmatrix}
+0 & -i \\
+i & 0
+\end{bmatrix}
+$$
+
+で表される。
+
+ジョーンズベクトルとジョーンズベクトルの転置を取り複素共役を取ったもの積を考える。
+
+$$
+\begin{aligned}
+P &= 
+\begin{bmatrix}
+\alpha \\
+\beta 
+\end{bmatrix}
+\begin{bmatrix}
+\alpha ^* \;
+\beta ^*
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+| \alpha | ^2 & \alpha \beta ^* \\
+\alpha ^* \beta & | \beta | ^2
+\end{bmatrix}
+\end{aligned}
+$$
+
+この行列をパウリ行列の和で表すことを考える。
+
+パウリ行列は例えば
+
+$$
+\begin{aligned}
+\sigma_2 ^2 &=
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix} \\
+&= 
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\end{aligned}
+$$
+
+となり2乗すると単位行列
+
+異なる行列同士の積のTrを考える。例えば
+
+$$
+\begin{aligned}
+Tr( \sigma_3 \sigma_2 ) &= Tr \Bigl (
+\begin{bmatrix}
+0 & -i \\
+i & 0
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix} \Bigr )\\
+&= Tr \Bigl (
+\begin{bmatrix}
+-i & 0 \\
+0 & i
+\end{bmatrix} \Bigr ) \\
+&= 
+-i + i \\
+\therefore Tr( \sigma_3 \sigma_2 ) 
+&=
+0
+\end{aligned}
+$$
+
+となり0となる。
+
+射影演算子 $P$ がパウリ行列の和で表される、つまり
+
+$$
+\begin{aligned}
+P &= \frac{1}{2} (
+h_0 
+\sigma_0
++ h_1
+\sigma_1
++ h_2
+\sigma_2
++ h_3
+\sigma_3 ) \\
+&= \frac{1}{2} \Bigl (
+h_0 
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
++ h_1
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
++ h_2
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
++ h_3
+\begin{bmatrix}
+0 & -i \\
+i & 0 
+\end{bmatrix} \Bigr )
+\end{aligned}
+$$
+
+と書けると仮定する。
+
+先ほどの積の性質を使うと、例えば
+
+$$
+\begin{aligned}
+Tr(P \sigma_3) &= \frac{1}{2} \Bigl ( h_0 Tr(\sigma_0 \sigma_3) + h_1 Tr(\sigma_1 \sigma_3) + h_2 Tr(\sigma_2 \sigma_3) + h_3 Tr(\sigma_3 \sigma_3) \Bigr ) \\
+&= h_3 \\
+h_3 &= 2 Tr \Bigl (
+\begin{bmatrix}
+| \alpha | ^2 & \alpha \beta ^* \\
+\alpha ^* \beta & | \beta | ^2
+\end{bmatrix}
+\begin{bmatrix}
+0 & -i \\
+i & 0
+\end{bmatrix}
+\Bigr ) \\
+&= Tr \Bigl (
+\begin{bmatrix}
+i \alpha \beta ^* & -i | \alpha | ^2 \\
+i | \beta | ^2 & -i \alpha ^* \beta
+\end{bmatrix}
+\Bigr ) \\
+&= 
+i (\alpha \beta ^* - \alpha ^* \beta) \\
+&= 
+-2 Im( \alpha \beta ^*) \\
+\therefore h_3 &= -2 Im( \alpha \beta ^* )
+\end{aligned} 
+$$
+
+のように求められる。
+
+他も同じように計算すると結局
+
+$$
+\begin{aligned}
+P &= \frac{1}{2} (
+h_0 
+\sigma_0
++ h_1
+\sigma_1
++ h_2
+\sigma_2
++ h_3
+\sigma_3 ) \\
+&= \frac{1}{2} \Bigl (
+h_0 
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
++ h_1
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
++ h_2
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
++ h_3
+\begin{bmatrix}
+0 & -i \\
+i & 0 
+\end{bmatrix} \Bigr )
+\\
+&= \frac{1}{2} \Bigl (
+\bigl (| \alpha | ^2 + | \beta | ^2 \bigr )
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
++ \bigl (| \alpha | ^2 - | \beta | ^2 \bigr )
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
++ 2 Re( \alpha \beta ^*)
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+-2 Im( \alpha \beta ^*)
+\begin{bmatrix}
+0 & -i \\
+i & 0 
+\end{bmatrix} \Bigr )
+\end{aligned}
+$$
+
+今は $| \alpha | ^2 + | \beta | ^2 = 1$ を考えているのでこれは変数ではなく $h_1, h_2, h_3$ のみを考える。
+
+この係数をベクトルとしたもの
+
+$$
+\begin{aligned}
+\boldsymbol{ S } &= 
+\begin{bmatrix}
+S_1 \\
+S_2 \\
+S_3
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+h_1 \\
+h_2 \\
+h_3
+\end{bmatrix} \\
+\therefore \boldsymbol{ S }
+&= 
+\begin{bmatrix}
+| \alpha | ^2 - | \beta | ^2 \\
+2 Re( \alpha \beta ^*) \\
+-2 Im( \alpha \beta ^*)
+\end{bmatrix}
+\end{aligned}
+$$
+
+このベクトルをストークスベクトルという。
+
+## パウリ行列と物理量
+
+パウリ行列はそれぞれどの軸のスピンをもっているかをあらわす物理量を観測できる。
+
+例えば
+
+$$
+\begin{aligned}
+S_1 &=
+\begin{bmatrix}
+\alpha ^* \: \beta ^*
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix} \\ 
+&=
+\begin{bmatrix}
+\alpha ^* \: \beta
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \\
+- \beta
+\end{bmatrix} \\
+\therefore S_1
+&=  
+| \alpha | ^2 - | \beta | ^2
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+S_2 &=
+\begin{bmatrix}
+\alpha ^* \: \beta ^*
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix} \\ 
+&=
+\begin{bmatrix}
+\alpha ^* \: \beta
+\end{bmatrix}
+\begin{bmatrix}
+\beta \\
+\alpha
+\end{bmatrix} \\
+&= \alpha ^* \beta + \alpha \beta ^* \\
+\therefore S_2
+&=  
+2Re(\alpha \beta ^*)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+S_3 &=
+\begin{bmatrix}
+\alpha ^* \: \beta ^*
+\end{bmatrix}
+\begin{bmatrix}
+0 & -i \\
+i & 0
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix} \\ 
+&=
+\begin{bmatrix}
+\alpha ^* \: \beta
+\end{bmatrix}
+\begin{bmatrix}
+-i \beta \\
+i \alpha
+\end{bmatrix} \\
+&= 
+-i \alpha ^* \beta + i \alpha \beta ^* \\
+&=
+i (\alpha \beta ^* - \alpha ^* \beta) \\
+\therefore S_3 &= -2Im(\alpha \beta ^*)
+\end{aligned}
+$$
+
+右回り円偏光のストークスパラメーターを計算してみる。
+規格化されたジョーンズベクトルは
+
+$$
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix}
+$$
+
+であったので
+
+$\alpha = \frac{1}{\sqrt{2}}, \beta = \frac{i}{\sqrt{2}}$
+
+を代入すると
+
+$$
+\begin{aligned}
+S_1 &= \Bigl |\frac{1}{\sqrt{2}} \Bigr | ^2 - \Bigl |\frac{i}{\sqrt{2}} \Bigr | ^2 \\
+&= \frac{1}{2} - \frac{1}{2} \\
+&= 0 \\
+S_2 &= 2Re\Bigl (\frac{1}{\sqrt{2}} \times \frac{i}{\sqrt{2}}^*\Bigr ) \\
+&= 2Re(-i) \\
+&= 0 \\
+S_3 &= -2Im\Bigl (\frac{1}{\sqrt{2}} \times \frac{i ^*}{\sqrt{2}}\Bigr ) \\
+&= -2Im \Bigl (- \frac{i}{2} \Bigr ) \\
+&= 1
+\end{aligned}
+$$
+
+よって
+
+$$
+\boldsymbol{S} = 
+\begin{bmatrix}
+S_1 \\
+S_2 \\
+S_3
+\end{bmatrix} 
+=
+\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix}
+$$
+
+となる。
+
+$$
+\sigma_1, \sigma_2, \sigma_3
+$$
+
 ## ポアンカレ球
 
 波長板にはかりが通ると光の偏光分布が変わるがこれはポアンカレ球面上で別の座標に写ることを表している。このように長さを変えない(今は球の表面上で移動する)写像を等長写像という。
@@ -705,6 +1118,59 @@ https://electrodynamics.hatenablog.com/entry/2018/12/16/000833
 偏光板を行列表示(ジョーンズ行列)したとき、この行列はユニタリー行列(転置とって複素共役とった行列が元の行列の逆行列になっている)であるがユニタリー行列であることが必要条件であることは確実。
 
 長さを変えない写像というのは回転とか平行移動
+
+例えば規格化された右回り円偏光は
+
+$$
+\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix}
+$$
+
+で表されるので
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+S_1 \\
+S_2 \\
+S_3
+\end{bmatrix}
+&=
+\begin{bmatrix}
+| \alpha | ^2 - | \beta | ^2 \\
+2 Re( \alpha \beta ^*) \\
+-2 Im( \alpha \beta ^*)
+\end{bmatrix} \\
+&=
+\frac{1}{2}
+\begin{bmatrix}
+1 - 1 \\
+2Re(1 \times (-i)) \\
+-2Im(1 \times (-i))
+\end{bmatrix} \\
+\therefore 
+\begin{bmatrix}
+S_1 \\
+S_2 \\
+S_3
+\end{bmatrix}
+&=
+\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix}
+\end{aligned}
+$$
+
+これはポアンカレ球の北極に位置する。
 
 ## 高次元ポアンカレ球
 
@@ -1830,6 +2296,7 @@ $$
 1
 \end{bmatrix}
 ) \\
+
 &=
 \begin{bmatrix}
 1 & -i \\
@@ -1941,6 +2408,112 @@ i
 \end{aligned}
 $$
 
+$$
+J_{SLM1} 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos{\phi} + i \sin{\phi} \\
+0
+\end{bmatrix} \\
+45 \\
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 + i \\
+0
+\end{bmatrix} \\
+90 \\
+\begin{bmatrix}
+i \\
+0
+\end{bmatrix}
+$$
+
+
+
+$$
+J_{SLM2} 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos{\phi} - i \sin{\phi} \\
+0
+\end{bmatrix}
+$$
+の $x, y$ 成分を入れ替えたもの
+
+$$
+\begin{bmatrix}
+0 \\
+\cos{\phi} - i \sin{\phi}
+\end{bmatrix}
+$$
+
+$$
+0 \\
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix} \\
+45 \\
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+0 \\
+1 + i
+\end{bmatrix} \\
+90 \\
+\begin{bmatrix}
+0 \\
+i
+\end{bmatrix}
+$$
+
+足し合わせて
+$$
+\begin{bmatrix}
+\cos{\phi} + i \sin{\phi} \\
+\cos{\phi} - i \sin{\phi}
+\end{bmatrix}
+$$
+
+これがQWPで変換されると
+
+$$
+\begin{bmatrix}
+1 & -i \\
+-i & 1
+\end{bmatrix}
+\begin{bmatrix}
+\cos{\phi} + i \sin{\phi} \\
+\cos{\phi} - i \sin{\phi}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos{\phi} - \sin{\phi} + i(\sin{\phi} - \cos{\phi}) \\
+\cos{\phi} + \sin{\phi} - i(\cos{\phi} + \sin{\phi})
+\end{bmatrix}
+\begin{bmatrix}
+\cos{\phi} - \sin{\phi} \\ 
+\cos{\phi} + \sin{\phi}
+\end{bmatrix} \\
+\\
+\begin{bmatrix}
+\cos{\bigl (\phi + \frac{\pi}{4} \bigr )} \\ 
+\cos{\bigl ( \phi - \frac{\pi}{4} \bigr )}
+\end{bmatrix} \\
+\\
+\begin{bmatrix}
+\cos{\phi} \\ 
+\sin{\phi}
+\end{bmatrix}
+$$
+
 このように位相変調された左右円偏光の重ね合わせで表現される。
 
 ここで
@@ -1963,6 +2536,17 @@ $$
 $$
 
 とすると
+
+$$
+\begin{bmatrix}
+e^{i \phi} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix}
+$$
 
 $$
 \begin{aligned}
@@ -2010,6 +2594,15 @@ $$
 
 これは各 $\phi$ でその点と原点を結ぶ方向の直線偏光を表している。
 つまり中心から外側に向かうような偏光分布になる。
+
+SLM1
+
+$$
+\begin{bmatrix}
+\cos{\phi} \cos{t} - \sin{\phi} \sin{t} \\
+\sin{\phi} \cos{t} + \cos{phi} \sin{t}
+\end{bmatrix}
+$$
 
 $(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
 
@@ -2162,4 +2755,12 @@ $(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ を�
 ## SLM
 ### "Creation and detection of optical modes with spatial light modulators"
 
-![Alt text](images/image.png)
+$( i^2 = -1)$
+
+$$
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}
+$$
