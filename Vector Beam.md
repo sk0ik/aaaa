@@ -450,7 +450,7 @@ $$
 これは確かに $-\frac{\pi}{4}$ だけ傾いた直線偏光を表していて元の状態から時計回りに $2 \times \frac{\pi}{4}$ だけ回転している。
 
 となる。
-また、$\theta = \frac{ \pi }{ 4 }$ だけ回転させると
+また、$\theta = \frac{\pi}{4}$ だけ回転させると
 
 $$
 J_{HWP(\theta=\frac{\pi}{4})} =
@@ -811,37 +811,33 @@ $$
 射影演算子 $P$ がパウリ行列の和で表される、つまり
 
 $$
-\begin{aligned}P 
-&= \frac {1} {2} (
-  h_0 \sigma_0
-  + h_1
-  \sigma_1
-  + h_2
-  \sigma_2
-  + h_3
-  \sigma_3 ) \\
+\begin{aligned}
+P &= \frac{1}{2} (
+h_0 \sigma_0 + h_1
+\sigma_1 + h_2 \sigma_2 + h_3 \sigma_3 ) \\
 &= \frac {1} {2} \Bigl (
-  h_0 
-  \begin{bmatrix}
-  1 & 0 \\
-  0 & 1
-  \end{bmatrix}
-  + h_1
-  \begin{bmatrix}
-  1 & 0 \\
-  0 & -1
-  \end{bmatrix}
-  + h_2
-  \begin{bmatrix}
-  0 & 1 \\
-  1 & 0
-  \end{bmatrix}
-  + h_3
-  \begin{bmatrix}
-  0 & -i \\
-  i & 0 
-  \end{bmatrix} \Bigr )
-  \end{aligned}
+h_0 
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
++h_1
+\begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}
++h_2
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
++h_3
+\begin{bmatrix}
+0 & -i \\
+i & 0 
+\end{bmatrix} 
+\Bigr )
+\end{aligned}
 $$
 
 と書けると仮定する。
@@ -885,11 +881,11 @@ $$
 P &= \frac{1}{2} (
 h_0 
 \sigma_0
-+ h_1
++h_1
 \sigma_1
-+ h_2
++h_2
 \sigma_2
-+ h_3
++h_3
 \sigma_3 ) \\
 &= \frac{1}{2} \Bigl (
 h_0 
@@ -897,17 +893,17 @@ h_0
 1 & 0 \\
 0 & 1
 \end{bmatrix}
-+ h_1
++h_1
 \begin{bmatrix}
 1 & 0 \\
 0 & -1
 \end{bmatrix}
-+ h_2
++h_2
 \begin{bmatrix}
 0 & 1 \\
 1 & 0
 \end{bmatrix}
-+ h_3
++h_3
 \begin{bmatrix}
 0 & -i \\
 i & 0 
@@ -919,12 +915,12 @@ i & 0
 1 & 0 \\
 0 & 1
 \end{bmatrix}
-+ \bigl (| \alpha | ^2 - | \beta | ^2 \bigr )
++\bigl (| \alpha | ^2 - | \beta | ^2 \bigr )
 \begin{bmatrix}
 1 & 0 \\
 0 & -1
 \end{bmatrix}
-+ 2 Re( \alpha \beta ^*)
++2 Re( \alpha \beta ^*)
 \begin{bmatrix}
 0 & 1 \\
 1 & 0
@@ -993,7 +989,7 @@ S_1 &=
 \end{bmatrix}
 \begin{bmatrix}
 \alpha \\
-- \beta
+-\beta
 \end{bmatrix} \\
 \therefore S_1
 &=  
@@ -1225,7 +1221,7 @@ $$
 
 $$
 \begin{aligned}
-- \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} \\
+-\nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= -\epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} \\
 \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} 
 \end{aligned}
 $$
@@ -1316,7 +1312,7 @@ $$
 
 $$
 \nabla ^2 \boldsymbol{f} = \nabla (\nabla \cdot \boldsymbol{f})
-- \nabla \times (\nabla \times \boldsymbol{f})
+-\nabla \times (\nabla \times \boldsymbol{f})
 $$
 
 に相当する。**(ベクトルラプラス演算子)**
@@ -1378,8 +1374,8 @@ $$
 
 $$
 \begin{aligned}
-\nabla \times \nabla \times \boldsymbol{E} - k^2 \boldsymbol{E} &= 0 \\
-- \frac{\partial ^2}{\partial z ^2} E_\phi - \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) - k^2 E_\phi &= 0 \\
+\nabla \times \nabla \times \boldsymbol{E} -k^2 \boldsymbol{E} &= 0 \\
+-\frac{\partial ^2}{\partial z ^2} E_\phi -\frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) -k^2 E_\phi &= 0 \\
 \end{aligned}
 $$
 
@@ -1387,9 +1383,9 @@ $$
 
 $$
 \begin{aligned}
-\Bigl ( - \frac{\partial ^2 U}{\partial z ^2} - 2ik \frac{\partial U}{\partial z} + k^2 U + \frac{1}{r^2} U - \frac{1}{r} \frac{\partial U}{\partial r} - \frac{\partial ^2 U}{\partial r ^2} - k^2 U \Bigr ) e^{ikz} &= 0 \\
-- \frac{\partial ^2 U}{\partial z ^2} - 2ik \frac{\partial U}{\partial z} + \frac{1}{r^2} U - \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) &= 0 \\
-\therefore \quad \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) - \frac{1}{r^2} U + 2ik \frac{\partial U}{\partial z} + \frac{\partial ^2 U}{\partial z ^2} &= 0
+\Bigl ( -\frac{\partial ^2 U}{\partial z ^2} -2ik \frac{\partial U}{\partial z} +k^2 U +\frac{1}{r^2} U -\frac{1}{r} \frac{\partial U}{\partial r} -\frac{\partial ^2 U}{\partial r ^2} -k^2 U \Bigr ) e^{ikz} &= 0 \\
+-\frac{\partial ^2 U}{\partial z ^2} -2ik \frac{\partial U}{\partial z} +\frac{1}{r^2} U -\frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) &= 0 \\
+\therefore \quad \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) -\frac{1}{r^2} U +2ik \frac{\partial U}{\partial z} +\frac{\partial ^2 U}{\partial z ^2} &= 0
 \end{aligned}
 $$
 
@@ -1893,7 +1889,7 @@ $$
 1 \\
 0
 \end{bmatrix} 
-+ J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} 
++J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} 
 \begin{bmatrix}
 0 \\
 1
@@ -2787,7 +2783,7 @@ $$
 
 $$
 \begin{aligned}
-- \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} \\
+-\nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= -\epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} \\
 \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} 
 \end{aligned}
 $$
@@ -2883,7 +2879,7 @@ $$
 
 $$
 \nabla ^2 \boldsymbol{f} = \nabla (\nabla \cdot \boldsymbol{f})
-- \nabla \times (\nabla \times \boldsymbol{f})
+-\nabla \times (\nabla \times \boldsymbol{f})
 $$
 
 に相当する。**(ベクトルラプラス演算子)**
@@ -2945,8 +2941,8 @@ $$
 
 $$
 \begin{aligned}
-\nabla \times \nabla \times \boldsymbol{E} - k^2 \boldsymbol{E} &= 0 \\
-- \frac{\partial ^2}{\partial z ^2} E_\phi - \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) - k^2 E_\phi &= 0 \\
+\nabla \times \nabla \times \boldsymbol{E} -k^2 \boldsymbol{E} &= 0 \\
+-\frac{\partial ^2}{\partial z ^2} E_\phi -\frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) -k^2 E_\phi &= 0 \\
 \end{aligned}
 $$
 
@@ -2954,9 +2950,9 @@ $$
 
 $$
 \begin{aligned}
-\Bigl ( - \frac{\partial ^2 U}{\partial z ^2} - 2ik \frac{\partial U}{\partial z} + k^2 U + \frac{1}{r^2} U - \frac{1}{r} \frac{\partial U}{\partial r} - \frac{\partial ^2 U}{\partial r ^2} - k^2 U \Bigr ) e^{ikz} &= 0 \\
-- \frac{\partial ^2 U}{\partial z ^2} - 2ik \frac{\partial U}{\partial z} + \frac{1}{r^2} U - \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) &= 0 \\
-\therefore \quad \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) - \frac{1}{r^2} U + 2ik \frac{\partial U}{\partial z} + \frac{\partial ^2 U}{\partial z ^2} &= 0
+\Bigl ( -\frac{\partial ^2 U}{\partial z ^2} -2ik \frac{\partial U}{\partial z} +k^2 U +\frac{1}{r^2} U -\frac{1}{r} \frac{\partial U}{\partial r} -\frac{\partial ^2 U}{\partial r ^2} -k^2 U \Bigr ) e^{ikz} &= 0 \\
+-\frac{\partial ^2 U}{\partial z ^2} -2ik \frac{\partial U}{\partial z} +\frac{1}{r^2} U -\frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) &= 0 \\
+\therefore \quad \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) -\frac{1}{r^2} U +2ik \frac{\partial U}{\partial z} +\frac{\partial ^2 U}{\partial z ^2} &= 0
 \end{aligned}
 $$
 
