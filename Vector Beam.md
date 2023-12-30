@@ -673,7 +673,9 @@ $$
 
 $$
 \begin{aligned}
-P^{\dagger}&=(
+P ^{\dagger}
+&=
+(
 \begin{bmatrix}
 \alpha \\
 \beta 
@@ -681,8 +683,10 @@ P^{\dagger}&=(
 \begin{bmatrix}
 \alpha
 \beta 
-\end{bmatrix}^*)^{\dagger} \\
-&=(
+\end{bmatrix}
+^* ) ^{\dagger} \\
+&=
+(
 \begin{bmatrix}
 \alpha \\
 \beta 
@@ -690,17 +694,23 @@ P^{\dagger}&=(
 \begin{bmatrix}
 \alpha
 \beta 
-\end{bmatrix}^*)^{\dagger} \\
-&=(
+\end{bmatrix}
+^* ) ^{\dagger} \\
+&=
+(
 \begin{bmatrix}
 \alpha \\
 \beta 
-\end{bmatrix}^*)^*
+\end{bmatrix}
+^* )^*
 \begin{bmatrix}
 \alpha
 \beta 
-\end{bmatrix}^*\\
-\therefore P^{\dagger}&=P
+\end{bmatrix}
+^* \\
+\therefore P^{\dagger} 
+&=
+P
 \end{aligned}
 $$
 
