@@ -529,7 +529,7 @@ $$
 ⓹合わさったビームがQWPで変換されたビーム
 
 $$
-\boldsymbol {E}_{out} = J_{QWP(\gamma)} [J_{SLM1} + J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol {E}_{in}
+\boldsymbol {E} _ {out} = J_{QWP(\gamma)} [J_{SLM1} + J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol {E} _ {in}
 $$
 
 <br>
