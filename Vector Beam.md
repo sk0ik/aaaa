@@ -859,7 +859,7 @@ $$
 \begin{aligned}
 Tr(P \sigma_3)
 &=
-\frac{1}{2} \Bigl ( h_0 Tr(\sigma_0 \sigma_3) +h_1 Tr(\sigma_1 \sigma_3) +h_2 Tr(\sigma_2 \sigma_3) +h_3 Tr(\sigma_3 \sigma_3) \Bigr ) \\
+\frac{1}{2} \Bigl ( h_0 Tr(\sigma_0 \sigma_3) +h_1 Tr(\sigma_1 \sigma_3) +h_2 Tr(\sigma_2 \sigma_3) +h_3 Tr(\sigma_3 \sigma_3) \Bigr) \\
 &= 
 h_3 \\
 h_3 
@@ -1101,15 +1101,27 @@ $\alpha = \frac{1}{\sqrt{2}}, \beta = \frac{i}{\sqrt{2}}$
 
 $$
 \begin{aligned}
-S_1 &= \Bigl |\frac{1}{\sqrt{2}} \Bigr | ^2 - \Bigl |\frac{i}{\sqrt{2}} \Bigr | ^2 \\
-&= \frac{1}{2} - \frac{1}{2} \\
-&= 0 \\
-S_2 &= 2Re\Bigl (\frac{1}{\sqrt{2}} \times \frac{i}{\sqrt{2}}^*\Bigr ) \\
-&= 2Re(-i) \\
-&= 0 \\
-S_3 &= -2Im\Bigl (\frac{1}{\sqrt{2}} \times \frac{i ^*}{\sqrt{2}}\Bigr ) \\
-&= -2Im \Bigl (- \frac{i}{2} \Bigr ) \\
-&= 1
+S_1
+&=
+\Bigl |\frac{1}{\sqrt{2}} \Bigr | ^2 - \Bigl |\frac{i}{\sqrt{2}} \Bigr | ^2 \\
+&=
+\frac{1}{2} - \frac{1}{2} \\
+&=
+0 \\
+S_2
+&=
+2Re\Bigl (\frac{1}{\sqrt{2}} \times \frac{i}{\sqrt{2}}^*\Bigr ) \\
+&=
+2Re(-i) \\
+&=
+0 \\
+S_3
+&=
+-2Im\Bigl (\frac{1}{\sqrt{2}} \times \frac{i ^*}{\sqrt{2}}\Bigr ) \\
+&=
+-2Im \Bigl (- \frac{i}{2} \Bigr ) \\
+&=
+1
 \end{aligned}
 $$
 
