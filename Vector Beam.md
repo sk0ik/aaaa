@@ -451,7 +451,7 @@ $$
 
 となる。
 
-また、$\theta = \frac{\pi}{4}$ だけ回転させると
+また、 $\theta = \frac{\pi}{4}$ だけ回転させると
 
 $$
 J_{HWP(\theta=\frac{\pi}{4})} =
