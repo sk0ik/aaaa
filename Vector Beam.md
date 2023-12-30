@@ -857,9 +857,14 @@ $$
 
 $$
 \begin{aligned}
-Tr(P \sigma_3) &= \frac{1}{2} \Bigl ( h_0 Tr(\sigma_0 \sigma_3) + h_1 Tr(\sigma_1 \sigma_3) + h_2 Tr(\sigma_2 \sigma_3) + h_3 Tr(\sigma_3 \sigma_3) \Bigr ) \\
-&= h_3 \\
-h_3 &= 2 Tr \Bigl (
+Tr(P \sigma_3)
+&=
+\frac{1}{2} \Bigl ( h_0 Tr(\sigma_0 \sigma_3) +h_1 Tr(\sigma_1 \sigma_3) +h_2 Tr(\sigma_2 \sigma_3) +h_3 Tr(\sigma_3 \sigma_3) \Bigr ) \\
+&= 
+h_3 \\
+h_3 
+&=
+2 Tr \Bigl (
 \begin{bmatrix}
 | \alpha | ^2 & \alpha \beta ^* \\
 \alpha ^* \beta & | \beta | ^2
@@ -869,7 +874,8 @@ h_3 &= 2 Tr \Bigl (
 i & 0
 \end{bmatrix}
 \Bigr ) \\
-&= Tr \Bigl (
+&=
+Tr \Bigl (
 \begin{bmatrix}
 i \alpha \beta ^* & -i | \alpha | ^2 \\
 i | \beta | ^2 & -i \alpha ^* \beta
@@ -889,7 +895,9 @@ $$
 
 $$
 \begin{aligned}
-P &= \frac{1}{2} (
+P
+&=
+\frac{1}{2} (
 h_0 
 \sigma_0
 +h_1
@@ -898,7 +906,8 @@ h_0
 \sigma_2
 +h_3
 \sigma_3 ) \\
-&= \frac{1}{2} \Bigl (
+&=
+\frac{1}{2} \Bigl (
 h_0 
 \begin{bmatrix}
 1 & 0 \\
@@ -918,9 +927,11 @@ h_0
 \begin{bmatrix}
 0 & -i \\
 i & 0 
-\end{bmatrix} \Bigr )
+\end{bmatrix}
+\Bigr )
 \\
-&= \frac{1}{2} \Bigl (
+&=
+\frac{1}{2} \Bigl (
 \bigl (| \alpha | ^2 + | \beta | ^2 \bigr )
 \begin{bmatrix}
 1 & 0 \\
@@ -940,7 +951,8 @@ i & 0
 \begin{bmatrix}
 0 & -i \\
 i & 0 
-\end{bmatrix} \Bigr )
+\end{bmatrix}
+\Bigr )
 \end{aligned}
 $$
 
@@ -950,18 +962,21 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{ S } &= 
+\boldsymbol{ S }
+&= 
 \begin{bmatrix}
 S_1 \\
 S_2 \\
 S_3
-\end{bmatrix} \\
+\end{bmatrix}
+\\
 &=
 \begin{bmatrix}
 h_1 \\
 h_2 \\
 h_3
-\end{bmatrix} \\
+\end{bmatrix}
+\\
 \therefore \boldsymbol{ S }
 &= 
 \begin{bmatrix}
