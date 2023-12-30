@@ -9,11 +9,23 @@
   - [射影演算子](#射影演算子)
   - [パウリ行列展開](#パウリ行列展開)
   - [パウリ行列と物理量](#パウリ行列と物理量)
-- [\\end{bmatrix}](#endbmatrix)
   - [ポアンカレ球](#ポアンカレ球)
   - [高次元ポアンカレ球](#高次元ポアンカレ球)
 - [ブロッホ球](#ブロッホ球)
   - [高次元ブロッホ球](#高次元ブロッホ球)
+- [近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く](#近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く)
+  - [ヘルムホルツ方程式の導出](#ヘルムホルツ方程式の導出)
+- [近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く](#近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く)
+  - [エルミート多項式](#エルミート多項式)
+  - [ラプラシアンを考える](#ラプラシアンを考える)
+- [近軸近似せずにスカラー場のヘルムホルツ方程式を解く](#近軸近似せずにスカラー場のヘルムホルツ方程式を解く)
+- [Gouy位相とは](#gouy位相とは)
+- [Vector Beamの評価方法](#vector-beamの評価方法)
+- [Vector Beamと機械学習](#vector-beamと機械学習)
+- [実験案](#実験案)
+  - [その１](#その１)
+  - [その２](#その２)
+  - [その３](#その３)
 - [論文解説](#論文解説)
   - [SLM2個使ってベクトルビームを作る](#slm2個使ってベクトルビームを作る)
     - ["Polarization distribution control of parallel femtosecond pulses with spatial light modulators"](#polarization-distribution-control-of-parallel-femtosecond-pulses-with-spatial-light-modulators)
@@ -36,29 +48,22 @@
     - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams)
     - ["Beam quality measure for vector beams"](#beam-quality-measure-for-vector-beams)
     - ["ENTANGLEMENT OF FORMATION AND CONCURRENCE"](#entanglement-of-formation-and-concurrence)
-  - [近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く](#近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く)
+  - [近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く](#近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く-1)
     - ["From Maxwell to paraxial wave optics"](#from-maxwell-to-paraxial-wave-optics)
     - ["Gaussian Beam 計算メモ"](#gaussian-beam-計算メモ)
     - [HGbeam](#hgbeam)
     - [LGbeam](#lgbeam)
-    - [ヘルムホルツ方程式の導出](#ヘルムホルツ方程式の導出)
-  - [近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く](#近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く)
+    - [ヘルムホルツ方程式の導出](#ヘルムホルツ方程式の導出-1)
+  - [近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く](#近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く-1)
     - [参考:"Separability and Applications"](#参考separability-and-applications)
     - ["Vector-beam solutions of Maxwell's wave equation"](#vector-beam-solutions-of-maxwells-wave-equation)
     - ["Vector Helmholtz–Gauss and vector Laplace–Gauss beams"](#vector-helmholtzgauss-and-vector-laplacegauss-beams)
-    - [エルミート多項式](#エルミート多項式)
-    - [ラプラシアンを考える](#ラプラシアンを考える)
-  - [近軸近似せずにスカラー場のヘルムホルツ方程式を解く](#近軸近似せずにスカラー場のヘルムホルツ方程式を解く)
+    - [エルミート多項式](#エルミート多項式-1)
+    - [ラプラシアンを考える](#ラプラシアンを考える-1)
+  - [近軸近似せずにスカラー場のヘルムホルツ方程式を解く](#近軸近似せずにスカラー場のヘルムホルツ方程式を解く-1)
     - ["Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"](#nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space)
     - ["Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"](#closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields)
     - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams-1)
-- [実験案](#実験案)
-  - [その１](#その１)
-  - [その２](#その２)
-  - [その３](#その３)
-- [\\end{bmatrix}](#endbmatrix-1)
-- [\\end{bmatrix}](#endbmatrix-2)
-- [\\end{bmatrix}](#endbmatrix-3)
 - [教科書的な立ち位置](#教科書的な立ち位置)
   - [ベクトルビーム](#ベクトルビーム)
     - ["Cylindrical vector beams: from mathematical concepts to applications"](#cylindrical-vector-beams-from-mathematical-concepts-to-applications)
@@ -290,8 +295,6 @@ plt.title('left-handed circular polarization')
 plt.grid(True)
 plt.show()
 ```
-
-繰り返すが光学ではレーザーは$x-y$平面を裏側から(紙面裏側から紙面表側)から見ることに注意。
 
 ここで左右円偏光を表す2つのベクトルの内積をとってみると
 
@@ -526,7 +529,7 @@ $$
 ⓹合わさったビームがQWPで変換されたビーム
 
 $$
-\boldsymbol{E}_{out} = J_{QWP(\gamma)} [J_{SLM1} + J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in}
+\boldsymbol {E}_{out} = J_{QWP(\gamma)} [J_{SLM1} + J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol {E}_{in}
 $$
 
 <br>
@@ -1091,17 +1094,12 @@ $$
 よって
 
 $$
-\boldsymbol{S} = 
+S = 
 \begin{bmatrix}
-S_1 \\
-S_2 \\
-S_3
-\end{bmatrix} 
-=
-\begin{bmatrix}
-0 \\
-0 \\
-1
+S_1S_2S_3
+\end{bmatrix}
+=\begin{bmatrix}
+001
 \end{bmatrix}
 $$
 
@@ -1176,6 +1174,1174 @@ $$
 
 # ブロッホ球
 ## 高次元ブロッホ球
+
+# 近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く
+
+## ヘルムホルツ方程式の導出
+
+ファラデーの法則
+
+$$
+\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) = -\frac{\partial \boldsymbol {B} (\boldsymbol {r} , t) } {\partial t}
+$$
+
+に対して両辺の回転を取ると
+
+$$
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = - \mu_0 \nabla \times \frac{\partial \boldsymbol {H} (\boldsymbol {r} , t) }{\partial t}
+$$
+
+となるがここでアンペールの法則
+
+$$
+\nabla \times \boldsymbol {H} (\boldsymbol {r} , t) = \epsilon_0 \frac{\partial \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t}
+$$
+
+を代入すると
+
+$$
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2}
+$$
+
+を得る。ここで
+
+$$
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = \nabla(\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) ) - \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t)
+$$
+
+より
+
+$$
+\nabla(\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) ) - \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) = - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2}
+$$
+
+を得る。電荷がない場合を考えているので
+
+$$
+\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) = 0
+$$
+
+より
+
+$$
+\begin{aligned}
+- \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} \\
+\nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &= \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} 
+\end{aligned}
+$$
+
+$$
+\therefore \nabla^2 \boldsymbol{E} (\boldsymbol {r} , t) - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t)}{\partial t^2} = 0
+$$
+
+ここで解の形を
+
+$$
+\boldsymbol {E} (\boldsymbol {r} , t) = \boldsymbol {E} (\boldsymbol {r}) f(t)
+$$
+
+と分離できると仮定する。これを代入すると
+
+$$
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) f(t) - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} ) f(t)}{\partial t^2} = 0
+$$
+
+を得る。ここでフーリエ変換
+
+$$
+F(\omega) = \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}f(t) e^{i \omega t}dt
+$$
+
+を考えると
+
+$$
+f(t) = \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega
+$$
+
+であるので代入すると
+
+$$
+\begin{aligned}
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} )}{\partial t^2} \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega + \frac{\epsilon_0 \mu_0 \omega ^2}{\sqrt{2 \pi}} \boldsymbol {E} (\boldsymbol {r} ) \int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \epsilon_0 \mu_0 \omega ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \frac{\omega ^2}{c^2} \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \biggl (\frac{2 \pi f}{f \lambda} \biggr ) ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \biggl (\frac{2 \pi}{\lambda} \biggr ) ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0 \\
+\therefore \nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + k ^2 \boldsymbol{E} (\boldsymbol {r} ) &= 0
+\end{aligned}
+$$
+
+これはヘルムホルツ方程式と言うタイプの偏微分方程式。
+
+もし電場がスカラー場(偏光分布が直線であるので厳密にはベクトル場であるが座標系を適当に選べば電場の大きさだけを考えればいい)であれば
+
+$$
+\boldsymbol{E}(\boldsymbol{r}) = u(x, y, z) e^{ikz} 
+$$
+
+のように書ける。これをヘルムホルツ方程式に代入すると
+
+$$
+\begin{aligned}
+\Bigl (\frac{\partial ^2}{\partial ^2 x} + \frac{\partial ^2}{\partial ^2 y} + \frac{\partial ^2}{\partial ^2 z} \Bigr ) \bigl (u(x, y, z) e^{ikz} \bigr ) + k^2 u(x, y, z) e^{ikz} &= 0 \\
+\Bigl (\frac{\partial ^2 u}{\partial ^2 x} + \frac{\partial ^2 u}{\partial ^2 y} + \frac{\partial ^2 u}{\partial ^2 z} + 2ik \frac{\partial u}{\partial z} - k^2 u + k^2 u \Bigr ) e^{ikz} &= 0 \\
+\frac{\partial ^2 u}{\partial ^2 x} + \frac{\partial ^2 u}{\partial ^2 y} + \frac{\partial ^2 u}{\partial ^2 z} + 2ik \frac{\partial u}{\partial z} &= 0
+\end{aligned}
+$$
+
+ここで近軸近似を考えると
+
+$$
+\frac{\partial ^2 u}{\partial ^2 x} + \frac{\partial ^2 u}{\partial ^2 y} + 2ik \frac{\partial u}{\partial z} = 0
+$$
+
+を得る。
+
+# 近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く
+
+## エルミート多項式
+
+## ラプラシアンを考える
+
+演算する関数がスカラー場の時、ラプラシアンを演算するということは
+
+$$
+\nabla ^2 f = \nabla \cdot (\nabla f)
+$$
+
+となり勾配をとった後に発散をとることに相当する。**(スカラーラプラス演算子)**
+
+演算する関数がベクトル場の時、ラプラシアンを演算するということは
+
+$$
+\nabla ^2 \boldsymbol{f} = \nabla (\nabla \cdot \boldsymbol{f})
+- \nabla \times (\nabla \times \boldsymbol{f})
+$$
+
+に相当する。**(ベクトルラプラス演算子)**
+
+今は電荷が存在しないマクスウェル方程を考えているので右辺第1項はゼロになり
+
+$$
+\nabla \times \nabla \times \boldsymbol{E} -k^2 \boldsymbol{E} = 0
+$$
+
+となる。解の形として
+
+$$
+\boldsymbol{E}(r, z) = U(r, z) e^{ikz} \boldsymbol{e}_\phi
+$$
+
+のように軸対称な解を考える。
+
+円筒座標系でのナブラは
+
+$$
+\nabla = \frac{\partial}{\partial r} \boldsymbol{e}_r + \frac{1}{r} \frac{\partial}{\partial \phi} + \frac{\partial}{\partial z} \boldsymbol{e}_z
+$$
+
+で
+であるが今は $\phi$ が一定であるので
+
+$$
+\nabla = \frac{\partial}{\partial r} \boldsymbol{e}_r + \frac{\partial}{\partial z} \boldsymbol{e}_z
+$$
+
+となる。回転をとると
+
+$$
+\nabla \times \boldsymbol{E} = \Bigl (\frac{1}{r} \frac{\partial}{\partial \phi} E_z - \frac{\partial}{\partial z} E_\phi \Bigr ) \boldsymbol{e}_r + \Bigl (\frac{\partial}{\partial z} E_r - \frac{\partial}{\partial r} E_z \Bigr ) \boldsymbol{e}_\phi + \frac{1}{r} \Bigl (\frac{\partial}{\partial r} (r E_\phi) - \frac{\partial}{\partial \phi} E_r \Bigr )\boldsymbol{e}_z
+$$
+
+であるが今は
+
+$$
+E_r = E_z = 0
+$$
+
+より
+
+$$
+\nabla \times \boldsymbol{E} = - \frac{\partial}{\partial z} E_\phi \boldsymbol{e}_r + \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \boldsymbol{e}_z
+$$
+
+$$
+\begin{aligned}
+\nabla \times (\nabla \times \boldsymbol{E}) &= \frac{1}{r} \frac{\partial}{\partial \phi} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) \boldsymbol{e}_r - \Bigl ( \frac{\partial ^2}{\partial z ^2} E_\phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) \Bigr ) \boldsymbol{e}_\phi \\
+&= - \Bigl ( \frac{\partial ^2}{\partial z ^2} E_\phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) \Bigr ) \boldsymbol{e}_\phi \\
+&※ E_\phi は \phi を含まないので第1項はゼロ
+\end{aligned}
+$$
+
+いったん整理すると
+
+$$
+\begin{aligned}
+\nabla \times \nabla \times \boldsymbol{E} - k^2 \boldsymbol{E} &= 0 \\
+- \frac{\partial ^2}{\partial z ^2} E_\phi - \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) - k^2 E_\phi &= 0 \\
+\end{aligned}
+$$
+
+これを計算すれば
+
+$$
+\begin{aligned}
+\Bigl ( - \frac{\partial ^2 U}{\partial z ^2} - 2ik \frac{\partial U}{\partial z} + k^2 U + \frac{1}{r^2} U - \frac{1}{r} \frac{\partial U}{\partial r} - \frac{\partial ^2 U}{\partial r ^2} - k^2 U \Bigr ) e^{ikz} &= 0 \\
+- \frac{\partial ^2 U}{\partial z ^2} - 2ik \frac{\partial U}{\partial z} + \frac{1}{r^2} U - \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) &= 0 \\
+\therefore \quad \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) - \frac{1}{r^2} U + 2ik \frac{\partial U}{\partial z} + \frac{\partial ^2 U}{\partial z ^2} &= 0
+\end{aligned}
+$$
+
+を得る。例によって近軸近似をすると左辺第4項はゼロになるので
+
+$$
+\frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) - \frac{1}{r^2} U + 2ik \frac{\partial U}{\partial z} = 0
+$$
+
+を得る。
+
+# 近軸近似せずにスカラー場のヘルムホルツ方程式を解く
+
+# Gouy位相とは
+
+# Vector Beamの評価方法
+
+# Vector Beamと機械学習
+
+# 実験案
+## その１
+
+⓵,BSに入射するビーム(HWP, PBS)
+レーザーから出た光のジョーンズベクトルは
+
+$$
+\boldsymbol{E} = 
+\begin{bmatrix}
+E_{x0} e^{i\varphi_x} \\
+E_{y0} e^{i\varphi_y}
+\end{bmatrix}
+$$
+
+となる。
+
+$\alpha$ だけ傾けたHWPのジョーンズ行列は
+
+$$
+J_{HWP(\alpha)} = 
+\begin{bmatrix}
+\cos{2\alpha} & \sin{2\alpha} \\
+\sin{2\alpha} & -\cos{2\alpha}
+\end{bmatrix}
+$$
+
+となる。
+
+今はPBSをP偏光を取り出すものとして使っているのでジョーンズ行列は
+
+$$
+J_{PBS} = 
+\begin{bmatrix}
+1 & 0 \\
+0 & 0
+\end{bmatrix}
+$$
+
+となる。これらをかければよいので
+
+$$
+\vec{a}_{in} \vec{b}_{out}
+$$
+
+$$
+\vec{a} \stackrel{\text{in}}{\longrightarrow} \vec{b} \stackrel{\text{out}}{\longrightarrow}
+$$
+
+$$
+\vec{a}_{\text{in}} \vec{b}_{\text{out}}
+$$
+
+$$
+\vec{a}_{\mathrm{in}} \vec{b}_{\mathrm{out}}
+$$
+
+$$
+\vec{a}_{\text{in}} \quad \vec{b}_{\text{out}}
+$$
+
+$\vec{a}_{\text{in}}$ $\vec{b}_{\text{out}}$
+
+$$\begin{aligned}
+\vec{{E}_{aa}}
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix} \\
+\vec{E}_{aa}
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix} \\
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\end{aligned}$$
+
+$$\begin{aligned}
+\boldsymbol{E}_{out1} &=
+J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in} \\ &= 
+\begin{bmatrix}
+1 & 0 \\
+0 & 0 
+\end{bmatrix}
+\begin{bmatrix}
+\cos{2\alpha} & \sin{2\alpha} \\
+\sin{2\alpha} & -\cos{2\alpha}
+\end{bmatrix}
+\begin{bmatrix}
+E_{x0} e^{i\varphi_x} \\
+E_{y0} e^{i\varphi_y}
+\end{bmatrix} \\ &=
+\begin{bmatrix}
+\cos{2\alpha} & \sin{2\alpha} \\
+0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+E_{x0} e^{i\varphi_x} \\
+E_{y0} e^{i\varphi_y}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out1}&=
+\begin{bmatrix}
+E_{x0} e^{i\varphi_x} \cos{2\alpha} + E_{y0} e^{i\varphi_y} \sin{2\alpha} \\ 0
+\end{bmatrix}
+\end{aligned}$$
+
+つまりここではP偏光成分の大きさを決めていている。
+今は偏光を考えているのでここでは便宜上
+
+$$
+\boldsymbol{E}_{out1} =
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+$$
+
+とする。
+
+⓶,SLM1で反射してBSに戻ってくるビーム
+
+$$
+J_{SLM} = A_0
+\begin{bmatrix}
+-e^{i\delta} & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+であったが先ほどと同様に強度の情報はいらないので今は
+
+$$
+J_{SLM1} = 
+\begin{bmatrix}
+-e^{i\delta_1} & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+$\delta_1 = p\varphi + \delta_{10} \quad (p \in \mathbb{Z})$
+
+$$
+J_{SLM2} = 
+\begin{bmatrix}
+-e^{i\delta_2} & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+$\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
+
+- $\varphi:$ 方位角(azimuthal angle)
+- $\delta_{10}, \delta_{20}:$ constant phase
+
+とする。(軸対称なベクトルビームを作りたいので変数は $\varphi$ (方位角のみ))
+よってSLM1で反射してBSに戻ってくるビームは
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out2} &=
+\begin{bmatrix}-e^{i\delta_1} & 0 \\
+0 & 1\end{bmatrix}\boldsymbol{E}_{out1} \\ 
+\boldsymbol{E}_{out2} &=
+\begin{bmatrix}-e^{i\delta_1} & 0 \\
+0 & 1\end{bmatrix}\begin{bmatrix}1 \\
+0\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out2} &=
+\begin{bmatrix} -e^{i\delta_1} \\ 
+0
+\end{bmatrix}
+\end{aligned}
+$$
+
+これも偏光だけを考えているので
+
+$$
+\boldsymbol{E}_{out2} = 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+$$
+
+SLM1の役割は波面変調
+
+⓷, $\beta$ 傾けたHWPを通過してSLM2で反射して先ほどと同じHWPを通過してBSに戻ってくるビーム
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out3} &=
+J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
+&=
+\begin{bmatrix}
+\cos{2\beta} & -\sin{2\beta} \\
+-\sin{2\beta} & -\cos{2\beta}
+\end{bmatrix}
+\begin{bmatrix}
+-e^{i\delta_2} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\cos{2\beta} & \sin{2\beta} \\
+\sin{2\beta} & -\cos{2\beta}
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\cos{2\beta} & -\sin{2\beta} \\
+-\sin{2\beta} & -\cos{2\beta}
+\end{bmatrix}
+\begin{bmatrix}
+-e^{i\delta_2} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\cos{2\beta} \\
+\sin{2\beta}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\cos{2\beta} & \sin{2\beta} \\
+\sin{2\beta} & -\cos{2\beta}
+\end{bmatrix}
+\begin{bmatrix}
+-e^{i\delta_2}\cos{2\beta} \\
+\sin{2\beta}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out3} &=
+\begin{bmatrix} 
+-e^{i\delta_2} \cos^2{2\beta} + \sin^2{2\beta} \\
+-\frac{e^{i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+\end{bmatrix}
+\end{aligned}
+$$
+
+⓸各SLMで反射して戻ってきたビームがBSで合わさったビーム
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out4} &= \boldsymbol{E}_{out2} + \boldsymbol{E}_{out3} \\
+&=
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} + 
+\begin{bmatrix}
+-e^{-i\delta_2} \cos^2{2\beta} - \sin^2{2\beta} \\
+-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out4} &= 
+\begin{bmatrix}
+1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}\\
+-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+\end{bmatrix}
+\end{aligned}
+$$
+
+⓹,⓸のビームが $\gamma$ 傾けたQWPで変換されたビーム
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &=
+J_{QWP(\gamma)} \boldsymbol{E}_{out4}\\
+&=
+\begin{bmatrix}
+i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \\
+\sin{\gamma} \cos{\gamma} (1 - i) & \sin^2{\gamma} + i \cos^2{\gamma}
+\end{bmatrix}
+\begin{bmatrix}
+1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta} \\
+-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+(1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + (-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin{\gamma} \cos{\gamma} (1 - i)) \\
+(1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + (-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin^2{\gamma} + i \cos^2{\gamma})
+\end{bmatrix}
+\end{aligned}
+$$
+
+天下り的に軸対称ビームを作るとき $\beta, \gamma$ をどうすればいいか考える。
+例えば
+
+$$
+\boldsymbol{a} = e^{i\theta}
+\begin{bmatrix}
+\cos{\varphi} \\
+\sin{\varphi}
+\end{bmatrix}
+$$
+
+というジョーンズベクトルを考えるとこれは各 $\varphi$ で半径方向を向く直線偏光を表している。今は半径:r=1とすると
+偏光分布は以下のようになる。
+
+また
+
+$$
+\boldsymbol{b} = e^{i\theta}
+\begin{bmatrix}
+-\sin{\varphi} \\
+\cos{\varphi}
+\end{bmatrix}
+$$
+
+というジョーンズベクトルは各 $\varphi$ で円の接線方向を向く直線偏光を表している。また、半径方向には依存性はないので偏光分布は以下のようになる。
+
+今は一つ目の偏光分布を作ることを考える。
+
+解くのは
+
+$$
+\begin{aligned}
+Re[(1 -e^{i\delta_2} \cos^2{2\beta} - \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin4\beta}{2}(-e^{i\delta_2} + 1) (\sin{\gamma} \cos{\gamma} (1 - i))] &= \cos{\varphi} \\
+Re[(1 -e^{i\delta_2} \cos^2{2\beta} - \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + \frac{\sin{4\beta}}{2}(-e^{i\delta_2} + 1) (\sin^2{\gamma} + i \cos^2{\gamma})] &= \sin{\varphi}
+\end{aligned}
+$$
+
+まず
+
+$$
+\delta_2 = 2\varphi - \frac{\pi}{2}
+$$
+
+と仮定する。第一式は
+
+$$
+Re[(1 - \sin{2\varphi} \cos^2{2\beta} - \sin^2{2\beta} -i\cos{2\varphi} \cos^2{2\beta}) (i\sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin{4\beta}}{2} (1 - \sin{2\varphi} - i\cos{2\varphi})]
+$$
+
+<br>
+
+**[補足]**
+もしSLM2に入射するビームのところのHWPが1回だけしか通らないとしたら
+
+$$
+\boldsymbol{E}_{out} = J_{QWP(\gamma)} [J_{SLM1} + J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in}
+$$
+
+となるので
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out3} &=
+J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
+&=
+\begin{bmatrix}
+-e^{i\delta_2} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\cos{2\beta} & \sin{2\beta} \\
+\sin{2\beta} & -\cos{2\beta}
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+-e^{i\delta_2} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\cos{2\beta} \\
+\sin{2\beta}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out3} &=
+\begin{bmatrix} 
+-e^{i\delta_2} \cos{2\beta} \\
+\sin{2\beta}
+\end{bmatrix}
+\end{aligned}
+$$
+
+となり
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out4} &= \boldsymbol{E}_{out2} + \boldsymbol{E}_{out3} \\
+&=
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} + 
+\begin{bmatrix} 
+-e^{-i\delta_2} \cos{2\beta} \\
+\sin{2\beta}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out4} &=
+\begin{bmatrix}
+1 -e^{-i\delta_2} \cos{2\beta}\\
+\sin{2\beta}
+\end{bmatrix}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &=
+J_{QWP(\gamma)} \boldsymbol{E}_{out4}\\
+&=
+\begin{bmatrix}
+i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \\
+\sin{\gamma} \cos{\gamma} (1 - i) & \sin^2{\gamma} + i \cos^2{\gamma}
+\end{bmatrix}
+\begin{bmatrix}
+1 -e^{-i\delta_2} \cos{2\beta}\\
+\sin{2\beta}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &=
+\begin{bmatrix}
+(1 -e^{-i\delta_2} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
+(1 -e^{-i\delta_2} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
+\end{bmatrix}
+\end{aligned}
+$$
+
+ここで
+
+$$
+\delta_2 = 2\varphi + \theta
+$$
+
+とすると
+
+$$
+\begin{aligned}
+\therefore \boldsymbol{E}_{out} &=
+\begin{bmatrix}
+(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
+(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+(1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
+(1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
+\end{bmatrix} \\
+\end{aligned}
+$$
+
+## その２
+
+これは
+
+$$
+\boldsymbol{E}_{out} = J_{QWP(\gamma)} J_{HWP(-\beta)} J_{SLM2(\delta_2)} J_{HWP(\beta)} J_{SLM1(\delta_1)}J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in}
+$$
+
+## その３
+
+$$
+\boldsymbol{E}_{out} = J_{QWP(\frac{\pi}{4})} (J_{SLM1} \boldsymbol{E}_{1} + J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} \boldsymbol{E}_{2}) \\
+(\boldsymbol{E}_{in} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2})
+$$
+
+今は $PBS$ によって
+
+$$
+\boldsymbol { E } _ { in } = \boldsymbol {E} _ {1} + \boldsymbol {E} _ {2} = 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+$$
+
+と分けられる。よって
+
+$$
+\begin{aligned}
+\boldsymbol {E} _ {out} &= J_{QWP(\frac{\pi}{4})} (J_{SLM1} 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} 
++ J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+) \\
+&=
+\begin{bmatrix}
+1 & -i \\
+-i & 1
+\end{bmatrix} \biggl(
+\begin{bmatrix}
+e^{i\delta_1} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix}
++\begin{bmatrix}
+0 & -1 \\
+-1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\delta_2} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix} \biggr) \\
+&=
+\begin{bmatrix}
+1 & -i \\
+-i & 1
+\end{bmatrix} \biggl(
+\begin{bmatrix}
+e^{i\delta_1} \\
+0 
+\end{bmatrix}
++\begin{bmatrix}
+0 & -1 \\
+-1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\delta_2} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} \biggr) \\
+&=
+\begin{bmatrix}
+1 & -i \\
+-i & 1
+\end{bmatrix} \biggl(
+\begin{bmatrix}
+e^{i\delta_1} \\
+0 
+\end{bmatrix}
++\begin{bmatrix}
+0 & -1 \\
+-1 & -0
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\delta_2} \\
+0
+\end{bmatrix}
+\biggr)
+\\
+&=
+\begin{bmatrix}
+1 & -i \\
+-i & 1
+\end{bmatrix} \biggl(
+e^{i\delta_1}
+\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix}
++e^{i\delta_2}
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\biggr)
+\\
+&=
+e^{i\delta_1}
+\begin{bmatrix}
+1 \\
+-i 
+\end{bmatrix}
++e^{i\delta_2}
+\begin{bmatrix}
+-i \\
+1
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &=
+e^{i\delta_1}
+\begin{bmatrix}
+1 \\
+-i 
+\end{bmatrix}
++e^{i\delta_2}
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix}
+\end{aligned}
+$$
+
+$$
+J_{SLM1} 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+= \begin{bmatrix}
+\cos{\phi} + i \sin{\phi} \\
+0
+\end{bmatrix} \\
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 + i \\
+0
+\end{bmatrix} \\
+\begin{bmatrix}
+i \\
+0
+\end{bmatrix}
+$$
+
+$$
+J_{SLM2} 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+= \begin{bmatrix}
+\cos{\phi} - i \sin{\phi} \\
+0
+\end{bmatrix}
+$$
+
+の $x, y$ 成分を入れ替えたもの
+
+$$
+\begin{bmatrix}
+0 \\
+\cos{\phi} - i \sin{\phi}
+\end{bmatrix}
+$$
+
+$$
+0 \\
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix} \\
+45 \\
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+0 \\
+1 + i
+\end{bmatrix} \\
+90 \\
+\begin{bmatrix}
+0 \\
+i
+\end{bmatrix}
+$$
+
+足し合わせて
+
+$$
+\begin{bmatrix}
+\cos{\phi} + i \sin{\phi} \\
+\cos{\phi} - i \sin{\phi}
+\end{bmatrix}
+$$
+
+これがQWPで変換されると
+
+$$
+\begin{bmatrix}
+1 & -i \\
+-i & 1
+\end{bmatrix}
+\begin{bmatrix}
+\cos{\phi} + i \sin{\phi} \\
+\cos{\phi} - i \sin{\phi}
+\end{bmatrix}
+= \begin{bmatrix}
+\cos{\phi} - \sin{\phi} + i(\sin{\phi} - \cos{\phi}) \\
+\cos{\phi} + \sin{\phi} - i(\cos{\phi} + \sin{\phi})
+\end{bmatrix}
+\begin{bmatrix}
+\cos{\phi} - \sin{\phi} \\ 
+\cos{\phi} + \sin{\phi}
+\end{bmatrix}
+\\
+\begin{bmatrix}
+\cos{\bigl (\phi + \frac{\pi}{4} \bigr )} \\ 
+\cos{\bigl ( \phi - \frac{\pi}{4} \bigr )}
+\end{bmatrix}
+\\
+\begin{bmatrix}
+\cos{\phi} \\ 
+\sin{\phi}
+\end{bmatrix}
+$$
+
+このように位相変調された左右円偏光の重ね合わせで表現される。
+
+ここで
+
+$$
+\begin{aligned}
+\delta_{1} &= \phi + \phi_{0} \\
+\delta_{2} &= -(\phi + \phi_{0})
+\end{aligned}
+$$
+
+という位相をSLMに表示させることを考える。
+例えば
+
+$$
+\begin{aligned}
+\delta_1 &= \phi \\
+\delta_2 &= -\phi
+\end{aligned}
+$$
+
+とすると
+
+$$
+\begin{bmatrix}
+e^{i \phi} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix}
+$$
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &= e^{i\phi}
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}
++e^{-i\phi}
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix} \\
+&= (\cos{\phi} + i\sin{\phi})
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}
++(\cos{\phi} - i\sin{\phi})
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\cos{\phi} + i\sin{\phi} \\
+\sin{\phi} - i\cos{\phi}
+\end{bmatrix}+
+\begin{bmatrix}
+\cos{\phi} - i\sin{\phi} \\
+\sin{\phi} + i\cos{\phi}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+2\cos{\phi} \\
+2\sin{\phi}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &\propto
+\begin{bmatrix}
+\cos{\phi} \\
+\sin{\phi}
+\end{bmatrix}
+\end{aligned}
+$$
+
+これは各 $\phi$ でその点と原点を結ぶ方向の直線偏光を表している。
+つまり中心から外側に向かうような偏光分布になる。
+
+SLM1
+
+$$
+\begin{bmatrix}
+\cos{\phi} \cos{t} - \sin{\phi} \sin{t} \\
+\sin{\phi} \cos{t} + \cos{\phi} \sin{t}
+\end{bmatrix}
+$$
+
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
+
+次に
+
+$$
+\begin{aligned}
+\delta_1 &= \phi + \frac{\pi}{2}\\
+\delta_2 &= -(\phi + \frac{\pi}{2})
+\end{aligned}
+$$
+
+とすると
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &= e^{i(\phi + \frac{\pi}{2})}
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}
++e^{-i(\phi + \frac{\pi}{2})}
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix} \\
+&= \Bigl( \cos{(\phi + \frac{\pi}{2})} + i\sin{(\phi + \frac{\pi}{2})} \Bigr)
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}
++\Bigl(\cos{(\phi + \frac{\pi}{2})} - i\sin{(\phi + \frac{\pi}{2})} \Bigr)
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix} \\
+&= \Bigl( -\sin{\phi} + i\cos{\phi} \Bigr)
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}
++\Bigl(-\sin{\phi} - i\cos{\phi} \Bigr)
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+-\sin{\phi} + i\cos{\phi} \\
+\cos{\phi} + i\sin{\phi}
+\end{bmatrix}+
+\begin{bmatrix}
+-\sin{\phi} - i\cos{\phi} \\
+\cos{\phi} - i\sin{\phi}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+-2\sin{\phi} \\
+2\cos{\phi}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &\propto
+\begin{bmatrix}
+\sin{\phi} \\
+-\cos{\phi}
+\end{bmatrix}
+\end{aligned}
+$$
+
+これは各 $\phi$ で円の接線方向を向いた直線偏光を表している。確かに
+
+$$
+\begin{bmatrix}
+\cos{\phi} \\
+\sin{\phi}
+\end{bmatrix} \cdot
+\begin{bmatrix}
+\sin{\phi} \\
+-\cos{\phi}
+\end{bmatrix}
+= 0
+$$
+
+直交している。
+
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
+
+最後に
+
+$$
+\begin{aligned}
+\delta_1 &= 2\phi \\
+\delta_2 &= -2\phi
+\end{aligned}
+$$
+
+を考える。
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out} &= e^{i2\phi}
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}
++e^{-i2\phi}
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix} \\
+&= (\cos{2\phi} + i\sin{2\phi})
+\begin{bmatrix}
+1 \\
+-i
+\end{bmatrix}
++(\cos{2\phi} - i\sin{2\phi})
+\begin{bmatrix}
+1 \\
+i
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+\cos{2\phi} + i\sin{2\phi} \\
+\sin{2\phi} - i\cos{2\phi}
+\end{bmatrix}+
+\begin{bmatrix}
+\cos{2\phi} - i\sin{2\phi} \\
+\sin{2\phi} + i\cos{2\phi}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+2\cos{2\phi} \\
+2\sin{2\phi}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &\propto
+\begin{bmatrix}
+\cos{2\phi} \\
+\sin{2\phi}
+\end{bmatrix}
+\end{aligned}
+$$
+
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
 
 # 論文解説
 ## SLM2個使ってベクトルビームを作る
@@ -1808,942 +2974,7 @@ $$
 ### "Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"
 ### "Measuring the nonseparability of vector vortex beams"
 
-# 実験案
-## その１
 
-⓵,BSに入射するビーム(HWP, PBS)
-レーザーから出た光のジョーンズベクトルは
-
-$$
-\boldsymbol{E} = 
-\begin{bmatrix}
-E_{x0} e^{i\varphi_x} \\
-E_{y0} e^{i\varphi_y}
-\end{bmatrix}
-$$
-
-となる。
-
-$\alpha$ だけ傾けたHWPのジョーンズ行列は
-
-$$
-J_{HWP(\alpha)} = 
-\begin{bmatrix}
-\cos{2\alpha} & \sin{2\alpha} \\
-\sin{2\alpha} & -\cos{2\alpha}
-\end{bmatrix}
-$$
-
-となる。
-
-今はPBSをP偏光を取り出すものとして使っているのでジョーンズ行列は
-
-$$
-J_{PBS} = 
-\begin{bmatrix}
-1 & 0 \\
-0 & 0
-\end{bmatrix}
-$$
-
-となる。これらをかければよいので
-
-$$
-\vec{a}_{in} \vec{b}_{out}
-$$
-
-$$
-\vec{a} \stackrel{\text{in}}{\longrightarrow} \vec{b} \stackrel{\text{out}}{\longrightarrow}
-$$
-
-$$
-\vec{a}_{\text{in}} \vec{b}_{\text{out}}
-$$
-
-$$
-\vec{a}_{\mathrm{in}} \vec{b}_{\mathrm{out}}
-$$
-
-$$
-\vec{a}_{\text{in}} \quad \vec{b}_{\text{out}}
-$$
-
-$\vec{a}_{\text{in}}$ $\vec{b}_{\text{out}}$
-
-$$\begin{aligned}
-\vec{{E}_{aa}}
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix} \\
-\vec{E}_{aa}
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix} \\
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix}
-\end{aligned}$$
-
-$$\begin{aligned}
-\boldsymbol{E}_{out1} &=
-J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in} \\ &= 
-\begin{bmatrix}
-1 & 0 \\
-0 & 0 
-\end{bmatrix}
-\begin{bmatrix}
-\cos{2\alpha} & \sin{2\alpha} \\
-\sin{2\alpha} & -\cos{2\alpha}
-\end{bmatrix}
-\begin{bmatrix}
-E_{x0} e^{i\varphi_x} \\
-E_{y0} e^{i\varphi_y}
-\end{bmatrix} \\ &=
-\begin{bmatrix}
-\cos{2\alpha} & \sin{2\alpha} \\
-0 & 0
-\end{bmatrix}
-\begin{bmatrix}
-E_{x0} e^{i\varphi_x} \\
-E_{y0} e^{i\varphi_y}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out1}&=
-\begin{bmatrix}
-E_{x0} e^{i\varphi_x} \cos{2\alpha} + E_{y0} e^{i\varphi_y} \sin{2\alpha} \\ 0
-\end{bmatrix}
-\end{aligned}$$
-
-つまりここではP偏光成分の大きさを決めていている。
-今は偏光を考えているのでここでは便宜上
-
-$$
-\boldsymbol{E}_{out1} =
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-$$
-
-とする。
-
-⓶,SLM1で反射してBSに戻ってくるビーム
-
-$$
-J_{SLM} = A_0
-\begin{bmatrix}
--e^{i\delta} & 0 \\
-0 & 1
-\end{bmatrix}
-$$
-
-であったが先ほどと同様に強度の情報はいらないので今は
-
-$$
-J_{SLM1} = 
-\begin{bmatrix}
--e^{i\delta_1} & 0 \\
-0 & 1
-\end{bmatrix}
-$$
-
-$\delta_1 = p\varphi + \delta_{10} \quad (p \in \mathbb{Z})$
-
-$$
-J_{SLM2} = 
-\begin{bmatrix}
--e^{i\delta_2} & 0 \\
-0 & 1
-\end{bmatrix}
-$$
-
-$\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
-
-- $\varphi:$ 方位角(azimuthal angle)
-- $\delta_{10}, \delta_{20}:$ constant phase
-
-とする。(軸対称なベクトルビームを作りたいので変数は $\varphi$ (方位角のみ))
-よってSLM1で反射してBSに戻ってくるビームは
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out2} &=
-\begin{bmatrix}-e^{i\delta_1} & 0 \\
-0 & 1\end{bmatrix}\boldsymbol{E}_{out1} \\ 
-\boldsymbol{E}_{out2} &=
-\begin{bmatrix}-e^{i\delta_1} & 0 \\
-0 & 1\end{bmatrix}\begin{bmatrix}1 \\
-0\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out2} &=
-\begin{bmatrix} -e^{i\delta_1} \\ 
-0
-\end{bmatrix}
-\end{aligned}
-$$
-
-これも偏光だけを考えているので
-
-$$
-\boldsymbol{E}_{out2} = 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-$$
-
-SLM1の役割は波面変調
-
-⓷, $\beta$ 傾けたHWPを通過してSLM2で反射して先ほどと同じHWPを通過してBSに戻ってくるビーム
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out3} &=
-J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
-&=
-\begin{bmatrix}
-\cos{2\beta} & -\sin{2\beta} \\
--\sin{2\beta} & -\cos{2\beta}
-\end{bmatrix}
-\begin{bmatrix}
--e^{i\delta_2} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-\cos{2\beta} & \sin{2\beta} \\
-\sin{2\beta} & -\cos{2\beta}
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-0 
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-\cos{2\beta} & -\sin{2\beta} \\
--\sin{2\beta} & -\cos{2\beta}
-\end{bmatrix}
-\begin{bmatrix}
--e^{i\delta_2} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-\cos{2\beta} \\
-\sin{2\beta}
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-\cos{2\beta} & \sin{2\beta} \\
-\sin{2\beta} & -\cos{2\beta}
-\end{bmatrix}
-\begin{bmatrix}
--e^{i\delta_2}\cos{2\beta} \\
-\sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out3} &=
-\begin{bmatrix} 
--e^{i\delta_2} \cos^2{2\beta} + \sin^2{2\beta} \\
--\frac{e^{i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
-\end{bmatrix}
-\end{aligned}
-$$
-
-⓸各SLMで反射して戻ってきたビームがBSで合わさったビーム
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out4} &= \boldsymbol{E}_{out2} + \boldsymbol{E}_{out3} \\
-&=
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix} + 
-\begin{bmatrix}
--e^{-i\delta_2} \cos^2{2\beta} - \sin^2{2\beta} \\
--\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out4} &= 
-\begin{bmatrix}
-1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}\\
--\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
-\end{bmatrix}
-\end{aligned}
-$$
-
-⓹,⓸のビームが $\gamma$ 傾けたQWPで変換されたビーム
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &=
-J_{QWP(\gamma)} \boldsymbol{E}_{out4}\\
-&=
-\begin{bmatrix}
-i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \\
-\sin{\gamma} \cos{\gamma} (1 - i) & \sin^2{\gamma} + i \cos^2{\gamma}
-\end{bmatrix}
-\begin{bmatrix}
-1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta} \\
--\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-(1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + (-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin{\gamma} \cos{\gamma} (1 - i)) \\
-(1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + (-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin^2{\gamma} + i \cos^2{\gamma})
-\end{bmatrix}
-\end{aligned}
-$$
-
-天下り的に軸対称ビームを作るとき $\beta, \gamma$ をどうすればいいか考える。
-例えば
-
-$$
-\boldsymbol{a} = e^{i\theta}
-\begin{bmatrix}
-\cos{\varphi} \\
-\sin{\varphi}
-\end{bmatrix}
-$$
-
-というジョーンズベクトルを考えるとこれは各 $\varphi$ で半径方向を向く直線偏光を表している。今は半径:r=1とすると
-偏光分布は以下のようになる。
-
-また
-
-$$
-\boldsymbol{b} = e^{i\theta}
-\begin{bmatrix}
--\sin{\varphi} \\
-\cos{\varphi}
-\end{bmatrix}
-$$
-
-というジョーンズベクトルは各 $\varphi$ で円の接線方向を向く直線偏光を表している。また、半径方向には依存性はないので偏光分布は以下のようになる。
-
-今は一つ目の偏光分布を作ることを考える。
-
-解くのは
-
-$$
-\begin{aligned}
-Re[(1 -e^{i\delta_2} \cos^2{2\beta} - \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin4\beta}{2}(-e^{i\delta_2} + 1) (\sin{\gamma} \cos{\gamma} (1 - i))] &= \cos{\varphi} \\
-Re[(1 -e^{i\delta_2} \cos^2{2\beta} - \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + \frac{\sin{4\beta}}{2}(-e^{i\delta_2} + 1) (\sin^2{\gamma} + i \cos^2{\gamma})] &= \sin{\varphi}
-\end{aligned}
-$$
-
-まず
-
-$$
-\delta_2 = 2\varphi - \frac{\pi}{2}
-$$
-
-と仮定する。第一式は
-
-$$
-Re[(1 - \sin{2\varphi} \cos^2{2\beta} - \sin^2{2\beta} -i\cos{2\varphi} \cos^2{2\beta}) (i\sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin{4\beta}}{2} (1 - \sin{2\varphi} - i\cos{2\varphi})]
-$$
-
-<br>
-
-**[補足]**
-もしSLM2に入射するビームのところのHWPが1回だけしか通らないとしたら
-
-$$
-\boldsymbol{E}_{out} = J_{QWP(\gamma)} [J_{SLM1} + J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in}
-$$
-
-となるので
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out3} &=
-J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
-&=
-\begin{bmatrix}
--e^{i\delta_2} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-\cos{2\beta} & \sin{2\beta} \\
-\sin{2\beta} & -\cos{2\beta}
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-0 
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
--e^{i\delta_2} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-\cos{2\beta} \\
-\sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out3} &=
-\begin{bmatrix} 
--e^{i\delta_2} \cos{2\beta} \\
-\sin{2\beta}
-\end{bmatrix}
-\end{aligned}
-$$
-
-となり
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out4} &= \boldsymbol{E}_{out2} + \boldsymbol{E}_{out3} \\
-&=
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix} + 
-\begin{bmatrix} 
--e^{-i\delta_2} \cos{2\beta} \\
-\sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out4} &=
-\begin{bmatrix}
-1 -e^{-i\delta_2} \cos{2\beta}\\
-\sin{2\beta}
-\end{bmatrix}
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &=
-J_{QWP(\gamma)} \boldsymbol{E}_{out4}\\
-&=
-\begin{bmatrix}
-i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \\
-\sin{\gamma} \cos{\gamma} (1 - i) & \sin^2{\gamma} + i \cos^2{\gamma}
-\end{bmatrix}
-\begin{bmatrix}
-1 -e^{-i\delta_2} \cos{2\beta}\\
-\sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &=
-\begin{bmatrix}
-(1 -e^{-i\delta_2} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
-(1 -e^{-i\delta_2} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
-\end{bmatrix}
-\end{aligned}
-$$
-
-ここで
-
-$$
-\delta_2 = 2\varphi + \theta
-$$
-
-とすると
-
-$$
-\begin{aligned}
-\therefore \boldsymbol{E}_{out} &=
-\begin{bmatrix}
-(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
-(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-(1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
-(1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
-\end{bmatrix} \\
-\end{aligned}
-$$
-
-## その２
-
-これは
-
-$$
-\boldsymbol{E}_{out} = J_{QWP(\gamma)} J_{HWP(-\beta)} J_{SLM2(\delta_2)} J_{HWP(\beta)} J_{SLM1(\delta_1)}J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in}
-$$
-
-## その３
-
-$$
-\boldsymbol{E}_{out} = J_{QWP(\frac{\pi}{4})} (J_{SLM1} \boldsymbol{E}_{1} + J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} \boldsymbol{E}_{2}) \\
-(\boldsymbol{E}_{in} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2})
-$$
-
-今は $PBS$ によって
-
-$$
-\boldsymbol{E}_{in} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2} = 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-+
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-$$
-
-と分けられる。よって
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &= J_{QWP(\frac{\pi}{4})} (J_{SLM1} 
- \begin{bmatrix}
-1 \\
-0
-\end{bmatrix} + J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} \begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-) \\
-
-&=
-\begin{bmatrix}
-1 & -i \\
--i & 1
-\end{bmatrix} \biggl(
-\begin{bmatrix}
-e^{i\delta_1} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-0 
-\end{bmatrix}
-+\begin{bmatrix}
-0 & -1 \\
--1 & 0
-\end{bmatrix}
-\begin{bmatrix}
-e^{i\delta_2} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-0 & 1 \\
-1 & 0
-\end{bmatrix}
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix} \biggr) \\
-&=
-\begin{bmatrix}
-1 & -i \\
--i & 1
-\end{bmatrix} \biggl(
-\begin{bmatrix}
-e^{i\delta_1} \\
-0 
-\end{bmatrix}
-+\begin{bmatrix}
-0 & -1 \\
--1 & 0
-\end{bmatrix}
-\begin{bmatrix}
-e^{i\delta_2} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix} \biggr) \\
-&=
-\begin{bmatrix}
-1 & -i \\
--i & 1
-\end{bmatrix} \biggl(
-\begin{bmatrix}
-e^{i\delta_1} \\
-0 
-\end{bmatrix}
-+\begin{bmatrix}
-0 & -1 \\
--1 & -0
-\end{bmatrix}
-\begin{bmatrix}
-e^{i\delta_2} \\
-0
-\end{bmatrix}
- \biggr)
- \\
-&=
-\begin{bmatrix}
-1 & -i \\
--i & 1
-\end{bmatrix} \biggl(
-  e^{i\delta_1}
-\begin{bmatrix}
-1 \\
-0 
-\end{bmatrix}
-+e^{i\delta_2}
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
- \biggr)
-  \\
-&=
-  e^{i\delta_1}
-\begin{bmatrix}
-1 \\
--i 
-\end{bmatrix}
-+e^{i\delta_2}
-\begin{bmatrix}
--i \\
-1
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &=
-  e^{i\delta_1}
-\begin{bmatrix}
-1 \\
--i 
-\end{bmatrix}
-+e^{i\delta_2}
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix}
-\end{aligned}
-$$
-
-$$
-J_{SLM1} 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-=
-\begin{bmatrix}
-\cos{\phi} + i \sin{\phi} \\
-0
-\end{bmatrix} \\
-45 \\
-\frac{1}{\sqrt{2}}
-\begin{bmatrix}
-1 + i \\
-0
-\end{bmatrix} \\
-90 \\
-\begin{bmatrix}
-i \\
-0
-\end{bmatrix}
-$$
-
-
-
-$$
-J_{SLM2} 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-=
-\begin{bmatrix}
-\cos{\phi} - i \sin{\phi} \\
-0
-\end{bmatrix}
-$$
-の $x, y$ 成分を入れ替えたもの
-
-$$
-\begin{bmatrix}
-0 \\
-\cos{\phi} - i \sin{\phi}
-\end{bmatrix}
-$$
-
-$$
-0 \\
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix} \\
-45 \\
-\frac{1}{\sqrt{2}}
-\begin{bmatrix}
-0 \\
-1 + i
-\end{bmatrix} \\
-90 \\
-\begin{bmatrix}
-0 \\
-i
-\end{bmatrix}
-$$
-
-足し合わせて
-$$
-\begin{bmatrix}
-\cos{\phi} + i \sin{\phi} \\
-\cos{\phi} - i \sin{\phi}
-\end{bmatrix}
-$$
-
-これがQWPで変換されると
-
-$$
-\begin{bmatrix}
-1 & -i \\
--i & 1
-\end{bmatrix}
-\begin{bmatrix}
-\cos{\phi} + i \sin{\phi} \\
-\cos{\phi} - i \sin{\phi}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\cos{\phi} - \sin{\phi} + i(\sin{\phi} - \cos{\phi}) \\
-\cos{\phi} + \sin{\phi} - i(\cos{\phi} + \sin{\phi})
-\end{bmatrix}
-\begin{bmatrix}
-\cos{\phi} - \sin{\phi} \\ 
-\cos{\phi} + \sin{\phi}
-\end{bmatrix} \\
-\\
-\begin{bmatrix}
-\cos{\bigl (\phi + \frac{\pi}{4} \bigr )} \\ 
-\cos{\bigl ( \phi - \frac{\pi}{4} \bigr )}
-\end{bmatrix} \\
-\\
-\begin{bmatrix}
-\cos{\phi} \\ 
-\sin{\phi}
-\end{bmatrix}
-$$
-
-このように位相変調された左右円偏光の重ね合わせで表現される。
-
-ここで
-
-$$
-\begin{aligned}
-\delta_{1} &= \phi + \phi_{0} \\
-\delta_{2} &= -(\phi + \phi_{0})
-\end{aligned}
-$$
-
-という位相をSLMに表示させることを考える。
-例えば
-
-$$
-\begin{aligned}
-\delta_1 &= \phi \\
-\delta_2 &= -\phi
-\end{aligned}
-$$
-
-とすると
-
-$$
-\begin{bmatrix}
-e^{i \phi} & 0 \\
-0 & 1
-\end{bmatrix}
-\begin{bmatrix}
-1 \\
-0 
-\end{bmatrix}
-$$
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &= e^{i\phi}
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}
-+e^{-i\phi}
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix} \\
-&= (\cos{\phi} + i\sin{\phi})
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}
-+(\cos{\phi} - i\sin{\phi})
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-\cos{\phi} + i\sin{\phi} \\
-\sin{\phi} - i\cos{\phi}
-\end{bmatrix}+
-\begin{bmatrix}
-\cos{\phi} - i\sin{\phi} \\
-\sin{\phi} + i\cos{\phi}
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-2\cos{\phi} \\
-2\sin{\phi}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &\propto
-\begin{bmatrix}
-\cos{\phi} \\
-\sin{\phi}
-\end{bmatrix}
-\end{aligned}
-$$
-
-これは各 $\phi$ でその点と原点を結ぶ方向の直線偏光を表している。
-つまり中心から外側に向かうような偏光分布になる。
-
-SLM1
-
-$$
-\begin{bmatrix}
-\cos{\phi} \cos{t} - \sin{\phi} \sin{t} \\
-\sin{\phi} \cos{t} + \cos{phi} \sin{t}
-\end{bmatrix}
-$$
-
-$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
-
-次に
-
-$$
-\begin{aligned}
-\delta_1 &= \phi + \frac{\pi}{2}\\
-\delta_2 &= -(\phi + \frac{\pi}{2})
-\end{aligned}
-$$
-
-とすると
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &= e^{i(\phi + \frac{\pi}{2})}
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}
-+e^{-i(\phi + \frac{\pi}{2})}
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix} \\
-&= \Bigl( \cos{(\phi + \frac{\pi}{2})} + i\sin{(\phi + \frac{\pi}{2})} \Bigr)
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}
-+\Bigl(\cos{(\phi + \frac{\pi}{2})} - i\sin{(\phi + \frac{\pi}{2})} \Bigr)
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix} \\
-&= \Bigl( -\sin{\phi} + i\cos{\phi} \Bigr)
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}
-+\Bigl(-\sin{\phi} - i\cos{\phi} \Bigr)
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
--\sin{\phi} + i\cos{\phi} \\
-\cos{\phi} + i\sin{\phi}
-\end{bmatrix}+
-\begin{bmatrix}
--\sin{\phi} - i\cos{\phi} \\
-\cos{\phi} - i\sin{\phi}
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
--2\sin{\phi} \\
-2\cos{\phi}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &\propto
-\begin{bmatrix}
-\sin{\phi} \\
--\cos{\phi}
-\end{bmatrix}
-\end{aligned}
-$$
-
-これは各 $\phi$ で円の接線方向を向いた直線偏光を表している。確かに
-
-$$
-\begin{bmatrix}
-\cos{\phi} \\
-\sin{\phi}
-\end{bmatrix} \cdot
-\begin{bmatrix}
-\sin{\phi} \\
--\cos{\phi}
-\end{bmatrix} = 0
-$$
-
-直交している。
-
-$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
-
-最後に
-
-$$
-\begin{aligned}
-\delta_1 &= 2\phi \\
-\delta_2 &= -2\phi
-\end{aligned}
-$$
-
-を考える。
-
-$$
-\begin{aligned}
-\boldsymbol{E}_{out} &= e^{i2\phi}
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}
-+e^{-i2\phi}
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix} \\
-&= (\cos{2\phi} + i\sin{2\phi})
-\begin{bmatrix}
-1 \\
--i
-\end{bmatrix}
-+(\cos{2\phi} - i\sin{2\phi})
-\begin{bmatrix}
-1 \\
-i
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-\cos{2\phi} + i\sin{2\phi} \\
-\sin{2\phi} - i\cos{2\phi}
-\end{bmatrix}+
-\begin{bmatrix}
-\cos{2\phi} - i\sin{2\phi} \\
-\sin{2\phi} + i\cos{2\phi}
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-2\cos{2\phi} \\
-2\sin{2\phi}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &\propto
-\begin{bmatrix}
-\cos{2\phi} \\
-\sin{2\phi}
-\end{bmatrix}
-\end{aligned}
-$$
-
-$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
 
 # 教科書的な立ち位置
 
