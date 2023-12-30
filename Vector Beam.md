@@ -810,38 +810,37 @@ $$
 射影演算子 $P$ がパウリ行列の和で表される、つまり
 
 $$
-\begin{aligned}
-P &= \frac{1}{2} (
-h_0 
-\sigma_0
-+ h_1
-\sigma_1
-+ h_2
-\sigma_2
-+ h_3
-\sigma_3 ) \\
+\begin{aligned}P 
+&= \frac{1}{2} (
+  h_0 \sigma_0
+  + h_1
+  \sigma_1
+  + h_2
+  \sigma_2
+  + h_3
+  \sigma_3 ) \\
 &= \frac{1}{2} \Bigl (
-h_0 
-\begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix}
-+ h_1
-\begin{bmatrix}
-1 & 0 \\
-0 & -1
-\end{bmatrix}
-+ h_2
-\begin{bmatrix}
-0 & 1 \\
-1 & 0
-\end{bmatrix}
-+ h_3
-\begin{bmatrix}
-0 & -i \\
-i & 0 
-\end{bmatrix} \Bigr )
-\end{aligned}
+  h_0 
+  \begin{bmatrix}
+  1 & 0 \\
+  0 & 1
+  \end{bmatrix}
+  + h_1
+  \begin{bmatrix}
+  1 & 0 \\
+  0 & -1
+  \end{bmatrix}
+  + h_2
+  \begin{bmatrix}
+  0 & 1 \\
+  1 & 0
+  \end{bmatrix}
+  + h_3
+  \begin{bmatrix}
+  0 & -i \\
+  i & 0 
+  \end{bmatrix} \Bigr )
+  \end{aligned}
 $$
 
 と書けると仮定する。
