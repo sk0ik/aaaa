@@ -811,7 +811,7 @@ $$
 
 $$
 \begin{aligned}P 
-&= \frac{1}{2} (
+&= \frac {1} {2} (
   h_0 \sigma_0
   + h_1
   \sigma_1
@@ -819,7 +819,7 @@ $$
   \sigma_2
   + h_3
   \sigma_3 ) \\
-&= \frac{1}{2} \Bigl (
+&= \frac {1} {2} \Bigl (
   h_0 
   \begin{bmatrix}
   1 & 0 \\
