@@ -673,7 +673,7 @@ $$
 
 $$
 \begin{aligned}
-P ^ \dagger &= (
+P ^{\dagger} &= (
 \begin{bmatrix}
 \alpha \\
 \beta 
@@ -681,7 +681,7 @@ P ^ \dagger &= (
 \begin{bmatrix}
 \alpha \; \;
 \beta 
-\end{bmatrix} ^* ) ^ \dagger \\
+\end{bmatrix} ^* ) ^{\dagger} \\
 &= (
 \begin{bmatrix}
 \alpha \\
@@ -690,7 +690,7 @@ P ^ \dagger &= (
 \begin{bmatrix}
 \alpha \; \;
 \beta 
-\end{bmatrix} ^* ) ^ \dagger \\
+\end{bmatrix} ^* ) ^{\dagger} \\
 &= (
 \begin{bmatrix}
 \alpha \\
@@ -700,7 +700,7 @@ P ^ \dagger &= (
 \alpha \; \;
 \beta 
 \end{bmatrix} ^* \\
-\therefore P ^ \dagger &= P
+\therefore P ^{\dagger} &= P
 \end{aligned}
 $$
 
