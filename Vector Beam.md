@@ -1492,35 +1492,18 @@ $$
 $$
 
 $$
-\vec{a}_{\text{in}} \vec{b}_{\text{out}}
+\vec{a} _{\text{in}} \vec{b} _{\text{out}}
 $$
 
 $$
-\vec{a}_{\mathrm{in}} \vec{b}_{\mathrm{out}}
+\vec{a} _{\mathrm{in}} \vec{b} _{\mathrm{out}}
 $$
 
 $$
-\vec{a}_{\text{in}} \quad \vec{b}_{\text{out}}
+\vec{a} _{\text{in}} \quad \vec{b} _{\text{out}}
 $$
 
-$\vec{a}_{\text{in}}$ $\vec{b}_{\text{out}}$
-
-$$\begin{aligned}
-\vec{{E}_{aa}}
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix} \\
-\vec{E}_{aa}
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix} \\
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix}
-\end{aligned}$$
+$\vec{a} _{\text{in}}$ $\vec{b} _{\text{out}}$
 
 $$\begin{aligned}
 \boldsymbol{E}_{out1} &=
@@ -1604,15 +1587,26 @@ $\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out2} &=
-\begin{bmatrix}-e^{i\delta_1} & 0 \\
-0 & 1\end{bmatrix}\boldsymbol{E}_{out1} \\ 
-\boldsymbol{E}_{out2} &=
-\begin{bmatrix}-e^{i\delta_1} & 0 \\
-0 & 1\end{bmatrix}\begin{bmatrix}1 \\
-0\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out2} &=
-\begin{bmatrix} -e^{i\delta_1} \\ 
+\boldsymbol{E} _{out2} &=
+\begin{bmatrix}
+-e^{i\delta_1} & 0 \\
+0 & 1
+\end{bmatrix}
+\boldsymbol{E} _{out1} \\ 
+\boldsymbol{E} _{out2}
+&=
+\begin{bmatrix}
+-e^{i\delta_1} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} \\
+\therefore \boldsymbol{E} _{out2}
+&=
+\begin{bmatrix}
+ -e^{i\delta_1} \\ 
 0
 \end{bmatrix}
 \end{aligned}
@@ -1634,8 +1628,8 @@ SLM1の役割は波面変調
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out3} &=
-J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
+\boldsymbol{E} _{out3} &=
+J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)} \boldsymbol{E} _{out1}\\
 &=
 \begin{bmatrix}
 \cos{2\beta} & -\sin{2\beta} \\
@@ -1675,7 +1669,8 @@ J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
 -e^{i\delta_2}\cos{2\beta} \\
 \sin{2\beta}
 \end{bmatrix} \\
-\therefore \boldsymbol{E}_{out3} &=
+\therefore \boldsymbol{E} _{out3}
+&=
 \begin{bmatrix} 
 -e^{i\delta_2} \cos^2{2\beta} + \sin^2{2\beta} \\
 -\frac{e^{i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
@@ -1687,7 +1682,7 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out4} &= \boldsymbol{E}_{out2} + \boldsymbol{E}_{out3} \\
+\boldsymbol{E} _{out4} &= \boldsymbol{E} _{out2} + \boldsymbol{E} _{out3} \\
 &=
 \begin{bmatrix}
 1 \\
@@ -1697,7 +1692,7 @@ $$
 -e^{-i\delta_2} \cos^2{2\beta} - \sin^2{2\beta} \\
 -\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
 \end{bmatrix} \\
-\therefore \boldsymbol{E}_{out4} &= 
+\therefore \boldsymbol{E} _{out4} &= 
 \begin{bmatrix}
 1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}\\
 -\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
@@ -1709,7 +1704,7 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out} &=
+\boldsymbol{E} _{out} &=
 J_{QWP(\gamma)} \boldsymbol{E}_{out4}\\
 &=
 \begin{bmatrix}
