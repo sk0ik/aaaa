@@ -581,7 +581,7 @@ $$
 \begin{bmatrix}
 \alpha \\
 \beta 
-\end{bmatrix} \; (\alpha , \beta \in \mathbb{C})
+\end{bmatrix} (\alpha , \beta \in \mathbb{C})
 $$
 
 もし
@@ -599,7 +599,7 @@ P =
 \beta 
 \end{bmatrix}
 \begin{bmatrix}
-\alpha \;
+\alpha
 \beta 
 \end{bmatrix} ^*
 $$
@@ -626,7 +626,7 @@ P^2 &= (
 \beta 
 \end{bmatrix} 
 \begin{bmatrix}
-\alpha \;
+\alpha
 \beta 
 \end{bmatrix} ^* ) (
 \begin{bmatrix}
@@ -634,7 +634,7 @@ P^2 &= (
 \beta 
 \end{bmatrix}
 \begin{bmatrix}
-\alpha \;
+\alpha
 \beta 
 \end{bmatrix} ^* ) \\
 &= 
@@ -643,7 +643,7 @@ P^2 &= (
 \beta 
 \end{bmatrix} (
 \begin{bmatrix}
-\alpha \;
+\alpha
 \beta 
 \end{bmatrix} ^*  
 \begin{bmatrix}
@@ -651,7 +651,7 @@ P^2 &= (
 \beta 
 \end{bmatrix} )
 \begin{bmatrix}
-\alpha \;
+\alpha
 \beta 
 \end{bmatrix} ^*
 \\
@@ -662,7 +662,7 @@ P^2 &= (
 \end{bmatrix} (
 | \alpha | ^2 + | \beta | ^2 )
 \begin{bmatrix}
-\alpha \;
+\alpha
 \beta 
 \end{bmatrix} ^* \\
 \therefore P^2 &= P
@@ -679,7 +679,7 @@ P^{\dagger}&=(
 \beta 
 \end{bmatrix}
 \begin{bmatrix}
-\alpha \; \;
+\alpha
 \beta 
 \end{bmatrix}^*)^{\dagger} \\
 &=(
@@ -688,7 +688,7 @@ P^{\dagger}&=(
 \beta 
 \end{bmatrix}
 \begin{bmatrix}
-\alpha \; \;
+\alpha
 \beta 
 \end{bmatrix}^*)^{\dagger} \\
 &=(
@@ -697,7 +697,7 @@ P^{\dagger}&=(
 \beta 
 \end{bmatrix}^*)^*
 \begin{bmatrix}
-\alpha \; \;
+\alpha
 \beta 
 \end{bmatrix}^*\\
 \therefore P^{\dagger}&=P
