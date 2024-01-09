@@ -558,15 +558,15 @@ $$
 
 $$
 \begin{bmatrix}
-  S_1 \\
-  S_2 \\
-  S_3
+S1 \\
+S2 \\
+S3
 \end{bmatrix}
 =
 \begin{bmatrix}
-  |\alpha|^2 - |\beta|^2 \\
-  2 Re(\alpha \beta) \\
-  -2 Im(\alpha \beta)
+|\alpha|^2 - |\beta|^2 \\
+2 Re(\alpha \beta) \\
+-2 Im(\alpha \beta)
 \end{bmatrix}
 $$
 
