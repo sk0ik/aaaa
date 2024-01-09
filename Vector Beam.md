@@ -828,13 +828,10 @@ $$
 
 $$
 \begin{aligned}
-Tr(P \sigma _ 3)
-&=
-\frac{1}{2} \Bigl ( h _ 0 Tr(\sigma _ 0 \sigma _ 3) +h _ 1 Tr(\sigma _ 1 \sigma _ 3) +h _ 2 Tr(\sigma _ 2 \sigma _ 3) +h _ 3 Tr(\sigma _ 3 \sigma _ 3) \Bigr) \\
-&= 
+Tr(P \sigma _ 3) &=
+\frac{1}{2} \Bigl ( h _ 0 Tr(\sigma _ 0 \sigma _ 3) +h _ 1 Tr(\sigma _ 1 \sigma _ 3) +h _ 2 Tr(\sigma _ 2 \sigma _ 3) +h _ 3 Tr(\sigma _ 3 \sigma _ 3) \Bigr) \\ &= 
 h _ 3 \\
-h _ 3 
-&=
+h _ 3  &=
 2 Tr \Bigl (
 \begin{bmatrix}
 |\alpha| ^2 & \alpha \beta ^* \\
@@ -844,20 +841,16 @@ h _ 3
 0 & -i \\
 i & 0
 \end{bmatrix}
-\Bigr ) \\
-&=
+\Bigr ) \\ &=
 Tr \Bigl (
 \begin{bmatrix}
 i \alpha \beta ^* & -i |\alpha| ^2 \\
 i |\beta| ^2 & -i \alpha ^* \beta
 \end{bmatrix}
-\Bigr ) \\
-&= 
-i (\alpha \beta ^* - \alpha ^* \beta) \\
-&= 
+\Bigr ) \\ &= 
+i (\alpha \beta ^* - \alpha ^* \beta) \\ &= 
 -2 Im( \alpha \beta ^*) \\
-\therefore h _ 3
-&=
+\therefore h _ 3 &=
 -2 Im( \alpha \beta ^* )
 \end{aligned} 
 $$
