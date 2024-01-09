@@ -28,7 +28,6 @@
   - [その１(未完成)](#その１未完成)
   - [その２(未完成)](#その２未完成)
   - [その３(未完成)](#その３未完成)
-- [\\end{bmatrix}](#endbmatrix)
   - [その4](#その4)
 - [論文](#論文)
   - [SLM2個使ってベクトルビームを作る](#slm2個使ってベクトルビームを作る)
@@ -2103,15 +2102,16 @@ $$
 これがQWPで変換されると
 
 $$
+\begin{aligned}
 \begin{bmatrix}
- 1 & -i \newline
- -i & 1
+1 & -i \newline
+-i & 1
 \end{bmatrix}
 \begin{bmatrix}
 \cos{\phi} + i \sin{\phi} \newline
 \cos{\phi} - i \sin{\phi}
 \end{bmatrix}
-=
+&=
 \begin{bmatrix}
 \cos{\phi} - \sin{\phi} + i(\sin{\phi} - \cos{\phi}) \newline
 \cos{\phi} + \sin{\phi} - i(\cos{\phi} + \sin{\phi})
@@ -2120,14 +2120,17 @@ $$
 \cos{\phi} - \sin{\phi} \newline 
 \cos{\phi} + \sin{\phi}
 \end{bmatrix} \newline
+&=
 \begin{bmatrix}
 \cos{\bigl (\phi + \frac{\pi}{4} \bigr )} \newline
 \cos{\bigl ( \phi - \frac{\pi}{4} \bigr )}
 \end{bmatrix} \newline
+&=
 \begin{bmatrix}
 \cos{\phi} \newline
 \sin{\phi}
 \end{bmatrix}
+\end{aligned}
 $$
 
 このように位相変調された左右円偏光の重ね合わせで表現される。
