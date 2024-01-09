@@ -1428,6 +1428,8 @@ $$
 # 実験案
 ## その１(未完成)
 
+![Alt text](image-2.png)
+
 ⓵,BSに入射するビーム(HWP, PBS)
 レーザーから出た光のジョーンズベクトルは
 
@@ -1464,28 +1466,6 @@ J _ {PBS} =
 $$
 
 となる。これらをかければよいので
-
-$$
-\vec{a} _ {in} \vec{b} _ {out}
-$$
-
-$$
-\vec{a} \stackrel{\text{in}}{\longrightarrow} \vec{b} \stackrel{\text{out}}{\longrightarrow}
-$$
-
-$$
-\vec{a} _ {\text{in}} \vec{b} _ {\text{out}}
-$$
-
-$$
-\vec{a} _ {\mathrm{in}} \vec{b} _ {\mathrm{out}}
-$$
-
-$$
-\vec{a} _ {\text{in}} \quad \vec{b} _ {\text{out}}
-$$
-
-$\vec{a} _ {\text{in}}$ $\vec{b} _ {\text{out}}$
 
 $$\begin{aligned}
 \boldsymbol{E} _ {out1} &=
