@@ -918,7 +918,7 @@ i & 0
 \end{aligned}
 $$
 
-今は $|\alpha| ^2 + |\beta| ^2 = 1$ を考えているので第一項目の係数は1になるため、以下では$h_1, h_2, h_3$のみを考える。
+今は $|\alpha| ^2 + |\beta| ^2 = 1$ を考えているので第一項目の係数は1になるため、以下では $h_1, h_2, h_3$ のみを考える。
 
 この係数をベクトルとしたもの
 
@@ -927,24 +927,24 @@ $$
 \boldsymbol{ S }
 &= 
 \begin{bmatrix}
-S_1 \\
-S_2 \\
-S_3
+S _ 1 \newline
+S _ 2 \newline
+S _ 3
 \end{bmatrix}
-\\
+\newline
 &=
 \begin{bmatrix}
-h_1 \\
-h_2 \\
-h_3
+h _ 1 \newline
+h _ 2 \newline
+h _ 3
 \end{bmatrix}
-\\
-\therefore \boldsymbol{ S }
+\newline
+\therefore \boldsymbol{S}
 &= 
 \begin{bmatrix}
-| \alpha | ^2 - | \beta | ^2 \\
-2 Re( \alpha \beta ^*) \\
--2 Im( \alpha \beta ^*)
+\mid \alpha \mid ^2 - \mid \beta \mid ^2 \newline
+2 Re( \alpha \beta ^ \ast) \newline
+-2 Im( \alpha \beta ^ \ast)
 \end{bmatrix}
 \end{aligned}
 $$
