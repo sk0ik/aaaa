@@ -1883,21 +1883,21 @@ $$
 ## その３(未完成)
 
 $$
-\boldsymbol{E}_{out} = J_{QWP(\frac{\pi}{4})} (J_{SLM1} \boldsymbol{E}_{1} + J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} \boldsymbol{E}_{2}) \\
-(\boldsymbol{E}_{in} = \boldsymbol{E}_{1} + \boldsymbol{E}_{2})
+\boldsymbol{E} _ {out} = J _ {QWP(\frac{\pi}{4})} (J _ {SLM1} \boldsymbol{E} _ {1} + J _ {HWP(-\frac{\pi}{4})} J _ {SLM2} J _ {HWP(\frac{\pi}{4})} \boldsymbol{E} _ {2}) \\
+(\boldsymbol{E} _ {in} = \boldsymbol{E} _ {1} + \boldsymbol{E} _ {2})
 $$
 
 今は $PBS$ によって
 
 $$
-\boldsymbol { E } _ { in } = \boldsymbol {E} _ {1} + \boldsymbol {E} _ {2} = 
+\boldsymbol {E} _ {in} = \boldsymbol {E} _ {1} + \boldsymbol {E} _ {2} = 
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix}
 +
 \begin{bmatrix}
-0 \\
+0 \newline
 1
 \end{bmatrix}
 $$
@@ -1906,7 +1906,9 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol {E} _ {out} &= J_{QWP(\frac{\pi}{4})} (J _ {SLM1} 
+\boldsymbol {E} _ {out}
+&=
+J _ {QWP(\frac{\pi}{4})} (J _ {SLM1} 
 \begin{bmatrix}
 1 \newline
 0
