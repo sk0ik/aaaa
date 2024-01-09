@@ -558,9 +558,9 @@ $$
 
 $$
 \begin{bmatrix}
-S_{1} \\
-S_{2} \\
-S_{3}
+S_ {1} \\
+S_ {2} \\
+S_ {3}
 \end{bmatrix}
 =
 \begin{bmatrix}
