@@ -25,9 +25,10 @@
 - [Vector Beamの評価方法](#vector-beamの評価方法)
 - [Vector Beamと機械学習](#vector-beamと機械学習)
 - [実験案](#実験案)
-  - [その１](#その１)
-  - [その２](#その２)
-  - [その３](#その３)
+  - [その１(未完成)](#その１未完成)
+  - [その２(未完成)](#その２未完成)
+  - [その３(未完成)](#その３未完成)
+- [\\end{bmatrix}](#endbmatrix)
   - [その4](#その4)
 - [論文](#論文)
   - [SLM2個使ってベクトルビームを作る](#slm2個使ってベクトルビームを作る)
@@ -1157,7 +1158,7 @@ $$
 $$
 J_{SLM} = A_0
 \begin{bmatrix}
--e^{i\delta} & 0 \\
+e^{i\delta} & 0 \\
 0 & 1
 \end{bmatrix}
 $$
@@ -1363,25 +1364,28 @@ $$
 となる。回転をとると
 
 $$
-\nabla \times \boldsymbol{E} = \Bigl (\frac{1}{r} \frac{\partial}{\partial \phi} E_z - \frac{\partial}{\partial z} E_\phi \Bigr ) \boldsymbol{e}_r + \Bigl (\frac{\partial}{\partial z} E_r - \frac{\partial}{\partial r} E_z \Bigr ) \boldsymbol{e}_\phi + \frac{1}{r} \Bigl (\frac{\partial}{\partial r} (r E_\phi) - \frac{\partial}{\partial \phi} E_r \Bigr )\boldsymbol{e}_z
+\nabla \times \boldsymbol{E} = \Bigl (\frac{1}{r} \frac{\partial}{\partial \phi} E _ z - \frac{\partial}{\partial z} E_\phi \Bigr ) \boldsymbol{e}_r + \Bigl (\frac{\partial}{\partial z} E_r - \frac{\partial}{\partial r} E _ z \Bigr ) \boldsymbol{e} _ \phi + \frac{1}{r} \Bigl (\frac{\partial}{\partial r} (r E_\phi) - \frac{\partial}{\partial \phi} E _ r \Bigr )\boldsymbol{e} _ z
 $$
 
 であるが今は
 
 $$
-E_r = E_z = 0
+E _ r = E _ z = 0
 $$
 
 より
 
 $$
-\nabla \times \boldsymbol{E} = - \frac{\partial}{\partial z} E_\phi \boldsymbol{e}_r + \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \boldsymbol{e}_z
+\nabla \times \boldsymbol{E} = - \frac{\partial}{\partial z} E _ \phi \boldsymbol{e} _ r + \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \boldsymbol{e} _ z
 $$
 
 $$
 \begin{aligned}
-\nabla \times (\nabla \times \boldsymbol{E}) &= \frac{1}{r} \frac{\partial}{\partial \phi} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) \boldsymbol{e}_r - \Bigl ( \frac{\partial ^2}{\partial z ^2} E_\phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) \Bigr ) \boldsymbol{e}_\phi \\
-&= - \Bigl ( \frac{\partial ^2}{\partial z ^2} E_\phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) \Bigr ) \boldsymbol{e}_\phi \\
+\nabla \times (\nabla \times \boldsymbol{E})
+&=
+\frac{1}{r} \frac{\partial}{\partial \phi} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E _ \phi) \Bigr ) \boldsymbol{e}_r - \Bigl ( \frac{\partial ^2}{\partial z ^2} E _ \phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E _ \phi) \Bigr ) \Bigr ) \boldsymbol{e}_\phi \newline
+&=
+- \Bigl ( \frac{\partial ^2}{\partial z ^2} E _ \phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E _ \phi) \Bigr ) \Bigr ) \boldsymbol{e}_\phi \newline
 &※ E_\phi は \phi を含まないので第1項はゼロ
 \end{aligned}
 $$
@@ -1423,7 +1427,7 @@ $$
 # Vector Beamと機械学習
 
 # 実験案
-## その１
+## その１(未完成)
 
 ⓵,BSに入射するビーム(HWP, PBS)
 レーザーから出た光のジョーンズベクトルは
@@ -1431,8 +1435,8 @@ $$
 $$
 \boldsymbol{E} = 
 \begin{bmatrix}
-E_{x0} e^{i\varphi_x} \\
-E_{y0} e^{i\varphi_y}
+E _ {x0} e^{i\varphi_x} \newline
+E _ {y0} e^{i\varphi_y}
 \end{bmatrix}
 $$
 
@@ -1441,9 +1445,9 @@ $$
 $\alpha$ だけ傾けたHWPのジョーンズ行列は
 
 $$
-J_{HWP(\alpha)} = 
+J _ {HWP(\alpha)} = 
 \begin{bmatrix}
-\cos{2\alpha} & \sin{2\alpha} \\
+\cos{2\alpha} & \sin{2\alpha} \newline
 \sin{2\alpha} & -\cos{2\alpha}
 \end{bmatrix}
 $$
@@ -1453,9 +1457,9 @@ $$
 今はPBSをP偏光を取り出すものとして使っているのでジョーンズ行列は
 
 $$
-J_{PBS} = 
+J _ {PBS} = 
 \begin{bmatrix}
-1 & 0 \\
+1 & 0 \newline
 0 & 0
 \end{bmatrix}
 $$
@@ -1463,7 +1467,7 @@ $$
 となる。これらをかければよいので
 
 $$
-\vec{a} _{in} \vec{b} _{out}
+\vec{a} _ {in} \vec{b} _ {out}
 $$
 
 $$
@@ -1471,45 +1475,48 @@ $$
 $$
 
 $$
-\vec{a} _{\text{in}} \vec{b} _{\text{out}}
+\vec{a} _ {\text{in}} \vec{b} _ {\text{out}}
 $$
 
 $$
-\vec{a} _{\mathrm{in}} \vec{b} _{\mathrm{out}}
+\vec{a} _ {\mathrm{in}} \vec{b} _ {\mathrm{out}}
 $$
 
 $$
-\vec{a} _{\text{in}} \quad \vec{b} _{\text{out}}
+\vec{a} _ {\text{in}} \quad \vec{b} _ {\text{out}}
 $$
 
-$\vec{a} _{\text{in}}$ $\vec{b} _{\text{out}}$
+$\vec{a} _ {\text{in}}$ $\vec{b} _ {\text{out}}$
 
 $$\begin{aligned}
-\boldsymbol{E}_{out1} &=
-J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in} \\ &= 
+\boldsymbol{E} _ {out1} &=
+J_{PBS} J _ {HWP(\alpha)} \boldsymbol{E} _ {in} \newline
+&= 
 \begin{bmatrix}
-1 & 0 \\
+1 & 0 \newline
 0 & 0 
 \end{bmatrix}
 \begin{bmatrix}
-\cos{2\alpha} & \sin{2\alpha} \\
+\cos{2\alpha} & \sin{2\alpha} \newline
 \sin{2\alpha} & -\cos{2\alpha}
 \end{bmatrix}
 \begin{bmatrix}
-E_{x0} e^{i\varphi_x} \\
-E_{y0} e^{i\varphi_y}
-\end{bmatrix} \\ &=
+E _ {x0} e^{i\varphi_x} \newline
+E _ {y0} e^{i\varphi_y}
+\end{bmatrix} \newline
+&=
 \begin{bmatrix}
-\cos{2\alpha} & \sin{2\alpha} \\
+\cos{2\alpha} & \sin{2\alpha} \newline
 0 & 0
 \end{bmatrix}
 \begin{bmatrix}
-E_{x0} e^{i\varphi_x} \\
-E_{y0} e^{i\varphi_y}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out1}&=
+E _ {x0} e^{i\varphi_x} \newline
+E _ {y0} e^{i\varphi_y}
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out1}&=
 \begin{bmatrix}
-E_{x0} e^{i\varphi_x} \cos{2\alpha} + E_{y0} e^{i\varphi_y} \sin{2\alpha} \\ 0
+E _ {x0} e^{i\varphi_x} \cos{2\alpha} + E _ {y0} e^{i\varphi_y} \sin{2\alpha} \newline
+0
 \end{bmatrix}
 \end{aligned}$$
 
@@ -1517,9 +1524,9 @@ E_{x0} e^{i\varphi_x} \cos{2\alpha} + E_{y0} e^{i\varphi_y} \sin{2\alpha} \\ 0
 今は偏光を考えているのでここでは便宜上
 
 $$
-\boldsymbol{E}_{out1} =
+\boldsymbol{E} _ {out1} =
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix}
 $$
@@ -1529,9 +1536,9 @@ $$
 ⓶,SLM1で反射してBSに戻ってくるビーム
 
 $$
-J_{SLM} = A_0
+J _ {SLM} = A_0
 \begin{bmatrix}
--e^{i\delta} & 0 \\
+-e^{i\delta} & 0 \newline
 0 & 1
 \end{bmatrix}
 $$
@@ -1539,53 +1546,54 @@ $$
 であったが先ほどと同様に強度の情報はいらないので今は
 
 $$
-J_{SLM1} = 
+J _ {SLM1} = 
 \begin{bmatrix}
--e^{i\delta_1} & 0 \\
+-e^{i\delta _ 1} & 0 \newline
 0 & 1
 \end{bmatrix}
 $$
 
-$\delta_1 = p\varphi + \delta_{10} \quad (p \in \mathbb{Z})$
+$\delta _ 1 = p\varphi + \delta_{10} \quad (p \in \mathbb{Z})$
 
 $$
-J_{SLM2} = 
+J _ {SLM2} = 
 \begin{bmatrix}
--e^{i\delta_2} & 0 \\
+-e^{i\delta _ 2} & 0 \newline
 0 & 1
 \end{bmatrix}
 $$
 
-$\delta_2 = q\varphi + \delta_{20} \quad (q \in \mathbb{Z})$
+$\delta _ 2 = q\varphi + \delta _ {20} \quad (q \in \mathbb{Z})$
 
 - $\varphi:$ 方位角(azimuthal angle)
-- $\delta_{10}, \delta_{20}:$ constant phase
+- $\delta _ {10}, \delta _ {20}:$ constant phase
 
 とする。(軸対称なベクトルビームを作りたいので変数は $\varphi$ (方位角のみ))
 よってSLM1で反射してBSに戻ってくるビームは
 
 $$
 \begin{aligned}
-\boldsymbol{E} _{out2} &=
-\begin{bmatrix}
--e^{i\delta_1} & 0 \\
-0 & 1
-\end{bmatrix}
-\boldsymbol{E} _{out1} \\ 
-\boldsymbol{E} _{out2}
+\boldsymbol{E} _ {out2}
 &=
 \begin{bmatrix}
--e^{i\delta_1} & 0 \\
+-e^{i\delta _ 1} & 0 \newline
+0 & 1
+\end{bmatrix}
+\boldsymbol{E} _ {out1} \newline 
+\boldsymbol{E} _ {out2}
+&=
+\begin{bmatrix}
+-e^{i\delta _ 1} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-1 \\
+1 \newline
 0
-\end{bmatrix} \\
-\therefore \boldsymbol{E} _{out2}
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out2}
 &=
 \begin{bmatrix}
- -e^{i\delta_1} \\ 
+ -e^{i\delta _ 1} \newline
 0
 \end{bmatrix}
 \end{aligned}
@@ -1594,9 +1602,9 @@ $$
 これも偏光だけを考えているので
 
 $$
-\boldsymbol{E}_{out2} = 
+\boldsymbol{E} _ {out2} = 
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix}
 $$
@@ -1607,52 +1615,52 @@ SLM1の役割は波面変調
 
 $$
 \begin{aligned}
-\boldsymbol{E} _{out3} &=
-J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)} \boldsymbol{E} _{out1}\\
+\boldsymbol{E} _ {out3} &=
+J_{HWP(-\beta)} J_{SLM2} J_ {HWP(\beta)} \boldsymbol{E} _ {out1}\\
 &=
 \begin{bmatrix}
-\cos{2\beta} & -\sin{2\beta} \\
+\cos{2\beta} & -\sin{2\beta} \newline
 -\sin{2\beta} & -\cos{2\beta}
 \end{bmatrix}
 \begin{bmatrix}
--e^{i\delta_2} & 0 \\
+-e^{i\delta _ 2} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-\cos{2\beta} & \sin{2\beta} \\
+\cos{2\beta} & \sin{2\beta} \newline
 \sin{2\beta} & -\cos{2\beta}
 \end{bmatrix}
 \begin{bmatrix}
-1 \\
+1 \newline
 0 
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-\cos{2\beta} & -\sin{2\beta} \\
+\cos{2\beta} & -\sin{2\beta} \newline
 -\sin{2\beta} & -\cos{2\beta}
 \end{bmatrix}
 \begin{bmatrix}
--e^{i\delta_2} & 0 \\
+-e^{i\delta _ 2} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-\cos{2\beta} \\
+\cos{2\beta} \newline
 \sin{2\beta}
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-\cos{2\beta} & \sin{2\beta} \\
+\cos{2\beta} & \sin{2\beta} \newline
 \sin{2\beta} & -\cos{2\beta}
 \end{bmatrix}
 \begin{bmatrix}
--e^{i\delta_2}\cos{2\beta} \\
+-e^{i\delta _ 2}\cos{2\beta} \newline
 \sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E} _{out3}
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out3}
 &=
 \begin{bmatrix} 
--e^{i\delta_2} \cos^2{2\beta} + \sin^2{2\beta} \\
--\frac{e^{i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+-e^{i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta} \newline
+-\frac{e^{i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
 \end{bmatrix}
 \end{aligned}
 $$
@@ -1661,20 +1669,20 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E} _{out4} &= \boldsymbol{E} _{out2} + \boldsymbol{E} _{out3} \\
+\boldsymbol{E} _ {out4} &= \boldsymbol{E} _ {out2} + \boldsymbol{E} _ {out3} \newline
 &=
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix} + 
 \begin{bmatrix}
--e^{-i\delta_2} \cos^2{2\beta} - \sin^2{2\beta} \\
--\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
-\end{bmatrix} \\
-\therefore \boldsymbol{E} _{out4} &= 
+-e^{-i\delta _ 2} \cos^2{2\beta} - \sin^2{2\beta} \newline
+-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out4} &= 
 \begin{bmatrix}
-1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}\\
--\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta} \newline
+-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
 \end{bmatrix}
 \end{aligned}
 $$
@@ -1683,21 +1691,21 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E} _{out} &=
-J_{QWP(\gamma)} \boldsymbol{E}_{out4}\\
+\boldsymbol{E} _ {out} &=
+J_{QWP(\gamma)} \boldsymbol{E} _ {out4} \newline
 &=
 \begin{bmatrix}
-i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \\
+i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \newline
 \sin{\gamma} \cos{\gamma} (1 - i) & \sin^2{\gamma} + i \cos^2{\gamma}
 \end{bmatrix}
 \begin{bmatrix}
-1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta} \\
--\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
-\end{bmatrix} \\
+1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta} \newline
+-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-(1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + (-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin{\gamma} \cos{\gamma} (1 - i)) \\
-(1 -e^{-i\delta_2} \cos^2{2\beta} + \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + (-\frac{e^{-i\delta_2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin^2{\gamma} + i \cos^2{\gamma})
+(1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + (-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin{\gamma} \cos{\gamma} (1 - i)) \newline
+(1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + (-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin^2{\gamma} + i \cos^2{\gamma})
 \end{bmatrix}
 \end{aligned}
 $$
@@ -1708,7 +1716,7 @@ $$
 $$
 \boldsymbol{a} = e^{i\theta}
 \begin{bmatrix}
-\cos{\varphi} \\
+\cos{\varphi} \newline
 \sin{\varphi}
 \end{bmatrix}
 $$
@@ -1721,7 +1729,7 @@ $$
 $$
 \boldsymbol{b} = e^{i\theta}
 \begin{bmatrix}
--\sin{\varphi} \\
+-\sin{\varphi} \newline
 \cos{\varphi}
 \end{bmatrix}
 $$
@@ -1734,15 +1742,15 @@ $$
 
 $$
 \begin{aligned}
-Re[(1 -e^{i\delta_2} \cos^2{2\beta} - \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin4\beta}{2}(-e^{i\delta_2} + 1) (\sin{\gamma} \cos{\gamma} (1 - i))] &= \cos{\varphi} \\
-Re[(1 -e^{i\delta_2} \cos^2{2\beta} - \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + \frac{\sin{4\beta}}{2}(-e^{i\delta_2} + 1) (\sin^2{\gamma} + i \cos^2{\gamma})] &= \sin{\varphi}
+Re[(1 -e^{i\delta _ 2} \cos^2{2\beta} - \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin4\beta}{2}(-e^{i\delta _ 2} + 1) (\sin{\gamma} \cos{\gamma} (1 - i))] &= \cos{\varphi} \\
+Re[(1 -e^{i\delta _ 2} \cos^2{2\beta} - \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + \frac{\sin{4\beta}}{2}(-e^{i\delta _ 2} + 1) (\sin^2{\gamma} + i \cos^2{\gamma})] &= \sin{\varphi}
 \end{aligned}
 $$
 
 まず
 
 $$
-\delta_2 = 2\varphi - \frac{\pi}{2}
+\delta _ 2 = 2\varphi - \frac{\pi}{2}
 $$
 
 と仮定する。第一式は
@@ -1757,40 +1765,41 @@ $$
 もしSLM2に入射するビームのところのHWPが1回だけしか通らないとしたら
 
 $$
-\boldsymbol{E}_{out} = J_{QWP(\gamma)} [J_{SLM1} + J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in}
+\boldsymbol{E} _ {out} = J_{QWP(\gamma)} [J_{SLM1} + J _ {SLM2} J_{HWP(\beta)}] J _ {PBS} J _ {HWP(\alpha)} \boldsymbol{E} _ {in}
 $$
 
 となるので
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out3} &=
-J_{SLM2} J_{HWP(\beta)} \boldsymbol{E}_{out1}\\
+\boldsymbol{E} _ {out3}
+&=
+J_{SLM2} J_{HWP(\beta)} \boldsymbol{E} _ {out1}\\
 &=
 \begin{bmatrix}
--e^{i\delta_2} & 0 \\
+-e^{i\delta _ 2} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-\cos{2\beta} & \sin{2\beta} \\
+\cos{2\beta} & \sin{2\beta} \newline
 \sin{2\beta} & -\cos{2\beta}
 \end{bmatrix}
 \begin{bmatrix}
-1 \\
+1 \newline
 0 
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
--e^{i\delta_2} & 0 \\
+-e^{i\delta _ 2} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-\cos{2\beta} \\
+\cos{2\beta} \newline
 \sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out3} &=
+\end{bmatrix} \newline
+\therefore \boldsymbol{E }_ {out3} &=
 \begin{bmatrix} 
--e^{i\delta_2} \cos{2\beta} \\
+-e^{i\delta _ 2} \cos{2\beta} \newline
 \sin{2\beta}
 \end{bmatrix}
 \end{aligned}
@@ -1800,19 +1809,19 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out4} &= \boldsymbol{E}_{out2} + \boldsymbol{E}_{out3} \\
+\boldsymbol{E} _ {out4} &= \boldsymbol{E} _ {out2} + \boldsymbol{E} _ {out3} \\
 &=
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix} + 
 \begin{bmatrix} 
--e^{-i\delta_2} \cos{2\beta} \\
+-e^{-i\delta_2} \cos{2\beta} \newline
 \sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out4} &=
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out4} &=
 \begin{bmatrix}
-1 -e^{-i\delta_2} \cos{2\beta}\\
+1 -e^{-i\delta _ 2} \cos{2\beta} \newline
 \sin{2\beta}
 \end{bmatrix}
 \end{aligned}
@@ -1820,20 +1829,21 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out} &=
-J_{QWP(\gamma)} \boldsymbol{E}_{out4}\\
+\boldsymbol{E} _ {out} &=
+J_{QWP(\gamma)} \boldsymbol{E}_{out4} \newline
 &=
 \begin{bmatrix}
-i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \\
+i \sin^2{\gamma} + \cos^2{\gamma} & \sin{\gamma} \cos{\gamma} (1 - i) \newline
 \sin{\gamma} \cos{\gamma} (1 - i) & \sin^2{\gamma} + i \cos^2{\gamma}
 \end{bmatrix}
 \begin{bmatrix}
-1 -e^{-i\delta_2} \cos{2\beta}\\
+1 -e^{-i\delta_2} \cos{2\beta} \newline
 \sin{2\beta}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &=
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out}
+&=
 \begin{bmatrix}
-(1 -e^{-i\delta_2} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
+(1 -e^{-i\delta_2} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \newline
 (1 -e^{-i\delta_2} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
 \end{bmatrix}
 \end{aligned}
@@ -1849,28 +1859,28 @@ $$
 
 $$
 \begin{aligned}
-\therefore \boldsymbol{E}_{out} &=
+\therefore \boldsymbol{E} _ {out} &=
 \begin{bmatrix}
-(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
+(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \newline
 (1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
 (1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \\
 (1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})
-\end{bmatrix} \\
+\end{bmatrix} \newline
 \end{aligned}
 $$
 
-## その２
+## その２(未完成)
 
 これは
 
 $$
-\boldsymbol{E}_{out} = J_{QWP(\gamma)} J_{HWP(-\beta)} J_{SLM2(\delta_2)} J_{HWP(\beta)} J_{SLM1(\delta_1)}J_{PBS} J_{HWP(\alpha)} \boldsymbol{E}_{in}
+\boldsymbol{E} _ {out} = J_{QWP(\gamma)} J _ {HWP(-\beta)} J_{SLM2(\delta _ 2)} J_{HWP(\beta)} J_{SLM1(\delta _ 1)}J _ {PBS} J _ {HWP(\alpha)} \boldsymbol{E} _ {in}
 $$
 
-## その３
+## その３(未完成)
 
 $$
 \boldsymbol{E}_{out} = J_{QWP(\frac{\pi}{4})} (J_{SLM1} \boldsymbol{E}_{1} + J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} \boldsymbol{E}_{2}) \\
@@ -1896,157 +1906,157 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol {E} _ {out} &= J_{QWP(\frac{\pi}{4})} (J_{SLM1} 
+\boldsymbol {E} _ {out} &= J_{QWP(\frac{\pi}{4})} (J _ {SLM1} 
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix} 
-+J_{HWP(-\frac{\pi}{4})} J_{SLM2} J_{HWP(\frac{\pi}{4})} 
++J_{HWP(-\frac{\pi}{4})} J _ {SLM2} J _ {HWP(\frac{\pi}{4})} 
 \begin{bmatrix}
-0 \\
+0 \newline
 1
 \end{bmatrix}
-) \\
+) \newline
 &=
 \begin{bmatrix}
-1 & -i \\
+1 & -i \newline
 -i & 1
 \end{bmatrix} \biggl(
 \begin{bmatrix}
-e^{i\delta_1} & 0 \\
+e^{i\delta _ 1} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-1 \\
+1 \newline
 0 
 \end{bmatrix}
 +\begin{bmatrix}
-0 & -1 \\
+0 & -1 \newline
 -1 & 0
 \end{bmatrix}
 \begin{bmatrix}
-e^{i\delta_2} & 0 \\
+e^{i\delta _ 2} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-0 & 1 \\
+0 & 1 \newline
 1 & 0
 \end{bmatrix}
 \begin{bmatrix}
-0 \\
+0 \newline
 1
-\end{bmatrix} \biggr) \\
+\end{bmatrix} \biggr) \newline
 &=
 \begin{bmatrix}
-1 & -i \\
+1 & -i \newline
 -i & 1
 \end{bmatrix} \biggl(
 \begin{bmatrix}
-e^{i\delta_1} \\
+e^{i\delta _ 1} \newline
 0 
 \end{bmatrix}
 +\begin{bmatrix}
-0 & -1 \\
+0 & -1 \newline
 -1 & 0
 \end{bmatrix}
 \begin{bmatrix}
-e^{i\delta_2} & 0 \\
+e^{i\delta _ 2} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-1 \\
+1 \newline
 0
-\end{bmatrix} \biggr) \\
+\end{bmatrix} \biggr) \newline
 &=
 \begin{bmatrix}
-1 & -i \\
+1 & -i \newline
 -i & 1
 \end{bmatrix} \biggl(
 \begin{bmatrix}
-e^{i\delta_1} \\
+e^{i\delta _ 1} \newline
 0 
 \end{bmatrix}
 +\begin{bmatrix}
-0 & -1 \\
+0 & -1 \newline
 -1 & -0
 \end{bmatrix}
 \begin{bmatrix}
-e^{i\delta_2} \\
+e^{i\delta _ 2} \newline
 0
 \end{bmatrix}
 \biggr)
-\\
+\newline
 &=
 \begin{bmatrix}
-1 & -i \\
+1 & -i \newline
 -i & 1
 \end{bmatrix} \biggl(
-e^{i\delta_1}
+e^{i\delta _ 1}
 \begin{bmatrix}
-1 \\
+1 \newline
 0 
 \end{bmatrix}
-+e^{i\delta_2}
++e^{i\delta _ 2}
 \begin{bmatrix}
-0 \\
+0 \newline
 1
 \end{bmatrix}
 \biggr)
-\\
+\newline
 &=
-e^{i\delta_1}
+e^{i\delta _ 1}
 \begin{bmatrix}
-1 \\
+1 \newline
 -i 
 \end{bmatrix}
-+e^{i\delta_2}
++e^{i\delta _ 2}
 \begin{bmatrix}
--i \\
+-i \newline
 1
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &=
-e^{i\delta_1}
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out} &=
+e^{i\delta _ 1}
 \begin{bmatrix}
-1 \\
+1 \newline
 -i 
 \end{bmatrix}
-+e^{i\delta_2}
++e^{i\delta _ 2}
 \begin{bmatrix}
-1 \\
+1 \newline
 i
 \end{bmatrix}
 \end{aligned}
 $$
 
 $$
-J_{SLM1} 
+J _ {SLM1} 
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix}
 = \begin{bmatrix}
-\cos{\phi} + i \sin{\phi} \\
+\cos{\phi} + i \sin{\phi} \newline
 0
-\end{bmatrix} \\
+\end{bmatrix} \newline
 \frac{1}{\sqrt{2}}
 \begin{bmatrix}
-1 + i \\
+1 + i \newline
 0
-\end{bmatrix} \\
+\end{bmatrix} \newline
 \begin{bmatrix}
-i \\
+i \newline
 0
 \end{bmatrix}
 $$
 
 $$
-J_{SLM2} 
+J _ {SLM2} 
 \begin{bmatrix}
-1 \\
+1 \newline
 0
 \end{bmatrix}
 = \begin{bmatrix}
-\cos{\phi} - i \sin{\phi} \\
+\cos{\phi} - i \sin{\phi} \newline
 0
 \end{bmatrix}
 $$
@@ -2055,26 +2065,26 @@ $$
 
 $$
 \begin{bmatrix}
-0 \\
+0 \newline
 \cos{\phi} - i \sin{\phi}
 \end{bmatrix}
 $$
 
 $$
-0 \\
+0 \newline
 \begin{bmatrix}
-0 \\
+0 \newline
 1
-\end{bmatrix} \\
-45 \\
+\end{bmatrix} \newline
+45 \newline
 \frac{1}{\sqrt{2}}
 \begin{bmatrix}
-0 \\
+0 \newline
 1 + i
-\end{bmatrix} \\
-90 \\
+\end{bmatrix} \newline
+90 \newline
 \begin{bmatrix}
-0 \\
+0 \newline
 i
 \end{bmatrix}
 $$
@@ -2083,7 +2093,7 @@ $$
 
 $$
 \begin{bmatrix}
-\cos{\phi} + i \sin{\phi} \\
+\cos{\phi} + i \sin{\phi} \newline
 \cos{\phi} - i \sin{\phi}
 \end{bmatrix}
 $$
@@ -2092,29 +2102,28 @@ $$
 
 $$
 \begin{bmatrix}
-1 & -i \\
+1 & -i \newline
 -i & 1
 \end{bmatrix}
 \begin{bmatrix}
-\cos{\phi} + i \sin{\phi} \\
+\cos{\phi} + i \sin{\phi} \newline
 \cos{\phi} - i \sin{\phi}
 \end{bmatrix}
-= \begin{bmatrix}
-\cos{\phi} - \sin{\phi} + i(\sin{\phi} - \cos{\phi}) \\
+=
+\begin{bmatrix}
+\cos{\phi} - \sin{\phi} + i(\sin{\phi} - \cos{\phi}) \newline
 \cos{\phi} + \sin{\phi} - i(\cos{\phi} + \sin{\phi})
 \end{bmatrix}
 \begin{bmatrix}
-\cos{\phi} - \sin{\phi} \\ 
+\cos{\phi} - \sin{\phi} \newline 
 \cos{\phi} + \sin{\phi}
-\end{bmatrix}
-\\
+\end{bmatrix} \newline
 \begin{bmatrix}
-\cos{\bigl (\phi + \frac{\pi}{4} \bigr )} \\ 
+\cos{\bigl (\phi + \frac{\pi}{4} \bigr )} \newline
 \cos{\bigl ( \phi - \frac{\pi}{4} \bigr )}
-\end{bmatrix}
-\\
+\end{bmatrix} \newline
 \begin{bmatrix}
-\cos{\phi} \\ 
+\cos{\phi} \newline
 \sin{\phi}
 \end{bmatrix}
 $$
@@ -2135,8 +2144,8 @@ $$
 
 $$
 \begin{aligned}
-\delta_1 &= \phi \\
-\delta_2 &= -\phi
+\delta _ 1 &= \phi \newline
+\delta _ 2 &= -\phi
 \end{aligned}
 $$
 
@@ -2144,54 +2153,54 @@ $$
 
 $$
 \begin{bmatrix}
-e^{i \phi} & 0 \\
+e^{i \phi} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-1 \\
+1 \newline
 0 
 \end{bmatrix}
 $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out} &= e^{i\phi}
+\boldsymbol{E} _ {out} &= e^{i\phi}
 \begin{bmatrix}
-1 \\
+1 \newline
 -i
 \end{bmatrix}
 +e^{-i\phi}
 \begin{bmatrix}
-1 \\
+1 \newline
 i
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &= (\cos{\phi} + i\sin{\phi})
 \begin{bmatrix}
-1 \\
+1 \newline
 -i
 \end{bmatrix}
 +(\cos{\phi} - i\sin{\phi})
 \begin{bmatrix}
-1 \\
+1 \newline
 i
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-\cos{\phi} + i\sin{\phi} \\
+\cos{\phi} + i\sin{\phi} \newline
 \sin{\phi} - i\cos{\phi}
 \end{bmatrix}+
 \begin{bmatrix}
-\cos{\phi} - i\sin{\phi} \\
+\cos{\phi} - i\sin{\phi} \newline
 \sin{\phi} + i\cos{\phi}
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-2\cos{\phi} \\
+2\cos{\phi} \newline
 2\sin{\phi}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &\propto
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out} & \propto
 \begin{bmatrix}
-\cos{\phi} \\
+\cos{\phi} \newline
 \sin{\phi}
 \end{bmatrix}
 \end{aligned}
@@ -2204,18 +2213,18 @@ SLM1
 
 $$
 \begin{bmatrix}
-\cos{\phi} \cos{t} - \sin{\phi} \sin{t} \\
+\cos{\phi} \cos{t} - \sin{\phi} \sin{t} \newline
 \sin{\phi} \cos{t} + \cos{\phi} \sin{t}
 \end{bmatrix}
 $$
 
-$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E} _ {out}$ をプロットしたもの
 
 次に
 
 $$
 \begin{aligned}
-\delta_1 &= \phi + \frac{\pi}{2}\\
+\delta_1 &= \phi + \frac{\pi}{2} \newline
 \delta_2 &= -(\phi + \frac{\pi}{2})
 \end{aligned}
 $$
@@ -2224,53 +2233,53 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out} &= e^{i(\phi + \frac{\pi}{2})}
+\boldsymbol{E} _ {out} &= e^{i(\phi + \frac{\pi}{2})}
 \begin{bmatrix}
-1 \\
+1 \newline
 -i
 \end{bmatrix}
 +e^{-i(\phi + \frac{\pi}{2})}
 \begin{bmatrix}
-1 \\
+1 \newline
 i
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &= \Bigl( \cos{(\phi + \frac{\pi}{2})} + i\sin{(\phi + \frac{\pi}{2})} \Bigr)
 \begin{bmatrix}
-1 \\
+1 \newline
 -i
 \end{bmatrix}
 +\Bigl(\cos{(\phi + \frac{\pi}{2})} - i\sin{(\phi + \frac{\pi}{2})} \Bigr)
 \begin{bmatrix}
-1 \\
+1 \newline
 i
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &= \Bigl( -\sin{\phi} + i\cos{\phi} \Bigr)
 \begin{bmatrix}
-1 \\
+1 \newline
 -i
 \end{bmatrix}
 +\Bigl(-\sin{\phi} - i\cos{\phi} \Bigr)
 \begin{bmatrix}
-1 \\
+1 \newline
 i
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
--\sin{\phi} + i\cos{\phi} \\
+-\sin{\phi} + i\cos{\phi} \newline
 \cos{\phi} + i\sin{\phi}
 \end{bmatrix}+
 \begin{bmatrix}
--\sin{\phi} - i\cos{\phi} \\
+-\sin{\phi} - i\cos{\phi} \newline
 \cos{\phi} - i\sin{\phi}
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
--2\sin{\phi} \\
+-2\sin{\phi} \newline
 2\cos{\phi}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &\propto
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out} & \propto
 \begin{bmatrix}
-\sin{\phi} \\
+\sin{\phi} \newline
 -\cos{\phi}
 \end{bmatrix}
 \end{aligned}
@@ -2280,11 +2289,11 @@ $$
 
 $$
 \begin{bmatrix}
-\cos{\phi} \\
+\cos{\phi} \newline
 \sin{\phi}
 \end{bmatrix} \cdot
 \begin{bmatrix}
-\sin{\phi} \\
+\sin{\phi} \newline
 -\cos{\phi}
 \end{bmatrix}
 = 0
@@ -2292,14 +2301,14 @@ $$
 
 直交している。
 
-$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
+$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E} _ {out}$ をプロットしたもの
 
 最後に
 
 $$
 \begin{aligned}
-\delta_1 &= 2\phi \\
-\delta_2 &= -2\phi
+\delta _ 1 &= 2 \phi \newline
+\delta _ 2 &= -2 \phi
 \end{aligned}
 $$
 
@@ -2307,43 +2316,43 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out} &= e^{i2\phi}
+\boldsymbol{E} _ {out} &= e^{i2\phi}
 \begin{bmatrix}
-1 \\
+1 \newline
 -i
 \end{bmatrix}
 +e^{-i2\phi}
 \begin{bmatrix}
-1 \\
+1 \newline
 i
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &= (\cos{2\phi} + i\sin{2\phi})
 \begin{bmatrix}
-1 \\
+1 \newline
 -i
 \end{bmatrix}
 +(\cos{2\phi} - i\sin{2\phi})
 \begin{bmatrix}
-1 \\
+1 \newline
 i
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-\cos{2\phi} + i\sin{2\phi} \\
+\cos{2\phi} + i\sin{2\phi} \newline
 \sin{2\phi} - i\cos{2\phi}
 \end{bmatrix}+
 \begin{bmatrix}
-\cos{2\phi} - i\sin{2\phi} \\
+\cos{2\phi} - i\sin{2\phi} \newline
 \sin{2\phi} + i\cos{2\phi}
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-2\cos{2\phi} \\
+2\cos{2\phi} \newline
 2\sin{2\phi}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &\propto
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out} &\propto
 \begin{bmatrix}
-\cos{2\phi} \\
+\cos{2\phi} \newline
 \sin{2\phi}
 \end{bmatrix}
 \end{aligned}
@@ -2355,14 +2364,14 @@ $(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ を�
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out}
+\boldsymbol{E} _ {out}
 &= 
 \begin{bmatrix}
-1+i & 1-i \\
+1+i & 1-i \newline
 1-i & 1+i
 \end{bmatrix}
 \begin{bmatrix}
-e^{i \beta} & 0 \\
+e^{i \beta} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
@@ -2370,70 +2379,70 @@ e^{i \beta} & 0 \\
 1 & -1
 \end{bmatrix}
 \begin{bmatrix}
-e^{i \alpha} & 0 \\
+e^{i \alpha} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-1 \\
+1 \newline
 0
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-1+i & 1-i \\
+1+i & 1-i \newline
 1-i & 1+i
 \end{bmatrix}
 \begin{bmatrix}
-e^{i \beta} & 0 \\
+e^{i \beta} & 0 \newline
 0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-1 & 1 \\
+1 & 1 \newline
 1 & -1
 \end{bmatrix}
 \begin{bmatrix}
-e^{i \alpha} \\
+e^{i \alpha} \newline
 0
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 \begin{bmatrix}
-1+i & 1-i \\
+1+i & 1-i \newline
 1-i & 1+i
 \end{bmatrix}
 \begin{bmatrix}
-e^{i \beta} & 0 \\
+e^{i \beta} & 0 \newline
 0 & 1
 \end{bmatrix}
 e^{i \alpha}
 \begin{bmatrix}
-1 \\
+1 \newline
 1
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &=
 e^{i \alpha}
 \begin{bmatrix}
-1+i & 1-i \\
+1+i & 1-i \newline
 1-i & 1+i
 \end{bmatrix}
 \begin{bmatrix}
-e^{i \beta} \\
+e^{i \beta} \newline
 1
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &= 
 e^{i \alpha}
 \begin{bmatrix}
-e^{i \frac{\pi}{4}} e^{i \beta} + e^{-i \frac{\pi}{4}} \\
+e^{i \frac{\pi}{4}} e^{i \beta} + e^{-i \frac{\pi}{4}} \newline
 e^{-i \frac{\pi}{4}} e^{i \beta} + e^{i \frac{\pi}{4}}
-\end{bmatrix} \\
+\end{bmatrix} \newline
 &= 
 e^{i \alpha}
 \begin{bmatrix}
-e^{i \frac{\pi}{2}} e^{i \beta} + 1 \\
+e^{i \frac{\pi}{2}} e^{i \beta} + 1 \newline
 e^{i \beta} + e^{i \frac{\pi}{2}}
-\end{bmatrix} \\
-\therefore \boldsymbol{E}_{out} &= 
+\end{bmatrix} \newline
+\therefore \boldsymbol{E} _ {out} &= 
 e^{i \alpha}
 \begin{bmatrix}
-i \cos{\beta} - \sin{\beta} + 1 \\
+i \cos{\beta} - \sin{\beta} + 1 \newline
 \cos{\beta} + i \sin{\beta} + i
 \end{bmatrix}
 \end{aligned}
@@ -2445,7 +2454,7 @@ $$
 
 $$
 \begin{aligned}
-\boldsymbol{E}_{out} &=
+\boldsymbol{E} _ {out} &=
 J_{QWP(\frac{\pi}{4})} J_{SLM2(\beta)} J_{HWP(\frac{\pi}{8})} J_{SLM1(\alpha)} \boldsymbol{E}_{in}
 \\
 &\propto
