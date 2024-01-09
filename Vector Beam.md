@@ -1087,25 +1087,33 @@ $\alpha = \frac{1}{\sqrt{2}}, \beta = \frac{i}{\sqrt{2}}$
 $$
 \begin{aligned}
 S_1 &=
-\Bigl |\frac {1}{\sqrt{2}} \Bigr | ^2 - \Bigl |\frac {i}{\sqrt{2}} \Bigr | ^2 \\ &=
-\frac {1}{2} - \frac {1}{2} \\ &=
+\Bigl |\frac {1}{\sqrt{2}} \Bigr | ^2 - \Bigl |\frac {i}{\sqrt{2}} \Bigr | ^2 \\
+&=
+\frac {1}{2} - \frac {1}{2} \\
+&=
 0 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-S_2 &= 2Re\Bigl (\frac {1}{\sqrt{2}} \times \frac {i}{\sqrt{2}}^*\Bigr ) \\ &=
-2Re(-i) \\ &=
+S_2 &= 2Re\Bigl (\frac {1}{\sqrt{2}} \times \frac {i^*}{\sqrt{2}} \Bigr ) \\
+&=
+2Re(-i) \\
+&=
 0
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-S_3 &=
--2Im\Bigl (\frac {1}{\sqrt{2}} \times \frac {i ^*}{\sqrt{2}}\Bigr ) \\ &=
--2Im \Bigl (- \frac {i}{2} \Bigr ) \\ &= 1
+S_3
+&=
+-2Im\Bigl (\frac {1}{\sqrt{2}} \times \frac {i ^*}{\sqrt{2}}\Bigr ) \\ 
+&=
+-2Im \Bigl (- \frac {i}{2} \Bigr ) \\ 
+&=
+1
 \end{aligned}
 $$
 
