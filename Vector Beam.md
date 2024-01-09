@@ -828,13 +828,18 @@ $$
 
 $$
 \begin{aligned}
-  \mathrm{Tr}(P \sigma_3) &= \frac{1}{2} \Bigl(h_0 \mathrm{Tr}(\sigma_0 \sigma_3) + h_1 \mathrm{Tr}(\sigma_1 \sigma_3) + h_2 \mathrm{Tr}(\sigma_2 \sigma_3) + h_3 \mathrm{Tr}(\sigma_3 \sigma_3) \Bigr) \\
-  &= h_3 \\
-  &= 2 \mathrm{Tr} \Bigl( \begin{bmatrix} |\alpha|^2 & \alpha \beta^* \\ \alpha^* \beta & |\beta|^2 \end{bmatrix} \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix} \Bigr) \\
-  &= \mathrm{Tr} \Bigl( \begin{bmatrix} i \alpha \beta^* & -i |\alpha|^2 \\ i |\beta|^2 & -i \alpha^* \beta \end{bmatrix} \Bigr) \\
-  &= i (\alpha \beta^* - \alpha^* \beta) \\
-  &= -2 \mathrm{Im}(\alpha \beta^*) \\
-  \therefore h_3 &= -2 \mathrm{Im}(\alpha \beta^*)
+\mathrm{Tr}(P \sigma_3) &= \frac{1}{2} \Bigl(h_0 \mathrm{Tr}(\sigma_0 \sigma_3) + h_1 \mathrm{Tr}(\sigma_1 \sigma_3) + h_2 \mathrm{Tr}(\sigma_2 \sigma_3) + h_3 \mathrm{Tr}(\sigma_3 \sigma_3) \Bigr) \\
+&=
+h_3 \\
+&=
+2 \mathrm{Tr} \Bigl( \begin{bmatrix} |\alpha|^2 & \alpha \beta^* \\ \alpha^* \beta & |\beta|^2 \end{bmatrix} \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix} \Bigr) \\
+&=
+\mathrm{Tr} \Bigl( \begin{bmatrix} i \alpha \beta^* & -i |\alpha|^2 \\ i |\beta|^2 & -i \alpha^* \beta \end{bmatrix} \Bigr) \\
+&=
+i (\alpha \beta^* - \alpha^* \beta) \\
+&=
+-2 \mathrm{Im}(\alpha \beta^*) \\
+\therefore h_3 &= -2 \mathrm{Im}(\alpha \beta^*)
 \end{aligned}
 $$
 
