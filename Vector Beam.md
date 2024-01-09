@@ -832,7 +832,10 @@ $$
 &=
 h_3 \\
 &=
-2 \mathrm{Tr} \Bigl( \begin{bmatrix} |\alpha|^2 & \alpha \beta^* \\ \alpha^* \beta & |\beta|^2 \end{bmatrix}
+2 \mathrm{Tr} \Bigl(
+\begin{bmatrix}
+|\alpha|^2 & \alpha \beta^* \\ \alpha^* \beta & |\beta|^2
+\end{bmatrix}
 \begin{bmatrix}
 0 & -i \\ i & 0
 \end{bmatrix}
