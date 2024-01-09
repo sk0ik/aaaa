@@ -1087,7 +1087,7 @@ $\alpha = \frac{1}{\sqrt{2}}, \beta = \frac{i}{\sqrt{2}}$
 $$
 S_1 =
 \Bigl |\frac {1}{\sqrt{2}} \Bigr | ^2 - \Bigl |\frac {i}{\sqrt{2}} \Bigr | ^2 \\ =
-\frac {1} {2} - \frac {1} {2} \\ =
+\frac {1}{2} - \frac {1}{2} \\ =
 0 \\
 S_2 = 2Re\Bigl (\frac {1}{\sqrt{2}} \times \frac {i}{\sqrt{2}}^*\Bigr ) \\ =
 2Re(-i) \\ =
