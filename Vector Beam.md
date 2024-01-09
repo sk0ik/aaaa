@@ -829,7 +829,7 @@ $$
 $$
 \begin{aligned}
 Tr(P \sigma_3) &=
-\frac{1}{2} \Bigl ( h_0 Tr(\sigma_0 \sigma_3) +h_1 Tr(\sigma_1 \sigma_3) +h_2 Tr(\sigma_2 \sigma_3) +h_3 Tr(\sigma_3 \sigma_3) \Bigr) \\ &= 
+\frac {1} {2} \Bigl ( h_0 Tr(\sigma_0 \sigma_3) +h_1 Tr(\sigma_1 \sigma_3) +h_2 Tr(\sigma_2 \sigma_3) +h_3 Tr(\sigma_3 \sigma_3) \Bigr) \\ &= 
 h_3 \\
 h_3  &=
 2 Tr \Bigl (
