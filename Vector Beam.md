@@ -7,6 +7,7 @@
   - [1/2波長板](#12波長板)
   - [1/4波長板](#14波長板)
 - [ポアンカレ球](#ポアンカレ球)
+- [\\end{bmatrix}](#endbmatrix)
   - [射影演算子](#射影演算子)
   - [パウリ行列展開](#パウリ行列展開)
   - [ポアンカレ球](#ポアンカレ球-1)
@@ -557,14 +558,15 @@ $$
 
 $$
 \begin{bmatrix}
-S _ 1 \\
-S _ 2 \\
-S _ 3
-\end{bmatrix} =
+  S_1 \\
+  S_2 \\
+  S_3
+\end{bmatrix}
+=
 \begin{bmatrix}
-|\alpha| ^2 - |\beta| ^2 \\
-2 Re(\alpha \beta^*) \\
--2 Im(\alpha \beta^*)
+  |\alpha|^2 - |\beta|^2 \\
+  2 \mathrm{Re}(\alpha \beta^) \\
+  -2 \mathrm{Im}(\alpha \beta^)
 \end{bmatrix}
 $$
 
