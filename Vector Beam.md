@@ -868,14 +868,7 @@ $$
 P
 &=
 \frac{1}{2} (
-h _ 0 
-\sigma _ 0
-+ h _ 1
-\sigma _ 1
-+ h _ 2
-\sigma _ 2
-+ h _ 3
-\sigma _ 3 ) \newline
+h _ 0 \sigma _ 0 + h _ 1 \sigma _ 1 + h _ 2 \sigma _ 2 + h _ 3 \sigma _ 3 ) \newline
 &=
 \frac{1}{2} \Bigl (
 h_0 
