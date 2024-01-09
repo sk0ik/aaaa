@@ -1,15 +1,17 @@
+<!-- code_chunk_output -->
+- [メモ](#メモ)
 - [ジョーンズベクトル](#ジョーンズベクトル)
   - [直線偏光](#直線偏光)
   - [円偏光](#円偏光)
 - [ジョーンズ行列](#ジョーンズ行列)
   - [1/2波長板](#12波長板)
   - [1/4波長板](#14波長板)
-  - [SLM](#slm)
-- [偏光子とポアンカレ球](#偏光子とポアンカレ球)
+- [ポアンカレ球](#ポアンカレ球)
   - [射影演算子](#射影演算子)
   - [パウリ行列展開](#パウリ行列展開)
+  - [ポアンカレ球](#ポアンカレ球-1)
   - [パウリ行列と物理量](#パウリ行列と物理量)
-  - [ポアンカレ球](#ポアンカレ球)
+  - [SLM](#slm)
   - [高次元ポアンカレ球](#高次元ポアンカレ球)
 - [ブロッホ球](#ブロッホ球)
   - [高次元ブロッホ球](#高次元ブロッホ球)
@@ -26,6 +28,7 @@
   - [その１](#その１)
   - [その２](#その２)
   - [その３](#その３)
+  - [その4](#その4)
 - [論文](#論文)
   - [SLM2個使ってベクトルビームを作る](#slm2個使ってベクトルビームを作る)
     - ["Polarization distribution control of parallel femtosecond pulses with spatial light modulators"](#polarization-distribution-control-of-parallel-femtosecond-pulses-with-spatial-light-modulators)
@@ -62,6 +65,11 @@
     - ["Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space"](#nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space)
     - ["Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"](#closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields)
     - ["Measuring the nonseparability of vector vortex beams"](#measuring-the-nonseparability-of-vector-vortex-beams-1)
+  - [ビームの最適化](#ビームの最適化)
+    - ["A practical algorithm for the determination of phase from image and diffraction plane pictures"](#a-practical-algorithm-for-the-determination-of-phase-from-image-and-diffraction-plane-pictures)
+    - ["Kinoform design with an optimal-rotation-angle method"](#kinoform-design-with-an-optimal-rotation-angle-method)
+    - ["New iterative algorithm for the design of phaseonly gratings"](#new-iterative-algorithm-for-the-design-of-phaseonly-gratings)
+    - ["Continuous-relief diffractive optical elements for two-dimensional array generation"](#continuous-relief-diffractive-optical-elements-for-two-dimensional-array-generation)
 - [教科書的な立ち位置](#教科書的な立ち位置)
   - [ベクトルビーム](#ベクトルビーム)
     - ["Cylindrical vector beams: from mathematical concepts to applications"](#cylindrical-vector-beams-from-mathematical-concepts-to-applications)
@@ -71,10 +79,37 @@
   - [SLM](#slm-1)
     - ["Creation and detection of optical modes with spatial light modulators"](#creation-and-detection-of-optical-modes-with-spatial-light-modulators)
 
+# メモ
+・ベクトルビームをスカラービームを空間的に配置したものだと考えると、それぞれのスカラービームは各素子を行列で表したものでベクトルを変換させたものであり、つまりポアンカレ球上で長さを変えずに表面を移動する変化（等長写像）が各ピクセルで起こっていると考えるとそれにあった機械学習の手法がありそう
+・球面の１点から別の１点に移動する方法はいっぱいあるからそれが基底の取り方が無数にあることに対応している？
+
+<!-- @import "[
+TOC
+]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # ジョーンズベクトル
 
-1941年にアメリカの物理学者ジョーンズ(R. Clark Jones)によって考案された**ジョーンズベクトル**は偏光状態を複素ベクトルによって表すことができる。同じく偏光状態をベクトルで表すストークスベクトルと違いジョーンズベクトルでは完全偏光(直線偏光や楕円偏光など電場の振動方向が規則性を持っているもの。自然光は電場の振動方向がバラバラであり部分偏光と呼ばれている。)の光のみしか扱うことができないがストークスベクトルは4成分なのに対してジョーンズベクトルは2成分となる。偏光素子(偏光状態を別の偏光状態へと偏光させる役割をもつもの)を表現する行列も4行4列から2行2列と小さくなる。
-ジョーンズベクトルは以下のように複素ベクトルで表される。
+光というのは電場と磁場が
+
+![Alt text](EMwave.gif)
+
+のように進んでいく。
+
+振幅や波長はなじみ深いと思うがここでは光の**偏光**という特徴について見ていく。
+
+電場だけに着目すると
+
+![Alt text](Ehori.gif)
+
+のように水平に振動するものや
+
+![Alt text](Etil.gif)
+
+のように$\frac{\pi}{4}$傾いて振動するものなどがある。
+
+この電場を$x$軸(水平方向),$y$軸(垂直方向)に分けて考える。
+
+ベクトルで表すと
 
 $$
 \boldsymbol{E} = 
@@ -84,46 +119,41 @@ E_{y0} e^{i\varphi_y}
 \end{bmatrix}
 $$
 
+となる。
+
+これは1941年にアメリカの物理学者ジョーンズ(R. Clark Jones)によって考案されたもので**ジョーンズベクトル**と言う。
+
+偏光状態を**複素ベクトル**によって表すことができる。
+
 それぞれの振幅や位相の違いによって色々な偏光状態が表される。
-例えば振幅が等しく、1に規格化されている時、つまり
 
-$$
-\begin{aligned}
-E_{x0}^2 + E_{y0}^2 &= 1 \\
-2 E_{x0}^2 &= 1 \\
-\therefore E_{x0} &= \frac{1}{\sqrt{2}}
-\end{aligned}
-$$
+**※全体にかかる振幅の大きさや位相は偏光の状態に影響しないことに注意**
 
-となり、ジョーンズベクトルは
+これは
 
-$$
-\begin{aligned}
-\boldsymbol{E} &= \frac{1}{\sqrt{2}}
-\begin{bmatrix}
-e^{i \varphi_x} \\
-e^{i \varphi_y}
-\end{bmatrix} \\
-&= \frac{e^{i\varphi_x}}{\sqrt{2}}
-\begin{bmatrix}
-1 \\
-e^{i(\varphi_y - \varphi_x)}
-\end{bmatrix} \\
-&= \frac{e^{i\varphi_x}}{\sqrt{2}}
-\begin{bmatrix}
-1 \\
-e^{i\delta}
-\end{bmatrix}
-\end{aligned}
-$$
+- 全体にかかる振幅とは、例えば水平方向に振動している電場の振動の幅が変わるだけで水平であるという形は変わらない。
+- 全体にかかる位相とは、例えば水平方向に振動している電場をどの位置から観測するのか(右に一番振れているところから観測するのか、
+- 原点から観測するのか)の違いであり物理的にはどちらも同じ電場を表している。
 
-となる。**以下ではこのように振幅が等しく、規格化されているとする。**
+ということに対応している。
 
 ## 直線偏光
-例えば位相が共に等しいとき
+例えばそれぞれの成分の振幅と位相が共に等しいとき
+
+つまり
 
 $$
-\boldsymbol{E} = \frac{1}{\sqrt{2}} e^{i \varphi_x}
+\varphi_y = \varphi_x
+$$
+
+$$
+E_{y0} = E_{x0}
+$$
+
+のとき
+
+$$
+\boldsymbol{E} = E_{x0} e^{i \varphi_x}
 \begin{bmatrix}
 1 \\
 1
@@ -131,24 +161,29 @@ $$
 $$
 
 となり、これは反時計回りに $\frac{\pi}{4}$ だけ傾いた直線偏光を表している。
-***確かにベクトルの成分だけで見ると $\frac{\pi}{4}$ だけ傾いたベクトルだからそう思えるかもしれないが複素数が係数としてかかっているからなんか腑に落ちない***と思う。
+
+
+***確かにベクトルの成分だけで見ると $\frac{\pi}{4}$ だけ傾いたベクトルだからそう思えるかもしれないが複素数が係数としてかかっているからなんか腑に落ちない***
+
+と思う。
 そこで実部を取ってみると
 
 $$
-Re(\boldsymbol{E}) = \frac{1}{\sqrt{2}} \cos{\varphi_x}
+Re(\boldsymbol{E}) = E_{x0} \cos{\varphi_x}
 \begin{bmatrix}
 1 \\
 1
 \end{bmatrix}
 $$
 
-となり、晴れて実平面で $\frac{\pi}{4}$ だけ傾いた直線偏光が表された。
+となりこのベクトルの先端の軌跡を考えると、晴れて実平面で $\frac{\pi}{4}$ だけ傾いた直線偏光が表された。
+
 そもそも波を複素数で表現するのは実部だけ( $\cos$ だけ)で考えると計算が面倒になるという問題を解決するためだったので最終的には実部を取るというのは理にかなっている。
 <br>
 
 ## 円偏光
 
-次に $x$ 成分が $y$ 成分より $\frac{\pi}{2}$ だけ進んでいる場合を考える。(例えば $x$ 成分が $\cos{\varphi_x}$ なら $y$ 成分は $\cos{(\varphi_x-\frac{\pi}{2})}=\sin{\varphi_x}$ のように波が $y$ 成分の方が $z$ 軸性の方向にずれている)
+次に振幅が等しく$x$成分が$y$成分より$\frac{\pi}{2}$だけ進んでいる場合を考える。(例えば $x$ 成分が $\cos{\varphi_x}$ なら $y$ 成分は $\cos{(\varphi_x-\frac{\pi}{2})}=\sin{\varphi_x}$ のように波が $y$ 成分の方が $z$ 軸性の方向にずれている)
 
 $$
 \begin{aligned}
@@ -158,21 +193,23 @@ $$
 \end{aligned}
 $$
 
+※位相差を$\delta$とした。
+
 を(1)に代入すると
 
 $$
 \begin{aligned}
-\boldsymbol{E} &= \frac{1}{\sqrt{2}}
+\boldsymbol{E} &= E_{x0}
 \begin{bmatrix}
 e^{i \varphi_x} \\
 e^{i (\varphi_x - \frac{\pi}{2})}
 \end{bmatrix} \\
-&= \frac{e^{i\varphi_x}}{\sqrt{2}}
+&= E_{x0} e^{i\varphi_x}
 \begin{bmatrix}
 1 \\
-e^{-i\frac{\pi}{2}}
+e^{-i\pi}
 \end{bmatrix} \\
-&= \frac{e^{i\varphi_x}}{\sqrt{2}}
+&= E_{x0} e^{i\varphi_x}
 \begin{bmatrix}
 1 \\
 -i
@@ -181,7 +218,8 @@ e^{-i\frac{\pi}{2}}
 $$
 
 これは**左回り円偏光**を表している。
-これも実部をとると
+
+なぜなら、これも実部をとると
 
 $$
 Re(\boldsymbol{E}) = \frac{1}{\sqrt{2}}
@@ -193,22 +231,25 @@ $$
 
 <br>
 
-となるがこれは $\varphi_x$ を変化させていくと $x-y$ 平面で左回りに回転するベクトル場になる。
+となるがこれは$\varphi_x$を変化させていくと$x-y$平面で左回りに回転するベクトル場になる。
 
 【補足】
-上ではこのジョーンズベクトルは左回り円偏光を表しているといったが、右回り円偏光を表していると書いてあるものもあるこれは***座標系をどこから見るかによって起こる問題である。***
+上ではこのジョーンズベクトルは左回り円偏光を表しているといったが、右回り円偏光を表していると書いてある教科書もあるこれは***座標系をどこから見るかによって起こる問題である。***
+
 座標は右手系が基本なのでz軸が紙面裏面から紙面表面に向かうようにとると垂直方向はx軸に、水平方向はy軸になる。つまり、$z$ 軸正の方向から見るのか、負の方向から見るのかで回り方が逆転する。
 
-～ここに座標系と目の絵を描いて～
-
 ***なんでx,yが反転するような立場から考えるの？***
-と思うかもしれないがこれは工学系と理学系で光のとらえ方が異なるかららしい。つまり**工学寄りの光学**の分野ではあくまで**主役は光であり**光を迎える視点で考えたいのだと思う。逆に**理学寄りの光学**では**主役は光によって照らされるサンプル**であるので光を送り出す立場で現象を考える。
+と思うかもしれないがこれは工学系と理学系で光のとらえ方が異なるかららしい。
+
+つまり**工学寄りの光学**の分野ではあくまで**主役は光であり**光を迎える視点で考えたいのだと思う。
+
+逆に**理学寄りの光学**では**主役は光によって照らされるサンプル**であるので光を送り出す立場で現象を考える。
 <br>
 
-同様に $y$ 成分が $x$ 成分より $\frac{\pi}{2}$ だけ遅れている場合を考えると
+同様に$y$成分が$x$成分より$\frac{\pi}{2}$だけ遅れている場合を考えると
 
 $$
-\boldsymbol{E} = \frac{e^{i\varphi_x}}{\sqrt{2}}
+\boldsymbol{E} = E_{x0} e^{i\varphi_x}
 \begin{bmatrix}
 1 \\
 i
@@ -216,10 +257,11 @@ i
 $$
 
 これは右回り円偏光を表している。
-これも実部をとると
+
+なぜなら、これも実部をとると
 
 $$
-Re(\boldsymbol{E}) = \frac{1}{\sqrt{2}}
+Re(\boldsymbol{E}) = E_{x0}
 \begin{bmatrix}
 \cos{\varphi_x} \\
 -\sin{\varphi_x}
@@ -227,77 +269,29 @@ Re(\boldsymbol{E}) = \frac{1}{\sqrt{2}}
 $$
 
 となり、先ほどとは逆に左回り円偏光になる。
-右回り円偏光と左回り円偏光をプロットしてみる。
- $\varphi_x$ を $0$ から $2\pi$ に変化させたときの実ベクトルが指す点の軌跡をベクトル場として描画している。
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
+これは
 
-pi = np.pi
-cos = np.cos
-sin = np.sin
-phi = pi * np.linspace(0, 2, 32)
-length = len(phi)
+![Alt text](EcirLeft.gif)
 
-x = cos(phi)
-add_x = np.append(x, 1)
-y = sin(phi)
-add_y = np.append(y, 0)
+のように電場が変化しているということで
 
-u = np.empty(length)
-v = np.empty(length)
+$z$軸正の方向から見ると電場が
 
-for i in range(1, length+1):
-  u[i-1] = add_x[i] - add_x[i-1]
-  v[i-1] = add_y[i] - add_y[i-1]
+![Alt text](cirvec.gif)
 
-plt.figure()
-plt.axes().set_aspect('equal')
-plt.quiver(x, y, u, v, scale=3, color='blue', width=0.007)
-plt.xlabel('x axis')
-plt.ylabel('y axis')
-plt.title('right-handed circular polarization')
-plt.grid(True)
-plt.show()
-```
+のように変化する。
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
+まとめると
 
-pi = np.pi
-cos = np.cos
-sin = np.sin
-phi = pi * np.linspace(0, 2, 32)
-length = len(phi)
+**電場の振動方向はジョーンズベクトルという複素ベクトルで表現することができ、偏光状態を変えるということはジョーンズベクトルを変えるということである。**
 
-x = cos(phi)
-add_x = np.append(x, 1)
-y = -sin(phi)
-add_y = np.append(y, 0)
-
-u = np.empty(length)
-v = np.empty(length)
-
-for i in range(1, length+1):
-  u[i-1] = add_x[i] - add_x[i-1]
-  v[i-1] = add_y[i] - add_y[i-1]
-
-plt.figure()
-plt.axes().set_aspect('equal')
-plt.quiver(x, y, u, v, scale=3, color='blue', width=0.007)
-plt.xlabel('x axis')
-plt.ylabel('y axis')
-plt.title('left-handed circular polarization')
-plt.grid(True)
-plt.show()
-```
+【補足】
 
 ここで左右円偏光を表す2つのベクトルの内積をとってみると
 
 $$
-\frac{e^{2i\varphi_x}}{2}
+E_{x0}^2 e^{2i\varphi_x}
 \begin{aligned}
 \begin{bmatrix}
 1 & -i
@@ -312,16 +306,33 @@ i
 $$
 
 となり直交していることが分かる。
-実は任意の偏光状態は左右円偏光の重ね合わせで表すことができる。(水平偏光と垂直偏光の重ね合わせでも表現できる。)
+
+実は任意の偏光状態は左右円偏光の重ね合わせで表すことができる。
+
+それだけでなく、基底の取り方は無数にある。
+
+後の項でこれは詳しく説明する。
 <br>
 
 # ジョーンズ行列
-偏光素子はあるジョーンズベクトルを異なるジョーンズベクトルに変換する働きをするものだと考えるとこれは$2 \times 2$ の行列とみなせる。この行列を**ジョーンズ行列**という。
 
-以下で説明する波長板という光学素子は遅相子(retardar)と呼ばれ、2つの直交する電場の一方の位相を変化させる。どちらの位相を遅らせるかで2通りの種類があるが
-**ここでは $y$ 成分の位相が進むように( $x$ 成分の位相が遅れるように)方向を選ぶ。(yを進相軸に選ぶ。)**
-**右手系か左手系か選ぶことに等しい？**
-それぞれの位相を独立に変化させるので行列の非対角成分は0になると予想できる。確かに
+偏光状態を変えるということはジョーンズベクトルを異なるジョーンズベクトルに変換することだと言った。
+
+変換させる方法として**波長板**と呼ばれているものを使う。
+
+$2$成分ベクトルを変換させるということはこの波長板という素子は$2 \times 2$ の行列とみなせそうだと思える。
+
+実際に行列で表現でき、この行列を**ジョーンズ行列**という。
+
+波長板は遅相子(retardar)と呼ばれ、2つの直交する電場の一方の位相を変化させる。
+
+どちらの位相を遅らせるかで2通りの種類があるがここでは
+
+**$y$成分の位相が進むように($x$成分の位相が遅れるように)方向を選ぶ。(yを進相軸に選ぶ。)**
+
+それぞれの位相を独立に変化させるので行列の非対角成分は0になると予想できる。
+
+確かに波長板は
 
 $$
 \begin{aligned}
@@ -343,7 +354,9 @@ e^{i\varphi_x} & 0 \\
 \end{aligned}
 $$
 
-となる。偏光素子では位相差をどのくらい与えるのだけが重要なのであってたとえ複素数でも係数は無視していいんだと思う。つまり
+となる。(例によって位相差を$\delta$とした。)
+
+偏光素子では位相差をどのくらい与えるのだけが重要なのであると述べたのでこれを
 
 $$
 J =
@@ -353,9 +366,13 @@ J =
 \end{bmatrix}
 $$
 
-でいいんだと思う。
-また、この行列の転置をとって複素共役をとったものと元の行列を掛けると単位行列になる。つまり偏光素子を行列で表したものは**ユニタリー行列**であることが分かる。
-また、偏光子はどのくらい傾けるかによっても性質が変わり、$\theta$ だけ回転させるとジョーンズ行列は
+とする。
+
+ここでこの行列の転置をとって複素共役をとったものと元の行列を掛けてみると、これは単位行列になる。
+
+つまり偏光素子を行列で表したものは**ユニタリー行列**であることが分かる。
+
+また、偏光子は$x-y$平面でどのくらい傾けるかという自由度があり、$\theta$だけ回転させるとジョーンズ行列は
 
 $$
 \begin{aligned}
@@ -390,12 +407,13 @@ e^{i\delta} \sin^2{\theta} + \cos^2{\theta} & \sin{\theta} \cos{\theta} (1 - e^{
 $$
 
 となる。
-これはジョーンズベクトルを回転させて偏光素子を $\theta = 0$ の状態のようにし、変換されたジョーンズベクトルを元の角度に戻して完成というかんじ。考えやすい基底にしてるということ。
 
-出力　<-　[反時計回りに $\theta$ 回転][偏光素子][時計回りに $\theta$ 回転]　<-　入力
-
+次の項では位相差をどのくらい与えるかを考える
 ## 1/2波長板
-位相差 $\delta=\pi$ であるので
+
+位相差を$\delta=\pi$与えるものを **1/2波長板(HWP:Half Wave Plate)** という。
+
+前項で導出した式に代入してみると
 
 $$
 \begin{aligned}
@@ -413,7 +431,8 @@ J_{HWP(\theta)} &=
 $$
 
 を得る。
-$\theta = 0$ のときは
+
+特に$\theta = 0$のときは
 
 $$
 J_{HPW(\theta=0)} =
@@ -424,11 +443,11 @@ J_{HPW(\theta=0)} =
 $$
 
 というジョーンズ行列を得る。
-***線形写像とかか***
-例えば $\frac{\pi}{4}$ だけ傾いた直線偏光
+
+ここに$\frac{\pi}{4}$ だけ傾いた直線偏光
 
 $$
-\boldsymbol{E}_{in} = \frac{e^{i\varphi_x}}{\sqrt{2}}
+\boldsymbol{E}_{in} = 
 \begin{bmatrix}
 1 \\
 1
@@ -438,14 +457,16 @@ $$
 を入射させると
 
 $$
-\boldsymbol{E}_{out} =\frac{e^{i\varphi_x}}{\sqrt{2}}
+\boldsymbol{E}_{out} = 
 \begin{bmatrix}
 1 \\
 -1
 \end{bmatrix}
 $$
 
-これは確かに $-\frac{\pi}{4}$ だけ傾いた直線偏光を表していて元の状態から時計回りに $2 \times \frac{\pi}{4}$ だけ回転している。
+となり、$-\frac{\pi}{4}$だけ傾いた直線偏光を表していている。
+
+元の状態から時計回りに $2 \times \frac{\pi}{4}$ だけ回転している。
 
 となる。
 
@@ -459,20 +480,33 @@ J_{HWP(\theta=\frac{\pi}{4})} =
 \end{bmatrix}
 $$
 
-となり**x,y成分を交換する。**
+となり **x,y成分を交換する** という働きをする。
 
 ## 1/4波長板
 位相差 $\delta=\frac{\pi}{2}$ であるので
 
 $$
-J_{QWP(\theta)} =
+\begin{aligned}
+J_{QWP(\theta)} &=
+\begin{bmatrix}
+e^{i \frac{\pi}{2}} \sin^2{\theta} + \cos^2{\theta} & \sin{\theta} \cos{\theta} (1 - e^{i \frac{\pi}{2}}) \\
+\sin{\theta} \cos{\theta} (1 - e^{i \frac{\pi}{2}}) & \sin^2{\theta} + e^{i \frac{\pi}{2}} \cos^2{\theta}
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+i \sin^2{\theta} + \cos^2{\theta} & \sin{\theta} \cos{\theta} (1 - i) \\
+\sin{\theta} \cos{\theta} (1 - i) & \sin^2{\theta} + i \cos^2{\theta}
+\end{bmatrix} \\
+&=
 \begin{bmatrix}
 1 - i\cos{2\theta} & -i\sin{\theta}\\
 -i\sin{\theta} & 1 + i\cos{2\theta}
 \end{bmatrix}
+\end{aligned}
 $$
 
 を得る。
+
  $\theta = 0$ のときは
 
 $$
@@ -483,10 +517,12 @@ J_{QWP(\theta=0)} =
 \end{bmatrix}
 $$
 
-例えば $\frac{\pi}{4}$ だけ傾いた直線偏光
+となる。
+
+$\frac{\pi}{4}$ だけ傾いた直線偏光
 
 $$
-\boldsymbol{E}_{in} = \frac{1}{\sqrt{2}} e^{i \varphi_x}
+\boldsymbol{E}_{in} = 
 \begin{bmatrix}
 1 \\
 1
@@ -496,7 +532,7 @@ $$
 を入射させると
 
 $$
-\boldsymbol{E}_{out} =\frac{1}{\sqrt{2}} e^{i \varphi_x}
+\boldsymbol{E}_{out} = 
 \begin{bmatrix}
 1 \\
 i
@@ -505,90 +541,47 @@ $$
 
 となりこれは右回り円偏光を表している。
 
-## SLM
-$$
-J_{SLM} = A_0
-\begin{bmatrix}
--e^{i\delta} & 0 \\
-0 & 1
-\end{bmatrix}
-$$
+# ポアンカレ球
 
-ここで
-- $\delta = 2[n_e(V)-n_o]kd$
-- $A_0 = e^{i2n_okd}$
-- $k = \frac{2\pi}{\lambda}$
-- $n_o:$光軸に垂直な面の屈折率
-- $n_e:$光軸に平行な面の屈折率でこれは電圧によって制御できる
-
-ジョーンズベクトルでこの変換の過程を表す。
-⓵レーザー光がHWP,PBSによって変換される
-⓶SLM1で反射してBSに戻ってくるビーム
-⓷HWPを通過してSLM2で反射してHWPを通過してBSに戻ってくるビーム
-⓸各SLMで反射して戻ってきたビームがBSで合わさったビーム
-⓹合わさったビームがQWPで変換されたビーム
-
-$$
-\boldsymbol {E} _ {out} = J_{QWP(\gamma)} [J_{SLM1} + J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol {E} _ {in}
-$$
-
-<br>
-
-# 偏光子とポアンカレ球
-偏光成分を測るためには$E_x,E_y$が必要だが現実ではこれらの時間平均のみ計測可能である。
-これらを用いると**ストークスパラメーター**というパラメーターを定義できる。
-
-$$
-\begin{align}
-S_0 &= |E_x|^2 + |E_y|^2 \\
-S_1 &= |E_x|^2 - |E_y|^2 \\
-S_2 &= \frac{1}{2}(|E_x + E_y|^2 - |E_x - E_y|^2) \\
-&= E_x^*E_y + E_x^*E_y \\
-S_3 &= \frac{1}{2}(|E_x + iE_y|^2 - |E_x - iE_y|^2) \\
-&= -i(E_x^*E_y - E_x^*E_y)
-\end{align}
-$$
-
-これらをならべたものは**ストークスベクトル**といい
-
-$$
-\boldsymbol{S} = 
-\begin{bmatrix}
-A^2_x + A^2_y \\
-A^2_x - A^2_y \\
-2A_x A_y \cos{\delta} \\
--2A_x A_y \sin{\delta}
-\end{bmatrix}
-$$
-
-と表す。
-ここで $A_x, A_y$ は $x,y$ 成分の振幅で $\delta$ は $y$ 成分から見て $x$ 成分の位相のずれを表している。
-
-偏光の軌跡は楕円偏光を考えればいい(直線を完璧な楕円、円をまったく楕円ではないものと考える)ので楕円を表すパラメーターを決めればいい。具体的には
-- $\chi:$楕円率角(どのくらい楕円っぽいか)
-- $\psi:$方位角(楕円がどのくらい傾いているか)
-
-のちに導出するがこれは $S_1, S_2, S_3$ という変数を用いて
-
-光学の教科書ではストークスパラメータは以上のように定義されたものとして紹介される。(観測範囲ではすべての教科書でそうだった。)
-そこでこれを導出する。
-## 射影演算子
-ジョーンズベクトルは複素ベクトルであるがストークスパラメーターは実数であるので複素数の世界から実数の世界に行く必要がある。
+ジョーンズベクトルを
 
 $$
 \begin{bmatrix}
 \alpha \\
 \beta 
-\end{bmatrix} (\alpha , \beta \in \mathbb{C})
+\end{bmatrix}
+(\alpha, \beta \in \mathbb{C})
 $$
 
-もし
+と表したとき**ストークスパラメーター**という実数値は
+
+$$
+\begin{bmatrix}
+S_1 \\
+S_2 \\
+S_3
+\end{bmatrix} =
+\begin{bmatrix}
+| \alpha | ^2 - | \beta | ^2 \\
+2 Re( \alpha \beta ^*) \\
+-2 Im( \alpha \beta ^*)
+\end{bmatrix}
+$$
+
+多くの光学の教科書ではストークスパラメータは以上のように定義されたものとして紹介される。
+
+そこでこれを導出する。
+
+## 射影演算子
+今までジョーンズベクトルの各成分の振幅比と位相差のみが重要と言ってきたので
 
 $$
 | \alpha | ^2 + | \beta | ^2 = 1
 $$
 
-ならば
+としても任意の振幅比も表現できる。
+
+ここで天下り的だが以下のようにジョーンズベクトルから行列を作る。
 
 $$
 P = 
@@ -602,7 +595,8 @@ P =
 \end{bmatrix} ^*
 $$
 
-が射影演算子となる。
+これは**射影演算子**と呼ばれる。
+
 ただしどんな行列も射影演算子となるわけではなく以下の2つを満たす必要がある。(線形写像となる条件？)
 
 $$
@@ -614,7 +608,7 @@ P^ \dagger &= P
 \end{aligned}
 $$
 
-計算してみると
+計算してみると、確かに
 
 $$
 \begin{aligned}
@@ -743,30 +737,9 @@ $$
 
 で表される。
 
-ジョーンズベクトルとジョーンズベクトルの転置を取り複素共役を取ったもの積を考える。
+さきほどのジョーンズベクトルから作った行列をパウリ行列の和で表すことを考える。
 
-$$
-\begin{aligned}
-P &= 
-\begin{bmatrix}
-\alpha \\
-\beta 
-\end{bmatrix}
-\begin{bmatrix}
-\alpha ^* \;
-\beta ^*
-\end{bmatrix} \\
-&=
-\begin{bmatrix}
-| \alpha | ^2 & \alpha \beta ^* \\
-\alpha ^* \beta & | \beta | ^2
-\end{bmatrix}
-\end{aligned}
-$$
-
-この行列をパウリ行列の和で表すことを考える。
-
-パウリ行列は例えば
+ここでパウリ行列の性質として、例えば
 
 $$
 \begin{aligned}
@@ -787,9 +760,9 @@ $$
 \end{aligned}
 $$
 
-となり2乗すると単位行列
+となり2乗すると単位行列であり、
 
-異なる行列同士の積のTrを考える。例えば
+異なる行列同士の積のTrを考えると、例えば
 
 $$
 \begin{aligned}
@@ -817,7 +790,7 @@ $$
 
 となり0となる。
 
-射影演算子 $P$ がパウリ行列の和で表される、つまり
+これら2つの性質を使うと、以下のようにパウリ行列の和で表したとき、
 
 $$
 \begin{aligned}
@@ -849,9 +822,9 @@ i & 0
 \end{aligned}
 $$
 
-と書けると仮定する。
+と仮定すると
 
-先ほどの積の性質を使うと、例えば
+先ほどの積の性質を使えば、例えば
 
 $$
 \begin{aligned}
@@ -889,7 +862,7 @@ i (\alpha \beta ^* - \alpha ^* \beta) \\
 \end{aligned} 
 $$
 
-のように求められる。
+のように係数が求められる。
 
 他も同じように計算すると結局
 
@@ -956,7 +929,7 @@ i & 0
 \end{aligned}
 $$
 
-今は $| \alpha | ^2 + | \beta | ^2 = 1$ を考えているのでこれは変数ではなく $h_1, h_2, h_3$ のみを考える。
+今は$| \alpha | ^2 + | \beta | ^2 = 1$を考えているので第一項目の係数は1になるため、以下では$h_1, h_2, h_3$のみを考える。
 
 この係数をベクトルとしたもの
 
@@ -987,7 +960,41 @@ h_3
 \end{aligned}
 $$
 
-このベクトルをストークスベクトルという。
+となりストークスベクトルを導出できた。
+
+## ポアンカレ球
+
+実は計算すると分かるが先ほど導出したストークスパラメーターは
+
+$$
+S^2_1 + S^2_2 + S^2_3 = 1
+$$
+
+の関係がある。
+
+これはストークスベクトルが
+
+**$S_1, S_2, S_3$を軸とした単位球面上の1点を指している。**
+
+ということを表している。
+
+また、これまで波長板について話してきたが、
+
+**波長板によって光の偏光分布が変わるということはジョーンズベクトルが変わる、つまりストークスベクトルが変わる、つまりポアンカレ球面上で別の座標に移る。**
+
+ということを意味している。
+
+**波長板によってポアンカレ球上の座標がくるくると移動するということ。**
+
+※このように長さを変えない(今は球の表面上で移動する)写像を等長写像という。
+
+![Alt text](%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83.png)
+
+水平偏光が$(S_1, S_2, S_3) = (1, 0, 0)$
+
+右回り円偏光が$(S_1, S_2, S_3) = (0, 0, 1)$
+
+など。
 
 ## パウリ行列と物理量
 
@@ -1129,80 +1136,53 @@ $$
 
 $$
 S = 
-\begin{bmatrix}
-S_1S_2S_3
-\end{bmatrix}
-=\begin{bmatrix}
-001
-\end{bmatrix}
+(S_1, S_2, S_3) = (0, 0, 1)
 $$
 
 となる。
 
+実は偏光と電子のスピンは密接な関係があり、電子のポアンカレ球に相当するものをブロッホ球という。
+
+具体的には
+
+![Alt text](image-1.png)
+
+のように対応している。
+
+実際に論文として出されていて
+
+![Alt text](<right circle to up spin (2).png>)
+
+これは半導体に右回り円偏光を当てた時、上向きのスピン(赤いやつ)が励起されている様子を表している。
+
+## SLM
 $$
-\sigma_1, \sigma_2, \sigma_3
-$$
-
-## ポアンカレ球
-
-波長板にはかりが通ると光の偏光分布が変わるがこれはポアンカレ球面上で別の座標に写ることを表している。このように長さを変えない(今は球の表面上で移動する)写像を等長写像という。
-
-偏光板を行列表示(ジョーンズ行列)したとき、この行列はユニタリー行列(転置とって複素共役とった行列が元の行列の逆行列になっている)であるがユニタリー行列であることが必要条件であることは確実。
-
-長さを変えない写像というのは回転とか平行移動
-
-例えば規格化された右回り円偏光は
-
-$$
+J_{SLM} = A_0
 \begin{bmatrix}
-\alpha \\
-\beta
-\end{bmatrix} =
-\frac{1}{\sqrt{2}}
-\begin{bmatrix}
-1 \\
-i
+-e^{i\delta} & 0 \\
+0 & 1
 \end{bmatrix}
 $$
 
-で表されるので
+ここで
+- $\delta = 2[n_e(V)-n_o]kd$
+- $A_0 = e^{i2n_okd}$
+- $k = \frac{2\pi}{\lambda}$
+- $n_o:$光軸に垂直な面の屈折率
+- $n_e:$光軸に平行な面の屈折率でこれは電圧によって制御できる
+
+ジョーンズベクトルでこの変換の過程を表す。
+⓵レーザー光がHWP,PBSによって変換される
+⓶SLM1で反射してBSに戻ってくるビーム
+⓷HWPを通過してSLM2で反射してHWPを通過してBSに戻ってくるビーム
+⓸各SLMで反射して戻ってきたビームがBSで合わさったビーム
+⓹合わさったビームがQWPで変換されたビーム
 
 $$
-\begin{aligned}
-\begin{bmatrix}
-S_1 \\
-S_2 \\
-S_3
-\end{bmatrix}
-&=
-\begin{bmatrix}
-| \alpha | ^2 - | \beta | ^2 \\
-2 Re( \alpha \beta ^*) \\
--2 Im( \alpha \beta ^*)
-\end{bmatrix} \\
-&=
-\frac{1}{2}
-\begin{bmatrix}
-1 - 1 \\
-2Re(1 \times (-i)) \\
--2Im(1 \times (-i))
-\end{bmatrix} \\
-\therefore 
-\begin{bmatrix}
-S_1 \\
-S_2 \\
-S_3
-\end{bmatrix}
-&=
-\begin{bmatrix}
-0 \\
-0 \\
-1
-\end{bmatrix}
-\end{aligned}
+\boldsymbol {E} _ {out} = J_{QWP(\gamma)} [J_{SLM1} + J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol {E} _ {in}
 $$
 
-これはポアンカレ球の北極に位置する。
+<br>
 
 ## 高次元ポアンカレ球
 
@@ -1440,6 +1420,7 @@ $$
 # Gouy位相とは
 
 # Vector Beamの評価方法
+ベクトルビームやビームの偏光分布を表現するときはビーム強度の画像に矢印を付け加える方法が主に使われる。（それぞれの矢印は偏光板を途中に入れることで任意の直線偏光の光強度を取得したものから描く。）
 
 # Vector Beamと機械学習
 
@@ -2372,6 +2353,94 @@ $$
 
 $(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの
 
+## その4
+
+$$
+\begin{aligned}
+\boldsymbol{E}_{out}
+&= 
+\begin{bmatrix}
+1+i & 1-i \\
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i \beta} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix}
+\begin{bmatrix}
+e^{i \alpha} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+1+i & 1-i \\
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i \beta} & 0 \\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1 \\
+1 & -1
+\end{bmatrix}
+\begin{bmatrix}
+e^{i \alpha} \\
+0
+\end{bmatrix} \\
+&=
+\begin{bmatrix}
+1+i & 1-i \\
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i \beta} & 0 \\
+0 & 1
+\end{bmatrix}
+e^{i \alpha}
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix} \\
+&=
+e^{i \alpha}
+\begin{bmatrix}
+1+i & 1-i \\
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i \beta} \\
+1
+\end{bmatrix} \\
+&= 
+e^{i \alpha}
+\begin{bmatrix}
+e^{i \frac{\pi}{4}} e^{i \beta} + e^{-i \frac{\pi}{4}} \\
+e^{-i \frac{\pi}{4}} e^{i \beta} + e^{i \frac{\pi}{4}}
+\end{bmatrix} \\
+&= 
+e^{i \alpha}
+\begin{bmatrix}
+e^{i \frac{\pi}{2}} e^{i \beta} + 1 \\
+e^{i \beta} + e^{i \frac{\pi}{2}}
+\end{bmatrix} \\
+\therefore \boldsymbol{E}_{out} &= 
+e^{i \alpha}
+\begin{bmatrix}
+i \cos{\beta} - \sin{\beta} + 1 \\
+\cos{\beta} + i \sin{\beta} + i
+\end{bmatrix}
+\end{aligned}
+$$
+
 # 論文
 ## SLM2個使ってベクトルビームを作る
 ### "Polarization distribution control of parallel femtosecond pulses with spatial light modulators"
@@ -2779,6 +2848,12 @@ https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%8
 ### "Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields"
 ### "Measuring the nonseparability of vector vortex beams"
 
+## ビームの最適化
+### "A practical algorithm for the determination of phase from image and diffraction plane pictures"
+### "Kinoform design with an optimal-rotation-angle method"
+### "New iterative algorithm for the design of phaseonly gratings"
+### "Continuous-relief diffractive optical elements for two-dimensional array generation"
+
 
 
 # 教科書的な立ち位置
@@ -2799,3 +2874,5 @@ $$
 1
 \end{bmatrix}
 $$
+
+![Alt text](all_hori4.gif)
