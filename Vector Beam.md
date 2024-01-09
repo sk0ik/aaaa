@@ -551,7 +551,7 @@ $$
 \alpha \\
 \beta 
 \end{bmatrix}
-(\alpha, \beta \in \mathbb{C})
+(\alpha, \beta \in C)
 $$
 
 と表したときストークスパラメーターという実数値は
