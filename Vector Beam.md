@@ -2104,8 +2104,8 @@ $$
 
 $$
 \begin{bmatrix}
-1 & -i \newline
--i & 1
+ 1 & -i \newline
+ -i & 1
 \end{bmatrix}
 \begin{bmatrix}
 \cos{\phi} + i \sin{\phi} \newline
