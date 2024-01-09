@@ -11,15 +11,6 @@
   - [パウリ行列展開](#パウリ行列展開)
   - [ポアンカレ球](#ポアンカレ球-1)
   - [パウリ行列と物理量](#パウリ行列と物理量)
-- [S\_1](#s_1)
-- [\\Bigl |\\frac {1} {\\sqrt{2}} \\Bigr | ^2 - \\Bigl |\\frac {i} {\\sqrt{2}} \\Bigr | ^2 \\](#bigl-frac-1-sqrt2-bigr--2---bigl-frac-i-sqrt2-bigr--2-)
-- [\\frac {1} {2} - \\frac {1} {2} \\](#frac-1-2---frac-1-2-)
-- [S\_2](#s_2)
-- [2Re\\Bigl (\\frac {1} {\\sqrt{2}} \\times \\frac {i} {\\sqrt{2}}^\*\\Bigr ) \\](#2rebigl-frac-1-sqrt2-times-frac-i-sqrt2bigr--)
-- [2Re(-i) \\](#2re-i-)
-- [S\_3](#s_3)
-- [-2Im\\Bigl (\\frac {1} {\\sqrt{2}} \\times \\frac {i ^\*} {\\sqrt{2}}\\Bigr ) \\](#-2imbigl-frac-1-sqrt2-times-frac-i--sqrt2bigr--)
-- [-2Im \\Bigl (- \\frac {i} {2} \\Bigr ) \\](#-2im-bigl---frac-i-2-bigr--)
   - [SLM](#slm)
   - [高次元ポアンカレ球](#高次元ポアンカレ球)
 - [ブロッホ球](#ブロッホ球)
@@ -1094,27 +1085,15 @@ $\alpha = \frac{1}{\sqrt{2}}, \beta = \frac{i}{\sqrt{2}}$
 を代入すると
 
 $$
-S_1
-=
-\Bigl |\frac {1} {\sqrt{2}} \Bigr | ^2 - \Bigl |\frac {i} {\sqrt{2}} \Bigr | ^2 \\
-=
-\frac {1} {2} - \frac {1} {2} \\
-=
+S_1 =
+\Bigl |\frac {1} {\sqrt{2}} \Bigr | ^2 - \Bigl |\frac {i} {\sqrt{2}} \Bigr | ^2 \\ =
+\frac {1} {2} - \frac {1} {2} \\ =
 0 \\
-S_2
-=
-2Re\Bigl (\frac {1} {\sqrt{2}} \times \frac {i} {\sqrt{2}}^*\Bigr ) \\
-=
-2Re(-i) \\
-=
-0 \\
-S_3
-=
--2Im\Bigl (\frac {1} {\sqrt{2}} \times \frac {i ^*} {\sqrt{2}}\Bigr ) \\
-=
--2Im \Bigl (- \frac {i} {2} \Bigr ) \\
-=
-1
+S_2 = 2Re\Bigl (\frac {1} {\sqrt{2}} \times \frac {i} {\sqrt{2}}^*\Bigr ) \\ =
+2Re(-i) \\ =
+0 \\ S_3 =
+-2Im\Bigl (\frac {1} {\sqrt{2}} \times \frac {i ^*} {\sqrt{2}}\Bigr ) \\ =
+-2Im \Bigl (- \frac {i} {2} \Bigr ) \\ = 1
 $$
 
 よって
