@@ -870,56 +870,55 @@ P
 \frac{1}{2} (
 h _ 0 
 \sigma _ 0
-+h _ 1
++ h _ 1
 \sigma _ 1
-+h _ 2
++ h _ 2
 \sigma _ 2
-+h _ 3
-\sigma _ 3 ) \\
++ h _ 3
+\sigma _ 3 ) \newline
 &=
 \frac{1}{2} \Bigl (
 h_0 
 \begin{bmatrix}
-1 & 0 \\
+1 & 0 \newline
 0 & 1
 \end{bmatrix}
 +h_1
 \begin{bmatrix}
-1 & 0 \\
+1 & 0 \newline
 0 & -1
 \end{bmatrix}
 +h_2
 \begin{bmatrix}
-0 & 1 \\
+0 & 1 \newline
 1 & 0
 \end{bmatrix}
 +h_3
 \begin{bmatrix}
-0 & -i \\
+0 & -i \newline
 i & 0 
 \end{bmatrix}
-\Bigr )
-\\
+\Bigr ) \newline
 &=
 \frac{1}{2} \Bigl (
-\bigl (| \alpha | ^2 + | \beta | ^2 \bigr )
+\bigl (\mid \alpha \mid ^2 + \mid \beta \mid ^2 \bigr )
 \begin{bmatrix}
-1 & 0 \\
+1 & 0 \newline
 0 & 1
 \end{bmatrix}
-+\bigl (| \alpha | ^2 - | \beta | ^2 \bigr )
++\bigl (\mid \alpha \mid ^2 - \mid \beta \mid ^2 \bigr )
 \begin{bmatrix}
-1 & 0 \\
+1 & 0 \newline
 0 & -1
 \end{bmatrix}
-+2 Re( \alpha \beta ^*)
++2 Re( \alpha \beta ^ \ast)
 \begin{bmatrix}
-0 & 1 \\
+0 & 1 \newline
 1 & 0
 \end{bmatrix}
--2 Im( \alpha \beta ^*)
+-2 Im( \alpha \beta ^ \ast)
 \begin{bmatrix}
-0 & -i \\
+0 & -i \newline
 i & 0 
 \end{bmatrix}
 \Bigr )
