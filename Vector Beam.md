@@ -565,8 +565,8 @@ $$
 =
 \begin{bmatrix}
   |\alpha|^2 - |\beta|^2 \\
-  2 \mathrm{Re}(\alpha \beta^) \\
-  -2 \mathrm{Im}(\alpha \beta^)
+  2 Re(\alpha \beta^) \\
+  -2 Im(\alpha \beta^)
 \end{bmatrix}
 $$
 
