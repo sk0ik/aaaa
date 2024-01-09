@@ -832,14 +832,24 @@ $$
 &=
 h_3 \\
 &=
-2 \mathrm{Tr} \Bigl( \begin{bmatrix} |\alpha|^2 & \alpha \beta^* \\ \alpha^* \beta & |\beta|^2 \end{bmatrix} \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix} \Bigr) \\
+2 \mathrm{Tr} \Bigl( \begin{bmatrix} |\alpha|^2 & \alpha \beta^* \\ \alpha^* \beta & |\beta|^2 \end{bmatrix}
+\begin{bmatrix}
+0 & -i \\ i & 0
+\end{bmatrix}
+\Bigr) \\
 &=
-\mathrm{Tr} \Bigl( \begin{bmatrix} i \alpha \beta^* & -i |\alpha|^2 \\ i |\beta|^2 & -i \alpha^* \beta \end{bmatrix} \Bigr) \\
+\mathrm{Tr} \Bigl( 
+\begin{bmatrix}
+i \alpha \beta^* & -i |\alpha|^2 \\ i |\beta|^2 & -i \alpha^* \beta
+\end{bmatrix}
+\Bigr) \\
 &=
 i (\alpha \beta^* - \alpha^* \beta) \\
 &=
 -2 \mathrm{Im}(\alpha \beta^*) \\
-\therefore h_3 &= -2 \mathrm{Im}(\alpha \beta^*)
+\therefore h_3
+&=
+-2 \mathrm{Im}(\alpha \beta^*)
 \end{aligned}
 $$
 
