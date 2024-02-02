@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>001.Vector Beam.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<!--ここから追記 1.(数式に対応させる)-->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax:{inlineMath: [['$', '$']]},
+      messageStyle: "none"
+    });
+</script>
+<!--追記 1.ここまで-->
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+  <!--ここから追記 2.(--- で改ページ)-->
+  <style>  
+    hr {  
+      opacity: 0;  
+      break-after: page;  
+    }  
+  </style>  
+  <!--追記 2.ここまで-->
+<ul>
+<li><a href="#%E3%83%A1%E3%83%A2">メモ</a></li>
+<li><a href="#%E3%82%B8%E3%83%A7%E3%83%BC%E3%83%B3%E3%82%BA%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB">ジョーンズベクトル</a>
+<ul>
+<li><a href="#%E7%9B%B4%E7%B7%9A%E5%81%8F%E5%85%89">直線偏光</a></li>
+<li><a href="#%E5%86%86%E5%81%8F%E5%85%89">円偏光</a></li>
+<li><a href="#%E6%A5%95%E5%86%86%E5%81%8F%E5%85%89">楕円偏光</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%B8%E3%83%A7%E3%83%BC%E3%83%B3%E3%82%BA%E8%A1%8C%E5%88%97">ジョーンズ行列</a>
+<ul>
+<li><a href="#12%E6%B3%A2%E9%95%B7%E6%9D%BF">1/2波長板</a></li>
+<li><a href="#14%E6%B3%A2%E9%95%B7%E6%9D%BF">1/4波長板</a></li>
+<li><a href="#%E7%9B%B4%E7%B7%9A%E5%81%8F%E5%85%89%E5%AD%90">直線偏光子</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83">ポアンカレ球</a>
+<ul>
+<li><a href="#%E5%B0%84%E5%BD%B1%E6%BC%94%E7%AE%97%E5%AD%90">射影演算子</a></li>
+<li><a href="#%E3%83%91%E3%82%A6%E3%83%AA%E8%A1%8C%E5%88%97%E5%B1%95%E9%96%8B">パウリ行列展開</a></li>
+<li><a href="#%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83-1">ポアンカレ球</a></li>
+<li><a href="#%E3%83%91%E3%82%A6%E3%83%AA%E8%A1%8C%E5%88%97%E3%81%A8%E7%89%A9%E7%90%86%E9%87%8F">パウリ行列と物理量</a></li>
+<li><a href="#slm">SLM</a></li>
+<li><a href="#%E9%AB%98%E6%AC%A1%E5%85%83%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83">高次元ポアンカレ球</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%96%E3%83%AD%E3%83%83%E3%83%9B%E7%90%83">ブロッホ球</a>
+<ul>
+<li><a href="#%E9%AB%98%E6%AC%A1%E5%85%83%E3%83%96%E3%83%AD%E3%83%83%E3%83%9B%E7%90%83">高次元ブロッホ球</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く</a>
+<ul>
+<li><a href="#%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%AE%E5%B0%8E%E5%87%BA">ヘルムホルツ方程式の導出</a></li>
+<li><a href="#%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E3%83%99%E3%83%83%E3%82%BB%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0">スカラーベッセルビーム</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く</a>
+<ul>
+<li><a href="#%E3%82%A8%E3%83%AB%E3%83%9F%E3%83%BC%E3%83%88%E5%A4%9A%E9%A0%85%E5%BC%8F">エルミート多項式</a></li>
+<li><a href="#%E3%83%A9%E3%83%97%E3%83%A9%E3%82%B7%E3%82%A2%E3%83%B3%E3%82%92%E8%80%83%E3%81%88%E3%82%8B">ラプラシアンを考える</a></li>
+<li><a href="#%E3%83%99%E3%83%83%E3%82%BB%E3%83%AB%E9%96%A2%E6%95%B0">ベッセル関数</a></li>
+<li><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%99%E3%83%83%E3%82%BB%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0">ベクトルベッセルビーム</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%9B%E3%81%9A%E3%81%AB%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AE%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似せずにスカラー場のヘルムホルツ方程式を解く</a></li>
+<li><a href="#gouy%E4%BD%8D%E7%9B%B8%E3%81%A8%E3%81%AF">Gouy位相とは</a></li>
+<li><a href="#vector-beam%E3%81%AE%E8%A9%95%E4%BE%A1%E6%96%B9%E6%B3%95">Vector Beamの評価方法</a>
+<ul>
+<li><a href="#%E7%B4%94%E7%B2%8B%E7%8A%B6%E6%85%8B%E3%81%A8%E6%B7%B7%E5%90%88%E7%8A%B6%E6%85%8B">純粋状態と混合状態</a></li>
+</ul>
+</li>
+<li><a href="#vector-beam%E3%81%A8%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92">Vector Beamと機械学習</a></li>
+<li><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A7%E6%83%85%E5%A0%B1%E3%82%92%E9%80%81%E3%82%8B">ベクトルビームで情報を送る</a>
+<ul>
+<li><a href="#%E7%89%A9%E7%90%86%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E8%AC%9B%E7%BE%A9youtube">物理のための機械学習講義(Youtube)</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9F%E9%A8%93%E6%A1%88">実験案</a>
+<ul>
+<li><a href="#%E3%81%9D%E3%81%AE%EF%BC%91%E6%9C%AA%E5%AE%8C%E6%88%90">その１(未完成)</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE%EF%BC%92%E6%9C%AA%E5%AE%8C%E6%88%90">その２(未完成)</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE%EF%BC%93%E6%9C%AA%E5%AE%8C%E6%88%90">その３(未完成)</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE4">その4</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE5">その5</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AB%96%E6%96%87">論文</a>
+<ul>
+<li><a href="#slm%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%82%92%E4%BD%9C%E3%82%8B">SLM使ってベクトルビームを作る</a>
+<ul>
+<li><a href="#polarization-distribution-control-of-parallel-femtosecond-pulses-with-spatial-light-modulators">&quot;Polarization distribution control of parallel femtosecond pulses with spatial light modulators&quot;</a></li>
+<li><a href="#holographic-femtosecond-laser-manipulation-for-advanced-material-processing">&quot;Holographic femtosecond laser manipulation for advanced material processing&quot;</a></li>
+<li><a href="#flexible-generation-of-the-generalized-vector-vortex-beams2021">&quot;Flexible generation of the generalized vector vortex beams&quot;(2021)</a></li>
+<li><a href="#generation-of-arbitrary-vector-fields-based-on-a-pair-of-orthogonal-elliptically-polarized-base-vectors">&quot;Generation of arbitrary vector fields based on a pair of orthogonal elliptically polarized base vectors&quot;</a></li>
+<li><a href="#a-new-type-of-vector-fields-with-hybrid-states-of-polarization">&quot;A new type of vector fields with hybrid states of polarization&quot;</a></li>
+<li><a href="#efficient-generation-of-vector-beams-by-calibrating-the-phase-response-of-a-spatial-light-modulator-">&quot;Efficient generation of vector beams by calibrating the phase response of a spatial light modulator &quot;</a></li>
+<li><a href="#flexible-method-for-generating-arbitrary-vector-beams-based-on-modified-off-axis-interference-type-hologram-encoding">&quot;Flexible Method for Generating Arbitrary Vector Beams Based on Modified Off-Axis Interference-Type Hologram Encoding&quot;</a></li>
+<li><a href="#cylindrical-vector-beam-multiplexer-demultiplexer-using-off-axis-polarization-control">&quot;Cylindrical vector beam multiplexer demultiplexer using off-axis polarization control&quot;</a></li>
+<li><a href="#efficient-on-axis-slm-engineering-of-optical-vector-modes">&quot;Efficient on-axis SLM engineering of optical vector modes&quot;</a></li>
+<li><a href="#generation-of-v-point-polarization-singularity-using-single-phase-encoding-with-a-spatial-light-modulator">&quot;Generation of V-point polarization singularity using single phase encoding with a spatial light modulator&quot;</a></li>
+<li><a href="#generation-of-arbitrary-cylindrical-vector-vortex-beams-with-cross-polarized-modulation">&quot;Generation of arbitrary cylindrical vector vortex beams with cross-polarized modulation&quot;</a></li>
+<li><a href="#self-referenced-interferometry-for-single-shot-detection-of-vector-vortex-beams">&quot;Self-referenced interferometry for single-shot detection of vector-vortex beams&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A8%E5%8A%A0%E5%B7%A5">ベクトルビームと加工</a>
+<ul>
+<li><a href="#%E5%81%8F%E5%85%89%E3%83%AC%E3%83%BC%E3%82%B6%E3%83%93%E3%83%BC%E3%83%A0%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%83%AC%E3%83%BC%E3%82%B6%E5%8A%A0%E5%B7%A5%E3%81%AE%E9%AB%98%E5%8A%B9%E7%8E%87%E5%8C%96%E3%81%A8%E9%AB%98%E6%A9%9F%E8%83%BD%E5%8C%96">&quot;偏光レーザビームを用いたレーザ加工の高効率化と高機能化&quot;</a></li>
+<li><a href="#femtosecond-laser-processing-by-using-patterned-vector-optical-fields">&quot;Femtosecond Laser Processing by Using Patterned Vector Optical Fields&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%89%E5%AD%A6%E3%81%A8%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92">光学と強化学習</a>
+<ul>
+<li><a href="#"></a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A8%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92">ベクトルビームと機械学習</a>
+<ul>
+<li><a href="#machine-learning-based-classification-of-vector-vortex-beams">&quot;Machine learning-based classification of vector vortex beams&quot;</a></li>
+<li><a href="#single-shot-polarimetry-of-vector-beams-by-supervised-learning">&quot;Single-shot polarimetry of vector beams by supervised learning&quot;</a></li>
+<li><a href="#vectorial-adaptive-optics">&quot;Vectorial adaptive optics&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A8%E5%B9%BE%E4%BD%95%E5%AD%A6">ベクトルビームと幾何学</a>
+<ul>
+<li><a href="#observation-of-optical-polarization-m%C3%B6bius-strips">&quot;Observation of optical polarization Möbius strips&quot;</a></li>
+<li><a href="#full-poincare-beams">&quot;Full Poincare´ beams&quot;</a></li>
+<li><a href="#generation-of-a-space-variant-vector-beam-with-catenary-shaped-polarization-states">&quot;Generation of A Space-Variant Vector Beam with Catenary-Shaped Polarization States&quot;</a></li>
+</ul>
+</li>
+<li><a href="#gouy%E4%BD%8D%E7%9B%B8">Gouy位相</a>
+<ul>
+<li><a href="#%E3%83%91%E3%83%B3%E3%83%81%E3%83%A3%E3%83%A9%E3%83%88%E3%83%8A%E3%83%A0%E3%83%99%E3%83%AA%E3%83%BC%E4%BD%8D%E7%9B%B8">パンチャラトナムベリー位相</a></li>
+<li><a href="#%E5%85%89%E5%AD%A6%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%83%99%E3%83%AA%E3%83%BC%E4%BD%8D%E7%9B%B8">&quot;光学におけるベリー位相&quot;</a></li>
+<li><a href="#manifestation-of-the-gouy-phase-in-strongly-focused-radially-polarized-beams">&quot;Manifestation of the Gouy phase in strongly focused, radially polarized beams&quot;</a></li>
+<li><a href="#manifestation-of-the-gouy-phase-in-vector-vortex-beams">&quot;Manifestation of the Gouy phase in vector-vortex beams&quot;</a></li>
+<li><a href="#gouy-phase-effects-on-propagation-of-pure-and-hybrid-vector-beams">&quot;Gouy phase effects on propagation of pure and hybrid vector beams&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E9%AB%98%E6%AC%A1%E5%85%83%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83-1">高次元ポアンカレ球</a>
+<ul>
+<li><a href="#higher-order-poincar%C3%A9-sphere-stokes-parameters-and-the-angular-momentum-of-light">&quot;Higher-Order Poincaré Sphere, Stokes Parameters, and the Angular Momentum of Light&quot;</a></li>
+<li><a href="#generalized-poincare-sphere">&quot;Generalized Poincare sphere&quot;</a></li>
+<li><a href="#encoding-higher-order-polarization-states-into-robust-partially-coherent-optical-beams">&quot;Encoding Higher-Order Polarization States into Robust Partially Coherent Optical Beams&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%AE%E8%A9%95%E4%BE%A1%E6%96%B9%E6%B3%95">ベクトルビームの評価方法</a>
+<ul>
+<li><a href="#simultaneous-generation-of-multiple-vector-beams-on-a-single-slm">&quot;Simultaneous generation of multiple vector beams on a single SLM&quot;</a></li>
+<li><a href="#arbitrary-complex-retarders-using-a-sequence-of-spatial-light-modulators-as-the-basis-for-adaptive-polarisation-compensation">&quot;Arbitrary complex retarders using a sequence of spatial light modulators as the basis for adaptive polarisation compensation&quot;</a></li>
+<li><a href="#measuring-the-nonseparability-of-vector-vortex-beams">&quot;Measuring the nonseparability of vector vortex beams&quot;</a></li>
+<li><a href="#beam-quality-measure-for-vector-beams">&quot;Beam quality measure for vector beams&quot;</a></li>
+<li><a href="#basis-independent-tomography-and-nonseparability-witnesses-of-pure-complex-vectorial-light-fields-by-stokes-projections">&quot;Basis-independent tomography and nonseparability witnesses of pure complex vectorial light fields by Stokes projections&quot;</a></li>
+<li><a href="#high-order-cylindrical-vector-beams-with-tunable-topologicalcharge-up-to-14-directly-generated--from-a-microchip-laser-with-high-beam-quality-and-high-efficiency">&quot;High-order cylindrical vector beams with tunable topologicalcharge up to 14 directly generated  from a microchip laser with high beam quality and high efficiency&quot;</a></li>
+<li><a href="#high-quality-vector-vortex-arrays-by-holographic-and-geometric-phase-control">&quot;High-quality vector vortex arrays by holographic and geometric phase control&quot;</a></li>
+<li><a href="#comprehensive-quantitative-analysis-of-vector-beam-states-based-on-vector-field-reconstruction">&quot;Comprehensive quantitative analysis of vector beam states based on vector field reconstruction&quot;</a></li>
+<li><a href="#generation-of-fractional-and-ultra-high-polarization-order-vector-vortex">&quot;Generation of fractional and ultra-high polarization-order vector vortex&quot;</a></li>
+<li><a href="#entanglement-of-formation-and-concurrence">&quot;ENTANGLEMENT OF FORMATION AND CONCURRENCE&quot;</a></li>
+<li><a href="#concepts-in-quantum-state-tomography-and-classical-implementation-with-intense-light-a-tutorial">&quot;Concepts in quantum state tomography and classical implementation with intense light a tutorial&quot;</a></li>
+<li><a href="#quantum-entanglement-of-high-angular-momenta">&quot;Quantum Entanglement of High Angular Momenta&quot;</a></li>
+<li><a href="#quantumlike-nonseparable-structures-in-optical-beams">&quot;Quantum−like nonseparable structures in optical beams&quot;</a></li>
+<li><a href="#generation-and-detection-of-structured-light-a-review">&quot;Generation and Detection of Structured Light A Review&quot;</a></li>
+<li><a href="#generation-of-fractional-and-ultra-high-polarization-order-vector-vortex-beams-on-hybrid-order-poincare-spheres">&quot;Generation of fractional and ultra-high polarization-order vector vortex beams on hybrid-order Poincar´e spheres&quot;</a></li>
+<li><a href="#generating-arbitrary-non-separable-states-with-polarization-and-orbital-angular-momentum-of-light">&quot;Generating arbitrary non-separable states with polarization and orbital angular momentum of light&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F-1">近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く</a>
+<ul>
+<li><a href="#from-maxwell-to-paraxial-wave-optics">&quot;From Maxwell to paraxial wave optics&quot;</a></li>
+<li><a href="#gaussian-beam-%E8%A8%88%E7%AE%97%E3%83%A1%E3%83%A2">&quot;Gaussian Beam 計算メモ&quot;</a></li>
+<li><a href="#httpsolidstatephysicsblogfc2comblog-entry-47html">http://solidstatephysics.blog.fc2.com/blog-entry-47.html</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F-1">近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く</a>
+<ul>
+<li><a href="#%E5%8F%82%E8%80%83separability-and-applications">参考:&quot;Separability and Applications&quot;</a></li>
+<li><a href="#vector-beam-solutions-of-maxwells-wave-equation">&quot;Vector-beam solutions of Maxwell's wave equation&quot;</a></li>
+<li><a href="#vector-helmholtzgauss-and-vector-laplacegauss-beams">&quot;Vector Helmholtz–Gauss and vector Laplace–Gauss beams&quot;</a></li>
+<li><a href="#httpsolidstatephysicsblogfc2comblog-entry-31html">http://solidstatephysics.blog.fc2.com/blog-entry-31.html</a></li>
+<li><a href="#%E8%85%B0%E3%82%82%E7%A0%95%E3%81%91%E3%82%88-%E8%86%9D%E3%82%82%E6%8A%98%E3%82%8C%E3%82%88httpsdecafishblogss-blogjparchivec2305062484-1">&quot;腰も砕けよ 膝も折れよ&quot;https://decafish.blog.ss-blog.jp/archive/c2305062484-1</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%9B%E3%81%9A%E3%81%AB%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AE%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F-1">近軸近似せずにスカラー場のヘルムホルツ方程式を解く</a>
+<ul>
+<li><a href="#nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space">&quot;Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space&quot;</a></li>
+<li><a href="#closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields">&quot;Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields&quot;</a></li>
+<li><a href="#measuring-the-nonseparability-of-vector-vortex-beams-1">&quot;Measuring the nonseparability of vector vortex beams&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%93%E3%83%BC%E3%83%A0%E3%81%AE%E6%9C%80%E9%81%A9%E5%8C%96">ビームの最適化</a>
+<ul>
+<li><a href="#a-practical-algorithm-for-the-determination-of-phase-from-image-and-diffraction-plane-pictures">&quot;A practical algorithm for the determination of phase from image and diffraction plane pictures&quot;</a></li>
+<li><a href="#kinoform-design-with-an-optimal-rotation-angle-method">&quot;Kinoform design with an optimal-rotation-angle method&quot;</a></li>
+<li><a href="#new-iterative-algorithm-for-the-design-of-phaseonly-gratings">&quot;New iterative algorithm for the design of phaseonly gratings&quot;</a></li>
+<li><a href="#continuous-relief-diffractive-optical-elements-for-two-dimensional-array-generation">&quot;Continuous-relief diffractive optical elements for two-dimensional array generation&quot;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%95%99%E7%A7%91%E6%9B%B8%E7%9A%84%E3%81%AA%E7%AB%8B%E3%81%A1%E4%BD%8D%E7%BD%AE">教科書的な立ち位置</a>
+<ul>
+<li><a href="#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0">ベクトルビーム</a>
+<ul>
+<li><a href="#cylindrical-vector-beams-from-mathematical-concepts-to-applications">&quot;Cylindrical vector beams: from mathematical concepts to applications&quot;</a></li>
+<li><a href="#vector-beams-for-fundamental-physics-and-applications">&quot;Vector Beams for Fundamental Physics and Applications&quot;</a></li>
+<li><a href="#polarization-control-of-light-with-a-liquid-crystal-display-spatial-light-modulator">&quot;POLARIZATION CONTROL OF LIGHT WITH A LIQUID CRYSTAL DISPLAY SPATIAL LIGHT MODULATOR&quot;</a></li>
+<li><a href="#phase-and-polarization-modulations-based-on-lcos-slm">&quot;Phase and polarization modulations based on LCOS SLM&quot;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%89%E6%B8%A6">光渦</a>
+<ul>
+<li><a href="#orbital-angular-momentum-origins-behavior-and-applications">&quot;Orbital angular momentum: origins, behavior and applications&quot;</a></li>
+</ul>
+</li>
+<li><a href="#slm-1">SLM</a>
+<ul>
+<li><a href="#creation-and-detection-of-optical-modes-with-spatial-light-modulators">&quot;Creation and detection of optical modes with spatial light modulators&quot;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="%E3%83%A1%E3%83%A2">メモ</h1>
+<p>・ベクトルビームをスカラービームを空間的に配置したものだと考えると、それぞれのスカラービームは各素子を行列で表したものでベクトルを変換させたものであり、つまりポアンカレ球上で長さを変えずに表面を移動する変化（等長写像）が各ピクセルで起こっていると考えるとそれにあった機械学習の手法がありそう<br>
+・球面の１点から別の１点に移動する方法はいっぱいあるからそれが基底の取り方が無数にあることに対応している？</p>
+<h1 id="%E3%82%B8%E3%83%A7%E3%83%BC%E3%83%B3%E3%82%BA%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB">ジョーンズベクトル</h1>
+<p>光というのは電場と磁場が</p>
+<p><img src="EMwave.gif" alt="Alt text"></p>
+<p>のように進んでいく。</p>
+<p>振幅や波長はなじみ深いと思うがここでは光の<strong>偏光</strong>という特徴について見ていく。</p>
+<p>電場だけに着目すると</p>
+<p><img src="Ehori.gif" alt="Alt text"></p>
+<p>のように水平に振動するものや</p>
+<p><img src="Etil.gif" alt="Alt text"></p>
+<p>のように $\frac{\pi}{4}$ 傾いて振動するものなどがある。</p>
+<p>この電場を $x$ 軸(水平方向), $y$ 軸(垂直方向)に分けて考える。</p>
+<p>ベクトルで表すと</p>
+<p>$$<br>
+\boldsymbol{E} =<br>
+\begin{bmatrix}<br>
+E_{x0} e^{i\varphi_x} \<br>
+E_{y0} e^{i\varphi_y}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となる。</p>
+<p>これは1941年にアメリカの物理学者ジョーンズ(R. Clark Jones)によって考案されたもので<strong>ジョーンズベクトル</strong>と言う。</p>
+<p>偏光状態を<strong>複素ベクトル</strong>によって表すことができる。</p>
+<p>それぞれの振幅や位相の違いによって色々な偏光状態が表される。</p>
+<p><strong>※全体にかかる振幅の大きさや位相は偏光の状態に影響しないことに注意</strong></p>
+<p>これは</p>
+<ul>
+<li>全体にかかる振幅とは、例えば水平方向に振動している電場の振動の幅が変わるだけで水平であるという形は変わらない。</li>
+<li>全体にかかる位相とは、例えば水平方向に振動している電場をどの位置から観測するのか(右に一番振れているところから観測するのか、</li>
+<li>原点から観測するのか)の違いであり物理的にはどちらも同じ電場を表している。</li>
+</ul>
+<p>ということに対応している。</p>
+<h2 id="%E7%9B%B4%E7%B7%9A%E5%81%8F%E5%85%89">直線偏光</h2>
+<p>例えばそれぞれの成分の振幅と位相が共に等しいとき</p>
+<p>つまり</p>
+<p>$$<br>
+\varphi_y = \varphi_x<br>
+$$</p>
+<p>$$<br>
+E_{y0} = E_{x0}<br>
+$$</p>
+<p>のとき</p>
+<p>$$<br>
+\boldsymbol{E} = E_{x0} e^{i \varphi_x}<br>
+\begin{bmatrix}<br>
+1 \<br>
+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となり、これは反時計回りに $\frac{\pi}{4}$ だけ傾いた直線偏光を表している。</p>
+<p>確かにベクトルの成分だけで見ると $\frac{\pi}{4}$ だけ傾いたベクトルだからそう思えるかもしれないが複素数が係数としてかかっているからなんか腑に落ちない</p>
+<p>と思う。</p>
+<p>そこで実部を取ってみると</p>
+<p>$$<br>
+Re(\boldsymbol{E}) = E_{x0} \cos{\varphi_x}<br>
+\begin{bmatrix}<br>
+1 \<br>
+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となりこのベクトルの先端の軌跡を考えると、晴れて実平面で $\frac{\pi}{4}$ だけ傾いた直線偏光が表された。</p>
+<p>そもそも波を複素数で表現するのは実部だけ( $\cos$ だけ)で考えると計算が面倒になるという問題を解決するためだったので最終的には実部を取るというのは理にかなっている。<br>
+<br></p>
+<h2 id="%E5%86%86%E5%81%8F%E5%85%89">円偏光</h2>
+<p>次に振幅が等しく$x$ 成分が $y$ 成分より $\frac{\pi}{2}$ だけ進んでいる場合を考える。(例えば $x$ 成分が $\cos{\varphi_x}$ なら $y$ 成分は $\cos{(\varphi_x-\frac{\pi}{2})}=\sin{\varphi_x}$ のように波が $y$ 成分の方が $z$ 軸性の方向にずれている)</p>
+<p>$$<br>
+\begin{aligned}<br>
+\varphi_y &amp;= \varphi_x - \frac{\pi}{2} \<br>
+\varphi_y - \varphi_x &amp;= -\frac{\pi}{2}\<br>
+\therefore \delta &amp;= -\frac{\pi}{2}<br>
+\end{aligned}<br>
+$$</p>
+<p>※位相差を $\delta$ とした。</p>
+<p>を(1)に代入すると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} &amp;= E_{x0}<br>
+\begin{bmatrix}<br>
+e^{i \varphi_x} \<br>
+e^{i (\varphi_x - \frac{\pi}{2})}<br>
+\end{bmatrix} \<br>
+&amp;= E_{x0} e^{i\varphi_x}<br>
+\begin{bmatrix}<br>
+1 \<br>
+e^{-i\pi}<br>
+\end{bmatrix} \<br>
+&amp;= E_{x0} e^{i\varphi_x}<br>
+\begin{bmatrix}<br>
+1 \<br>
+-i<br>
+\end{bmatrix} \<br>
+\end{aligned}<br>
+$$</p>
+<p>これは<strong>左回り円偏光</strong>を表している。</p>
+<p>なぜなら、これも実部をとると</p>
+<p>$$<br>
+Re(\boldsymbol{E}) = \frac{1}{\sqrt{2}}<br>
+\begin{bmatrix}<br>
+\cos{\varphi_x} \<br>
+\sin{\varphi_x}<br>
+\end{bmatrix}<br>
+$$</p>
+<br>
+<p>となるがこれは $\varphi_x$ を変化させていくと $x-y$ 平面で左回りに回転するベクトル場になる。</p>
+<p>【補足】<br>
+上ではこのジョーンズベクトルは左回り円偏光を表しているといったが、右回り円偏光を表していると書いてある教科書もあるこれは<em><strong>座標系をどこから見るかによって起こる問題である。</strong></em></p>
+<p>座標は右手系が基本なのでz軸が紙面裏面から紙面表面に向かうようにとると、水平方向はx軸に、垂直方向はy軸になる。つまり、 $z$ 軸正の方向から見るのか、負の方向から見るのかで回り方が逆転する。</p>
+<p><em><strong>なんでx,yが反転するような立場から考えるの？</strong></em><br>
+と思うかもしれないがこれは工学系と理学系で光のとらえ方が異なるかららしい。</p>
+<p>つまり<strong>工学寄りの光学</strong>の分野ではあくまで<strong>主役は光であり</strong>光を迎える視点で考えたいのだと思う。</p>
+<p>逆に<strong>理学寄りの光学</strong>では<strong>主役は光によって照らされるサンプル</strong>であるので光を送り出す立場で現象を考える。<br>
+<br></p>
+<p>同様に $y$ 成分が $x$ 成分より $\frac{\pi}{2}$ だけ遅れている場合を考えると</p>
+<p>$$<br>
+\boldsymbol{E} = E_{x0} e^{i\varphi_x}<br>
+\begin{bmatrix}<br>
+1 \<br>
+i<br>
+\end{bmatrix}<br>
+$$</p>
+<p>これは右回り円偏光を表している。</p>
+<p>なぜなら、これも実部をとると</p>
+<p>$$<br>
+Re(\boldsymbol{E}) = E_{x0}<br>
+\begin{bmatrix}<br>
+\cos{\varphi_x} \<br>
+-\sin{\varphi_x}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となり、先ほどとは逆に左回り円偏光になる。</p>
+<p>これは</p>
+<p><img src="EcirLeft.gif" alt="Alt text"></p>
+<p>のように電場が変化しているということで</p>
+<p>$z$軸正の方向から見ると電場が</p>
+<p><img src="cirvec.gif" alt="Alt text"></p>
+<p>のように変化する。</p>
+<p>まとめると</p>
+<p><strong>電場の振動方向はジョーンズベクトルという複素ベクトルで表現することができ、偏光状態を変えるということはジョーンズベクトルを変えるということである。</strong></p>
+<p>【補足】</p>
+<p>ここで左右円偏光を表す2つのベクトルの内積をとってみると</p>
+<p>$$<br>
+E_{x0}^2 e^{2i\varphi_x}<br>
+\begin{aligned}<br>
+\begin{bmatrix}<br>
+1 &amp; -i<br>
+\end{bmatrix}<br>
+^*<br>
+\begin{bmatrix}<br>
+1  \<br>
+i<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+= 0<br>
+$$</p>
+<p>となり直交していることが分かる。</p>
+<p>実は任意の偏光状態は左右円偏光の重ね合わせで表すことができる。</p>
+<p>それだけでなく、基底の取り方は無数にある。</p>
+<p>後の項でこれは詳しく説明する。</p>
+<h2 id="%E6%A5%95%E5%86%86%E5%81%8F%E5%85%89">楕円偏光</h2>
+<p>参考：偏光とは何か（光の強度と偏光）http://fnorio.com/0124polarization_of_light0/polarization_of_light0.html</p>
+<p>直線をめちゃくちゃ楕円、円を全然楕円じゃない、とすると任意の偏光分布は楕円偏光として考えていい(直線、円偏光を楕円偏光の特殊形と考える。)</p>
+<h1 id="%E3%82%B8%E3%83%A7%E3%83%BC%E3%83%B3%E3%82%BA%E8%A1%8C%E5%88%97">ジョーンズ行列</h1>
+<p>偏光状態を変えるということはジョーンズベクトルを異なるジョーンズベクトルに変換することだと言った。</p>
+<p>変換させる方法として<strong>波長板</strong>と呼ばれているものを使う。</p>
+<p>$2$成分ベクトルを変換させるということはこの波長板という素子は $2 \times 2$ の行列とみなせそうだと思える。</p>
+<p>実際に行列で表現でき、この行列を<strong>ジョーンズ行列</strong>という。</p>
+<p>波長板は遅相子(retardar)と呼ばれ、2つの直交する電場の一方の位相を変化させる。</p>
+<p>どちらの位相を遅らせるかで2通りの種類があるがここでは</p>
+<p>$y$ 成分の位相が進むように($x$成分の位相が遅れるように)方向を選ぶ。(yを進相軸に選ぶ。)</p>
+<p>それぞれの位相を独立に変化させるので行列の非対角成分は0になると予想できる。</p>
+<p>確かに波長板は</p>
+<p>$$<br>
+\begin{aligned}<br>
+J &amp;=<br>
+\begin{bmatrix}<br>
+e^{i\varphi_x} &amp; 0 \<br>
+0 &amp; e^{i\varphi_y}<br>
+\end{bmatrix} \<br>
+&amp;= e^{i\varphi_x}<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; e^{i(\varphi_y - \varphi_x)}<br>
+\end{bmatrix} \<br>
+&amp;= e^{i\varphi_x}<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; e^{i\delta}<br>
+\end{bmatrix} \<br>
+\end{aligned}<br>
+$$</p>
+<p>となる。(例によって位相差を $\delta$ とした。)</p>
+<p>偏光素子では位相差をどのくらい与えるのだけが重要なのであると述べたのでこれを</p>
+<p>$$<br>
+J =<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; e^{i\delta}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>とする。</p>
+<p>ここでこの行列の転置をとって複素共役をとったものと元の行列を掛けてみると、これは単位行列になる。</p>
+<p>つまり偏光素子を行列で表したものは<strong>ユニタリー行列</strong>であることが分かる。</p>
+<p>また、偏光子は $x-y$ 平面でどのくらい傾けるかという自由度があり, $\theta$ だけ回転させるとジョーンズ行列は</p>
+<p>$$<br>
+\begin{aligned}<br>
+J &amp;=<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; -\sin{\theta} \<br>
+\sin{\theta} &amp; \cos{\theta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; e^{i\delta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; \sin{\theta} \<br>
+-\sin{\theta} &amp; \cos{\theta}<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; -e^{i\delta} \sin{\theta} \<br>
+\sin{\theta} &amp; e^{i\delta} \cos{\theta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; \sin{\theta} \<br>
+-\sin{\theta} &amp; \cos{\theta}<br>
+\end{bmatrix} \<br>
+\therefore J &amp;=<br>
+\begin{bmatrix}<br>
+e^{i\delta} \sin^2{\theta} + \cos^2{\theta} &amp; \sin{\theta} \cos{\theta} (1 - e^{i\delta}) \<br>
+\sin{\theta} \cos{\theta} (1 - e^{i\delta}) &amp; \sin^2{\theta} + e^{i\delta} \cos^2{\theta}<br>
+\end{bmatrix} \<br>
+\end{aligned}<br>
+$$</p>
+<p>となる。</p>
+<p>次の項では位相差をどのくらい与えるかを考える</p>
+<h2 id="12%E6%B3%A2%E9%95%B7%E6%9D%BF">1/2波長板</h2>
+<p>位相差を $\delta=\pi$ 与えるものを <strong>1/2波長板(HWP:Half Wave Plate)</strong> という。</p>
+<p>前項で導出した式に代入してみると</p>
+<p>$$<br>
+\begin{aligned}<br>
+J_{HWP(\theta)} &amp;=<br>
+\begin{bmatrix}<br>
+-\sin^2{\theta} + \cos^2{\theta} &amp; 2\sin{\theta} \cos{\theta} \<br>
+2\sin{\theta} \cos{\theta} &amp; \sin^2{\theta} - \cos^2{\theta}<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{2\theta} &amp; \sin{2\theta} \<br>
+\sin{2\theta} &amp; -\cos{2\theta}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>を得る。</p>
+<p>特に $\theta = 0$ のときは</p>
+<p>$$<br>
+J_{HPW(\theta=0)} =<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; -1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>というジョーンズ行列を得る。</p>
+<p>ここに $\frac{\pi}{4}$ だけ傾いた直線偏光</p>
+<p>$$<br>
+\boldsymbol{E}_{in} =<br>
+\begin{bmatrix}<br>
+1 \<br>
+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>を入射させると</p>
+<p>$$<br>
+\boldsymbol{E}_{out} =<br>
+\begin{bmatrix}<br>
+1 \<br>
+-1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となり, $-\frac{\pi}{4}$ だけ傾いた直線偏光を表していている。</p>
+<p>元の状態から時計回りに $2 \times \frac{\pi}{4}$ だけ回転している。</p>
+<p>となる。</p>
+<p>また、 $\theta = \frac{\pi}{4}$ だけ回転させると</p>
+<p>$$<br>
+J_{HWP(\theta=\frac{\pi}{4})} =<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \<br>
+1 &amp; 0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となり <strong>x,y成分を交換する</strong> という働きをする。</p>
+<h2 id="14%E6%B3%A2%E9%95%B7%E6%9D%BF">1/4波長板</h2>
+<p>位相差 $\delta=\frac{\pi}{2}$ であるので</p>
+<p>$$<br>
+\begin{aligned}<br>
+J_{QWP(\theta)} &amp;=<br>
+\begin{bmatrix}<br>
+e^{i \frac{\pi}{2}} \sin^2{\theta} + \cos^2{\theta} &amp; \sin{\theta} \cos{\theta} (1 - e^{i \frac{\pi}{2}}) \<br>
+\sin{\theta} \cos{\theta} (1 - e^{i \frac{\pi}{2}}) &amp; \sin^2{\theta} + e^{i \frac{\pi}{2}} \cos^2{\theta}<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+i \sin^2{\theta} + \cos^2{\theta} &amp; \sin{\theta} \cos{\theta} (1 - i) \<br>
+\sin{\theta} \cos{\theta} (1 - i) &amp; \sin^2{\theta} + i \cos^2{\theta}<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 - i\cos{2\theta} &amp; -i\sin{2\theta}\<br>
+-i\sin{2\theta} &amp; 1 + i\cos{2\theta}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>を得る。</p>
+<p>$\theta = 0$ のときは</p>
+<p>$$<br>
+J_{QWP(\theta=0)} =<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; i<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となる。</p>
+<p>$\frac{\pi}{4}$ だけ傾いた直線偏光</p>
+<p>$$<br>
+\boldsymbol{E}_{in} =<br>
+\begin{bmatrix}<br>
+1 \<br>
+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>を入射させると</p>
+<p>$$<br>
+\boldsymbol{E}_{out} =<br>
+\begin{bmatrix}<br>
+1 \<br>
+i<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となりこれは右回り円偏光を表している。</p>
+<h2 id="%E7%9B%B4%E7%B7%9A%E5%81%8F%E5%85%89%E5%AD%90">直線偏光子</h2>
+<p>波長板とは違ってもっとシンプルに考えることができて</p>
+<p>$$<br>
+\begin{aligned}<br>
+J &amp;=<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; -\sin{\theta} \<br>
+\sin{\theta} &amp; \cos{\theta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; \sin{\theta} \<br>
+-\sin{\theta} &amp; \cos{\theta}<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; 0 \<br>
+\sin{\theta} &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{\theta} &amp; \sin{\theta} \<br>
+-\sin{\theta} &amp; \cos{\theta}<br>
+\end{bmatrix} \<br>
+\therefore J &amp;=<br>
+\begin{bmatrix}<br>
+\cos^2{\theta} &amp; \sin{\theta} \cos{\theta} \<br>
+\sin{\theta} \cos{\theta} &amp; \sin^2{\theta}<br>
+\end{bmatrix} \<br>
+\end{aligned}<br>
+$$</p>
+<p>となる。<br>
+$\frac{\pi}{4}$傾ければ</p>
+<p>$$<br>
+J=<br>
+\begin{bmatrix}<br>
+1 &amp; 1 \newline<br>
+1 &amp; 1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となる。</p>
+<h1 id="%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83">ポアンカレ球</h1>
+<p>ジョーンズベクトルを</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix}<br>
+(\alpha, \beta \in C)<br>
+$$</p>
+<p>と表したときストークスパラメーターという実数値は</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+S1 \<br>
+S2 \<br>
+S3<br>
+\end{bmatrix} =<br>
+\begin{bmatrix}<br>
+|\alpha|^2 - |\beta|^2 \<br>
+2 Re(\alpha \beta) \<br>
+-2 Im(\alpha \beta)<br>
+\end{bmatrix}<br>
+$$</p>
+<p>多くの光学の教科書ではストークスパラメータは以上のように定義されたものとして紹介される。</p>
+<p>そこでこれを導出する。</p>
+<h2 id="%E5%B0%84%E5%BD%B1%E6%BC%94%E7%AE%97%E5%AD%90">射影演算子</h2>
+<p>今までジョーンズベクトルの各成分の振幅比と位相差のみが重要と言ってきたので</p>
+<p>$$<br>
+| \alpha | ^2 + | \beta | ^2 = 1<br>
+$$</p>
+<p>としても任意の振幅比も表現できる。</p>
+<p>ここで天下り的だが以下のようにジョーンズベクトルから行列を作る。</p>
+<p>$$<br>
+P =<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix} ^*<br>
+$$</p>
+<p>これは<strong>射影演算子</strong>と呼ばれる。</p>
+<p>ただしどんな行列も射影演算子となるわけではなく以下の2つを満たす必要がある。(線形写像となる条件？)</p>
+<p>$$<br>
+\begin{aligned}<br>
+・<br>
+P^2 &amp;= 1 \<br>
+・<br>
+P^ \dagger &amp;= P<br>
+\end{aligned}<br>
+$$</p>
+<p>計算してみると、確かに</p>
+<p>$$<br>
+\begin{aligned}<br>
+P^2 &amp;= (<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix} ^* ) (<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix} ^* ) \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix} (<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix} ^*<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix} )<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix} ^*<br>
+\<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix} (<br>
+| \alpha | ^2 + | \beta | ^2 )<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix} ^* \<br>
+\therefore P^2 &amp;= P<br>
+\end{aligned}<br>
+$$</p>
+<p>次に</p>
+<p>$$<br>
+\begin{aligned}<br>
+P ^{\dagger}<br>
+&amp;=<br>
+(<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix}<br>
+^* ) ^{\dagger} \<br>
+&amp;=<br>
+(<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix}<br>
+^* ) ^{\dagger} \<br>
+&amp;=<br>
+(<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix}<br>
+^* )^*<br>
+\begin{bmatrix}<br>
+\alpha<br>
+\beta<br>
+\end{bmatrix}<br>
+^* \<br>
+\therefore P^{\dagger}<br>
+&amp;=<br>
+P<br>
+\end{aligned}<br>
+$$</p>
+<h2 id="%E3%83%91%E3%82%A6%E3%83%AA%E8%A1%8C%E5%88%97%E5%B1%95%E9%96%8B">パウリ行列展開</h2>
+<p>https://electrodynamics.hatenablog.com/entry/2018/12/01/233744<br>
+https://electrodynamics.hatenablog.com/entry/2018/12/16/000833</p>
+<p>パウリ行列は</p>
+<p>$$<br>
+\sigma_0 =<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; 1<br>
+\end{bmatrix}, \quad<br>
+\sigma_1 =<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; -1<br>
+\end{bmatrix}, \quad<br>
+\sigma_2 =<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \<br>
+1 &amp; 0<br>
+\end{bmatrix}, \quad<br>
+\sigma_3 =<br>
+\begin{bmatrix}<br>
+0 &amp; -i \<br>
+i &amp; 0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>で表される。</p>
+<p>さきほどのジョーンズベクトルから作った行列をパウリ行列の和で表すことを考える。</p>
+<p>ここでパウリ行列の性質として、例えば</p>
+<p>$$<br>
+\begin{aligned}<br>
+\sigma_2 ^2 &amp;=<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \<br>
+1 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \<br>
+1 &amp; 0<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>となり2乗すると単位行列であり、</p>
+<p>異なる行列同士の積のTrを考えると、例えば</p>
+<p>$$<br>
+\begin{aligned}<br>
+Tr( \sigma_3 \sigma_2 ) &amp;= Tr \Bigl (<br>
+\begin{bmatrix}<br>
+0 &amp; -i \<br>
+i &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \<br>
+1 &amp; 0<br>
+\end{bmatrix} \Bigr )\<br>
+&amp;= Tr \Bigl (<br>
+\begin{bmatrix}<br>
+-i &amp; 0 \<br>
+0 &amp; i<br>
+\end{bmatrix} \Bigr ) \<br>
+&amp;=<br>
+-i + i \<br>
+\therefore Tr( \sigma_3 \sigma_2 )<br>
+&amp;=<br>
+0<br>
+\end{aligned}<br>
+$$</p>
+<p>となり0となる。</p>
+<p>これら2つの性質を使うと、以下のようにパウリ行列の和で表したとき、</p>
+<p>$$<br>
+\begin{aligned}<br>
+P &amp;= \frac{1}{2} (<br>
+h_0 \sigma_0 + h_1<br>
+\sigma_1 + h_2 \sigma_2 + h_3 \sigma_3 ) \<br>
+&amp;= \frac {1} {2} \Bigl (<br>
+h_0<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
++h_1<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; -1<br>
+\end{bmatrix}<br>
++h_2<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \<br>
+1 &amp; 0<br>
+\end{bmatrix}<br>
++h_3<br>
+\begin{bmatrix}<br>
+0 &amp; -i \<br>
+i &amp; 0<br>
+\end{bmatrix}<br>
+\Bigr )<br>
+\end{aligned}<br>
+$$</p>
+<p>と仮定すると</p>
+<p>先ほどの積の性質を使えば、例えば</p>
+<p>$$<br>
+\begin{aligned}<br>
+\mathrm{Tr}(P \sigma _ 3) &amp;= \frac{1}{2} \Bigl(h_0 \mathrm{Tr}(\sigma _ 0 \sigma _ 3) + h _ 1 \mathrm{Tr}(\sigma _ 1 \sigma _ 3) + h _ 2 \mathrm{Tr}(\sigma _ 2 \sigma _ 3) + h _ 3 \mathrm{Tr}(\sigma _ 3 \sigma _ 3) \Bigr) \<br>
+&amp;=<br>
+h_3 \newline<br>
+&amp;=<br>
+2 \mathrm{Tr} \Bigl(<br>
+\begin{bmatrix}<br>
+\mid \alpha \mid ^2 &amp; \alpha \beta ^ \ast \newline<br>
+\alpha  \ast* \beta &amp; \mid \beta \mid ^2<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+0 &amp; -i \ i &amp; 0<br>
+\end{bmatrix}<br>
+\Bigr) \newline<br>
+&amp;=<br>
+\mathrm{Tr} \Bigl(<br>
+\begin{bmatrix}<br>
+i \alpha \beta^* &amp; -i \mid \alpha \mid ^2 \newline<br>
+i \mid \beta \mid ^2 &amp; -i \alpha ^\ast \beta<br>
+\end{bmatrix}<br>
+\Bigr) \newline<br>
+&amp;=<br>
+i (\alpha \beta ^ \ast - \alpha ^ \ast \beta) \newline<br>
+&amp;=<br>
+-2 \mathrm{Im}(\alpha \beta ^ \ast) \newline<br>
+\therefore h_3<br>
+&amp;=<br>
+-2 \mathrm{Im}(\alpha \beta ^ \ast)<br>
+\end{aligned}<br>
+$$</p>
+<p>のように係数が求められる。</p>
+<p>他も同じように計算すると結局</p>
+<p>$$<br>
+\begin{aligned}<br>
+P<br>
+&amp;=<br>
+\frac{1}{2} (<br>
+h _ 0 \sigma _ 0 + h _ 1 \sigma _ 1 + h _ 2 \sigma _ 2 + h _ 3 \sigma _ 3 ) \newline<br>
+&amp;=<br>
+\frac{1}{2} \Bigl (<br>
+h_0<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
++h_1<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \newline<br>
+0 &amp; -1<br>
+\end{bmatrix}<br>
++h_2<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \newline<br>
+1 &amp; 0<br>
+\end{bmatrix}<br>
++h_3<br>
+\begin{bmatrix}<br>
+0 &amp; -i \newline<br>
+i &amp; 0<br>
+\end{bmatrix}<br>
+\Bigr ) \newline<br>
+&amp;=<br>
+\frac{1}{2} \Bigl (<br>
+\bigl (\mid \alpha \mid ^2 + \mid \beta \mid ^2 \bigr )<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
++\bigl (\mid \alpha \mid ^2 - \mid \beta \mid ^2 \bigr )<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \newline<br>
+0 &amp; -1<br>
+\end{bmatrix}<br>
++2 Re( \alpha \beta ^ \ast)<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \newline<br>
+1 &amp; 0<br>
+\end{bmatrix}<br>
+-2 Im( \alpha \beta ^ \ast)<br>
+\begin{bmatrix}<br>
+0 &amp; -i \newline<br>
+i &amp; 0<br>
+\end{bmatrix}<br>
+\Bigr )<br>
+\end{aligned}<br>
+$$</p>
+<p>今は $|\alpha| ^2 + |\beta| ^2 = 1$ を考えているので第一項目の係数は1になるため、以下では $h_1, h_2, h_3$ のみを考える。</p>
+<p>この係数をベクトルとしたもの</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{ S }<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+S _ 1 \newline<br>
+S _ 2 \newline<br>
+S _ 3<br>
+\end{bmatrix}<br>
+\newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+h _ 1 \newline<br>
+h _ 2 \newline<br>
+h _ 3<br>
+\end{bmatrix}<br>
+\newline<br>
+\therefore \boldsymbol{S}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\mid \alpha \mid ^2 - \mid \beta \mid ^2 \newline<br>
+2 Re( \alpha \beta ^ \ast) \newline<br>
+-2 Im( \alpha \beta ^ \ast)<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>となりストークスベクトルを導出できた。</p>
+<h2 id="%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83">ポアンカレ球</h2>
+<p>実は計算すると分かるが先ほど導出したストークスパラメーターは</p>
+<p>$$<br>
+S^2 _ 1 + S^2 _ 2 + S^2 _ 3 = 1<br>
+$$</p>
+<p>の関係がある。</p>
+<p>これはストークスベクトルが</p>
+<p>$S_1, S_2, S_3$ <strong>を軸とした単位球面上の1点を指している。</strong></p>
+<p>ということを表している。</p>
+<p>また、これまで波長板について話してきたが、</p>
+<p><strong>波長板によって光の偏光分布が変わるということはジョーンズベクトルが変わる、つまりストークスベクトルが変わる、つまりポアンカレ球面上で別の座標に移る。</strong></p>
+<p>ということを意味している。</p>
+<p><strong>波長板によってポアンカレ球上の座標がくるくると移動するということ。</strong></p>
+<p>※このように長さを変えない(今は球の表面上で移動する)写像を等長写像という。</p>
+<p><img src="ポアンカレ球.png" alt="Alt text"></p>
+<p>水平偏光が $(S_1, S_2, S_3) = (1, 0, 0)$</p>
+<p>右回り円偏光が $(S_1, S_2, S_3) = (0, 0, 1)$</p>
+<p>など。</p>
+<h2 id="%E3%83%91%E3%82%A6%E3%83%AA%E8%A1%8C%E5%88%97%E3%81%A8%E7%89%A9%E7%90%86%E9%87%8F">パウリ行列と物理量</h2>
+<p>パウリ行列はそれぞれどの軸のスピンをもっているかをあらわす物理量を観測できる。</p>
+<p>例えば</p>
+<p>$$<br>
+\begin{aligned}<br>
+S_1 &amp;=<br>
+\begin{bmatrix}<br>
+\alpha ^* : \beta ^*<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \<br>
+0 &amp; -1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\alpha ^* : \beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+-\beta<br>
+\end{bmatrix} \<br>
+\therefore S_1<br>
+&amp;=<br>
+| \alpha | ^2 - | \beta | ^2<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+S_2 &amp;=<br>
+\begin{bmatrix}<br>
+\alpha ^* : \beta ^*<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \<br>
+1 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\alpha ^* : \beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\beta \<br>
+\alpha<br>
+\end{bmatrix} \<br>
+&amp;= \alpha ^* \beta + \alpha \beta ^* \<br>
+\therefore S_2<br>
+&amp;=<br>
+2Re(\alpha \beta ^*)<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+S_3 &amp;=<br>
+\begin{bmatrix}<br>
+\alpha ^* : \beta ^*<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+0 &amp; -i \<br>
+i &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\alpha \<br>
+\beta<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\alpha ^* : \beta<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+-i \beta \<br>
+i \alpha<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+-i \alpha ^* \beta + i \alpha \beta ^* \<br>
+&amp;=<br>
+i (\alpha \beta ^* - \alpha ^* \beta) \<br>
+\therefore S_3 &amp;= -2Im(\alpha \beta ^*)<br>
+\end{aligned}<br>
+$$</p>
+<p>右回り円偏光のストークスパラメーターを計算してみる。<br>
+規格化されたジョーンズベクトルは</p>
+<p>$$<br>
+\frac{1}{\sqrt{2}}<br>
+\begin{bmatrix}<br>
+1 \<br>
+i<br>
+\end{bmatrix}<br>
+$$</p>
+<p>であったので</p>
+<p>$\alpha = \frac{1}{\sqrt{2}}, \beta = \frac{i}{\sqrt{2}}$</p>
+<p>を代入すると</p>
+<p>$$<br>
+\begin{aligned}<br>
+S_1 &amp;=<br>
+\Bigl |\frac {1}{\sqrt{2}} \Bigr | ^2 - \Bigl |\frac {i}{\sqrt{2}} \Bigr | ^2 \<br>
+&amp;=<br>
+\frac {1}{2} - \frac {1}{2} \<br>
+&amp;=<br>
+0<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+S_2 &amp;= 2Re\Bigl (\frac {1}{\sqrt{2}} \times \frac {i^*}{\sqrt{2}} \Bigr ) \<br>
+&amp;=<br>
+2Re(-i) \<br>
+&amp;=<br>
+0<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+S_3<br>
+&amp;=<br>
+-2Im\Bigl (\frac {1}{\sqrt{2}} \times \frac {i ^*}{\sqrt{2}}\Bigr ) \<br>
+&amp;=<br>
+-2Im \Bigl (- \frac {i}{2} \Bigr ) \<br>
+&amp;=<br>
+1<br>
+\end{aligned}<br>
+$$</p>
+<p>よって</p>
+<p>$$<br>
+S =<br>
+(S_1, S_2, S_3) = (0, 0, 1)<br>
+$$</p>
+<p>となる。</p>
+<p>実は偏光と電子のスピンは密接な関係があり、電子のポアンカレ球に相当するものをブロッホ球という。</p>
+<p>具体的には</p>
+<p><img src="image-1.png" alt="Alt text"></p>
+<p>のように対応している。</p>
+<p>実際に論文として出されていて</p>
+<p><img src="right circle to up spin (2).png" alt="Alt text"></p>
+<p>これは半導体に右回り円偏光を当てた時、上向きのスピン(赤いやつ)が励起されている様子を表している。</p>
+<h2 id="slm">SLM</h2>
+<p>$$<br>
+J_{SLM} = A_0<br>
+\begin{bmatrix}<br>
+e^{i\delta} &amp; 0 \<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>ここで</p>
+<ul>
+<li>$\delta = 2[n_e(V)-n_o]kd$</li>
+<li>$A_0 = e^{i2n_okd}$</li>
+<li>$k = \frac{2\pi}{\lambda}$</li>
+<li>$n_o:$光軸に垂直な面の屈折率</li>
+<li>$n_e:$光軸に平行な面の屈折率でこれは電圧によって制御できる</li>
+</ul>
+<p>ジョーンズベクトルでこの変換の過程を表す。<br>
+⓵レーザー光がHWP,PBSによって変換される<br>
+⓶SLM1で反射してBSに戻ってくるビーム<br>
+⓷HWPを通過してSLM2で反射してHWPを通過してBSに戻ってくるビーム<br>
+⓸各SLMで反射して戻ってきたビームがBSで合わさったビーム<br>
+⓹合わさったビームがQWPで変換されたビーム</p>
+<p>$$<br>
+\boldsymbol {E} _ {out} = J_{QWP(\gamma)} [J_{SLM1} + J_{HWP(-\beta)} J_{SLM2} J_{HWP(\beta)}] J_{PBS} J_{HWP(\alpha)} \boldsymbol {E} _ {in}<br>
+$$</p>
+<br>
+<h2 id="%E9%AB%98%E6%AC%A1%E5%85%83%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83">高次元ポアンカレ球</h2>
+<p><img src="image-6.png" alt="Alt text"></p>
+<h1 id="%E3%83%96%E3%83%AD%E3%83%83%E3%83%9B%E7%90%83">ブロッホ球</h1>
+<h2 id="%E9%AB%98%E6%AC%A1%E5%85%83%E3%83%96%E3%83%AD%E3%83%83%E3%83%9B%E7%90%83">高次元ブロッホ球</h2>
+<h1 id="%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く</h1>
+<h2 id="%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%AE%E5%B0%8E%E5%87%BA">ヘルムホルツ方程式の導出</h2>
+<p>ファラデーの法則</p>
+<p>$$<br>
+\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) = -\frac{\partial \boldsymbol {B} (\boldsymbol {r} , t) } {\partial t}<br>
+$$</p>
+<p>に対して両辺の回転を取ると</p>
+<p>$$<br>
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = - \mu_0 \nabla \times \frac{\partial \boldsymbol {H} (\boldsymbol {r} , t) }{\partial t}<br>
+$$</p>
+<p>となるがここでアンペールの法則</p>
+<p>$$<br>
+\nabla \times \boldsymbol {H} (\boldsymbol {r} , t) = \epsilon_0 \frac{\partial \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t}<br>
+$$</p>
+<p>を代入すると</p>
+<p>$$<br>
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2}<br>
+$$</p>
+<p>を得る。ここで</p>
+<p>$$<br>
+\nabla \times (\nabla \times \boldsymbol {E} (\boldsymbol {r} , t) ) = \nabla(\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) ) - \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t)<br>
+$$</p>
+<p>より</p>
+<p>$$<br>
+\nabla(\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) ) - \nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) = - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2}<br>
+$$</p>
+<p>を得る。電荷がない場合を考えているので</p>
+<p>$$<br>
+\nabla \cdot \boldsymbol {E} (\boldsymbol {r} , t) = 0<br>
+$$</p>
+<p>より</p>
+<p>$$<br>
+\begin{aligned}<br>
+-\nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &amp;= -\epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2} \<br>
+\nabla^2 \boldsymbol {E} (\boldsymbol {r} , t) &amp;= \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t) }{\partial t^2}<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\therefore \nabla^2 \boldsymbol{E} (\boldsymbol {r} , t) - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} , t)}{\partial t^2} = 0<br>
+$$</p>
+<p>ここで解の形を</p>
+<p>$$<br>
+\boldsymbol {E} (\boldsymbol {r} , t) = \boldsymbol {E} (\boldsymbol {r}) f(t)<br>
+$$</p>
+<p>と分離できると仮定する。これを代入すると</p>
+<p>$$<br>
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) f(t) - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} ) f(t)}{\partial t^2} = 0<br>
+$$</p>
+<p>を得る。ここでフーリエ変換</p>
+<p>$$<br>
+F(\omega) = \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}f(t) e^{i \omega t}dt<br>
+$$</p>
+<p>を考えると</p>
+<p>$$<br>
+f(t) = \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega<br>
+$$</p>
+<p>であるので代入すると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega - \epsilon_0 \mu_0 \frac{\partial^2 \boldsymbol {E} (\boldsymbol {r} )}{\partial t^2} \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega &amp;= 0 \<br>
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) \frac{1}{\sqrt{2 \pi}}\int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega + \frac{\epsilon_0 \mu_0 \omega ^2}{\sqrt{2 \pi}} \boldsymbol {E} (\boldsymbol {r} ) \int_{- \infty}^{\infty}F(\omega) e^{-i \omega t}d \omega &amp;= 0 \<br>
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \epsilon_0 \mu_0 \omega ^2 \boldsymbol{E} (\boldsymbol {r} ) &amp;= 0 \<br>
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \frac{\omega ^2}{c^2} \boldsymbol{E} (\boldsymbol {r} ) &amp;= 0 \<br>
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \biggl (\frac{2 \pi f}{f \lambda} \biggr ) ^2 \boldsymbol{E} (\boldsymbol {r} ) &amp;= 0 \<br>
+\nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + \biggl (\frac{2 \pi}{\lambda} \biggr ) ^2 \boldsymbol{E} (\boldsymbol {r} ) &amp;= 0 \<br>
+\therefore \nabla^2 \boldsymbol{E} (\boldsymbol {r} ) + k ^2 \boldsymbol{E} (\boldsymbol {r} ) &amp;= 0<br>
+\end{aligned}<br>
+$$</p>
+<p>これはヘルムホルツ方程式と言うタイプの偏微分方程式。</p>
+<p>もし電場がスカラー場(偏光分布が直線であるので厳密にはベクトル場であるが座標系を適当に選べば電場の大きさだけを考えればいい)であれば</p>
+<p>$$<br>
+\boldsymbol{E}(\boldsymbol{r}) = u(x, y, z) e^{ikz}<br>
+$$</p>
+<p>のように書ける。これをヘルムホルツ方程式に代入すると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\Bigl (\frac{\partial ^2}{\partial ^2 x} + \frac{\partial ^2}{\partial ^2 y} + \frac{\partial ^2}{\partial ^2 z} \Bigr ) \bigl (u(x, y, z) e^{ikz} \bigr ) + k^2 u(x, y, z) e^{ikz} &amp;= 0 \<br>
+\Bigl (\frac{\partial ^2 u}{\partial ^2 x} + \frac{\partial ^2 u}{\partial ^2 y} + \frac{\partial ^2 u}{\partial ^2 z} + 2ik \frac{\partial u}{\partial z} - k^2 u + k^2 u \Bigr ) e^{ikz} &amp;= 0 \<br>
+\frac{\partial ^2 u}{\partial ^2 x} + \frac{\partial ^2 u}{\partial ^2 y} + \frac{\partial ^2 u}{\partial ^2 z} + 2ik \frac{\partial u}{\partial z} &amp;= 0<br>
+\end{aligned}<br>
+$$</p>
+<p>ここで近軸近似を考えると</p>
+<p>$$<br>
+\frac{\partial ^2 u}{\partial ^2 x} + \frac{\partial ^2 u}{\partial ^2 y} + 2ik \frac{\partial u}{\partial z} = 0<br>
+$$</p>
+<p>を得る。</p>
+<h2 id="%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E3%83%99%E3%83%83%E3%82%BB%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0">スカラーベッセルビーム</h2>
+<h1 id="%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く</h1>
+<h2 id="%E3%82%A8%E3%83%AB%E3%83%9F%E3%83%BC%E3%83%88%E5%A4%9A%E9%A0%85%E5%BC%8F">エルミート多項式</h2>
+<h2 id="%E3%83%A9%E3%83%97%E3%83%A9%E3%82%B7%E3%82%A2%E3%83%B3%E3%82%92%E8%80%83%E3%81%88%E3%82%8B">ラプラシアンを考える</h2>
+<p>演算する関数がスカラー場の時、ラプラシアンを演算するということは</p>
+<p>$$<br>
+\nabla ^2 f = \nabla \cdot (\nabla f)<br>
+$$</p>
+<p>となり勾配をとった後に発散をとることに相当する。<strong>(スカラーラプラス演算子)</strong></p>
+<p>演算する関数がベクトル場の時、ラプラシアンを演算するということは</p>
+<p>$$<br>
+\nabla ^2 \boldsymbol{f} = \nabla (\nabla \cdot \boldsymbol{f})<br>
+-\nabla \times (\nabla \times \boldsymbol{f})<br>
+$$</p>
+<p>に相当する。<strong>(ベクトルラプラス演算子)</strong></p>
+<p>今は電荷が存在しないマクスウェル方程を考えているので右辺第1項はゼロになり</p>
+<p>$$<br>
+\nabla \times \nabla \times \boldsymbol{E} -k^2 \boldsymbol{E} = 0<br>
+$$</p>
+<p>となる。解の形として</p>
+<p>$$<br>
+\boldsymbol{E}(r, z) = U(r, z) e^{ikz} \boldsymbol{e}_\phi<br>
+$$</p>
+<p>のように軸対称な解を考える。</p>
+<p>円筒座標系でのナブラは</p>
+<p>$$<br>
+\nabla = \frac{\partial}{\partial r} \boldsymbol{e}_r + \frac{1}{r} \frac{\partial}{\partial \phi} + \frac{\partial}{\partial z} \boldsymbol{e}_z<br>
+$$</p>
+<p>で<br>
+であるが今は $\phi$ が一定であるので</p>
+<p>$$<br>
+\nabla = \frac{\partial}{\partial r} \boldsymbol{e}_r + \frac{\partial}{\partial z} \boldsymbol{e}_z<br>
+$$</p>
+<p>となる。回転をとると</p>
+<p>$$<br>
+\nabla \times \boldsymbol{E} = \Bigl (\frac{1}{r} \frac{\partial}{\partial \phi} E _ z - \frac{\partial}{\partial z} E_\phi \Bigr ) \boldsymbol{e} _ r + \Bigl (\frac{\partial}{\partial z} E_r - \frac{\partial}{\partial r} E _ z \Bigr ) \boldsymbol{e} _ \phi + \frac{1}{r} \Bigl (\frac{\partial}{\partial r} (r E_\phi) - \frac{\partial}{\partial \phi} E _ r \Bigr )\boldsymbol{e} _ z<br>
+$$</p>
+<p>であるが今は</p>
+<p>$$<br>
+E _ r = E _ z = 0<br>
+$$</p>
+<p>より</p>
+<p>$$<br>
+\nabla \times \boldsymbol{E} = - \frac{\partial}{\partial z} E _ \phi \boldsymbol{e} _ r + \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \boldsymbol{e} _ z<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\nabla \times (\nabla \times \boldsymbol{E})<br>
+&amp;=<br>
+\frac{1}{r} \frac{\partial}{\partial \phi} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E _ \phi) \Bigr ) \boldsymbol{e}_r - \Bigl ( \frac{\partial ^2}{\partial z ^2} E _ \phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E _ \phi) \Bigr ) \Bigr ) \boldsymbol{e} _ \phi \newline<br>
+&amp;=<br>
+-\Bigl ( \frac{\partial ^2}{\partial z ^2} E _ \phi + \frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E _ \phi) \Bigr ) \Bigr ) \boldsymbol{e} _ \phi \newline<br>
+&amp;※ E _ \phi は \phi を含まないので第1項はゼロ<br>
+\end{aligned}<br>
+$$</p>
+<p>いったん整理すると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\nabla \times \nabla \times \boldsymbol{E} -k^2 \boldsymbol{E} &amp;= 0 \<br>
+-\frac{\partial ^2}{\partial z ^2} E_\phi -\frac{\partial}{\partial r} \Bigl ( \frac{1}{r} \frac{\partial}{\partial r} (r E_\phi) \Bigr ) -k^2 E_\phi &amp;= 0 \<br>
+\end{aligned}<br>
+$$</p>
+<p>これを計算すれば</p>
+<p>$$<br>
+\begin{aligned}<br>
+\Bigl ( -\frac{\partial ^2 U}{\partial z ^2} -2ik \frac{\partial U}{\partial z} +k^2 U +\frac{1}{r^2} U -\frac{1}{r} \frac{\partial U}{\partial r} -\frac{\partial ^2 U}{\partial r ^2} -k^2 U \Bigr ) e^{ikz} &amp;= 0 \<br>
+-\frac{\partial ^2 U}{\partial z ^2} -2ik \frac{\partial U}{\partial z} +\frac{1}{r^2} U -\frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) &amp;= 0 \<br>
+\therefore \quad \frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) -\frac{1}{r^2} U +2ik \frac{\partial U}{\partial z} +\frac{\partial ^2 U}{\partial z ^2} &amp;= 0<br>
+\end{aligned}<br>
+$$</p>
+<p>を得る。例によって近軸近似をすると左辺第4項はゼロになるので</p>
+<p>$$<br>
+\frac{1}{r} \frac{\partial}{\partial r} \Bigl ( r \frac{\partial U}{\partial r} \Bigl ) - \frac{1}{r^2} U + 2ik \frac{\partial U}{\partial z} = 0<br>
+$$</p>
+<p>を得る。</p>
+<h2 id="%E3%83%99%E3%83%83%E3%82%BB%E3%83%AB%E9%96%A2%E6%95%B0">ベッセル関数</h2>
+<h2 id="%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%99%E3%83%83%E3%82%BB%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0">ベクトルベッセルビーム</h2>
+<h1 id="%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%9B%E3%81%9A%E3%81%AB%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AE%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似せずにスカラー場のヘルムホルツ方程式を解く</h1>
+<h1 id="gouy%E4%BD%8D%E7%9B%B8%E3%81%A8%E3%81%AF">Gouy位相とは</h1>
+<h1 id="vector-beam%E3%81%AE%E8%A9%95%E4%BE%A1%E6%96%B9%E6%B3%95">Vector Beamの評価方法</h1>
+<p>ベクトルビームやビームの偏光分布を表現するときはビーム強度の画像に矢印を付け加える方法が主に使われる。（それぞれの矢印は偏光板を途中に入れることで任意の直線偏光の光強度を取得したものから描く。）</p>
+<h2 id="%E7%B4%94%E7%B2%8B%E7%8A%B6%E6%85%8B%E3%81%A8%E6%B7%B7%E5%90%88%E7%8A%B6%E6%85%8B">純粋状態と混合状態</h2>
+<p>ここでいう”混合”とは古典的な確率でいうベイズ確率である。</p>
+<h1 id="vector-beam%E3%81%A8%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92">Vector Beamと機械学習</h1>
+<h1 id="%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A7%E6%83%85%E5%A0%B1%E3%82%92%E9%80%81%E3%82%8B">ベクトルビームで情報を送る</h1>
+<h2 id="%E7%89%A9%E7%90%86%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92%E8%AC%9B%E7%BE%A9youtube">物理のための機械学習講義(Youtube)</h2>
+<h1 id="%E5%AE%9F%E9%A8%93%E6%A1%88">実験案</h1>
+<h2 id="%E3%81%9D%E3%81%AE%EF%BC%91%E6%9C%AA%E5%AE%8C%E6%88%90">その１(未完成)</h2>
+<p><img src="image-2.png" alt="Alt text"></p>
+<p>⓵,BSに入射するビーム(HWP, PBS)<br>
+レーザーから出た光のジョーンズベクトルは</p>
+<p>$$<br>
+\boldsymbol{E} =<br>
+\begin{bmatrix}<br>
+E _ {x0} e^{i\varphi_x} \newline<br>
+E _ {y0} e^{i\varphi_y}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となる。</p>
+<p>$\alpha$ だけ傾けたHWPのジョーンズ行列は</p>
+<p>$$<br>
+J _ {HWP(\alpha)} =<br>
+\begin{bmatrix}<br>
+\cos{2\alpha} &amp; \sin{2\alpha} \newline<br>
+\sin{2\alpha} &amp; -\cos{2\alpha}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となる。</p>
+<p>今はPBSをP偏光を取り出すものとして使っているのでジョーンズ行列は</p>
+<p>$$<br>
+J _ {PBS} =<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \newline<br>
+0 &amp; 0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となる。これらをかければよいので</p>
+<p>$$\begin{aligned}<br>
+\boldsymbol{E} _ {out1} &amp;=<br>
+J_{PBS} J _ {HWP(\alpha)} \boldsymbol{E} _ {in} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 &amp; 0 \newline<br>
+0 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\alpha} &amp; \sin{2\alpha} \newline<br>
+\sin{2\alpha} &amp; -\cos{2\alpha}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+E _ {x0} e^{i\varphi_x} \newline<br>
+E _ {y0} e^{i\varphi_y}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{2\alpha} &amp; \sin{2\alpha} \newline<br>
+0 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+E _ {x0} e^{i\varphi_x} \newline<br>
+E _ {y0} e^{i\varphi_y}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out1}&amp;=<br>
+\begin{bmatrix}<br>
+E _ {x0} e^{i\varphi_x} \cos{2\alpha} + E _ {y0} e^{i\varphi_y} \sin{2\alpha} \newline<br>
+0<br>
+\end{bmatrix}<br>
+\end{aligned}$$</p>
+<p>つまりここではP偏光成分の大きさを決めていている。<br>
+今は偏光を考えているのでここでは便宜上</p>
+<p>$$<br>
+\boldsymbol{E} _ {out1} =<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>とする。</p>
+<p>⓶,SLM1で反射してBSに戻ってくるビーム</p>
+<p>$$<br>
+J _ {SLM} = A_0<br>
+\begin{bmatrix}<br>
+-e^{i\delta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>であったが先ほどと同様に強度の情報はいらないので今は</p>
+<p>$$<br>
+J _ {SLM1} =<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 1} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$\delta _ 1 = p\varphi + \delta_{10} \quad (p \in \mathbb{Z})$</p>
+<p>$$<br>
+J _ {SLM2} =<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$\delta _ 2 = q\varphi + \delta _ {20} \quad (q \in \mathbb{Z})$</p>
+<ul>
+<li>$\varphi:$ 方位角(azimuthal angle)</li>
+<li>$\delta _ {10}, \delta _ {20}<img class="emoji" alt="unamused" src="data:image/png;base64,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" /> constant phase</li>
+</ul>
+<p>とする。(軸対称なベクトルビームを作りたいので変数は $\varphi$ (方位角のみ))<br>
+よってSLM1で反射してBSに戻ってくるビームは</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out2}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 1} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\boldsymbol{E} _ {out1} \newline<br>
+\boldsymbol{E} _ {out2}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 1} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out2}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 1} \newline<br>
+0<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>これも偏光だけを考えているので</p>
+<p>$$<br>
+\boldsymbol{E} _ {out2} =<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>SLM1の役割は波面変調</p>
+<p>⓷, $\beta$ 傾けたHWPを通過してSLM2で反射して先ほどと同じHWPを通過してBSに戻ってくるビーム</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out3} &amp;=<br>
+J_{HWP(-\beta)} J_{SLM2} J_ {HWP(\beta)} \boldsymbol{E} _ {out1}\<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{2\beta} &amp; -\sin{2\beta} \newline<br>
+-\sin{2\beta} &amp; -\cos{2\beta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\beta} &amp; \sin{2\beta} \newline<br>
+\sin{2\beta} &amp; -\cos{2\beta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{2\beta} &amp; -\sin{2\beta} \newline<br>
+-\sin{2\beta} &amp; -\cos{2\beta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\beta} \newline<br>
+\sin{2\beta}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{2\beta} &amp; \sin{2\beta} \newline<br>
+\sin{2\beta} &amp; -\cos{2\beta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2}\cos{2\beta} \newline<br>
+\sin{2\beta}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out3}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta} \newline<br>
+-\frac{e^{i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>⓸各SLMで反射して戻ってきたビームがBSで合わさったビーム</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out4} &amp;= \boldsymbol{E} _ {out2} + \boldsymbol{E} _ {out3} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} +<br>
+\begin{bmatrix}<br>
+-e^{-i\delta _ 2} \cos^2{2\beta} - \sin^2{2\beta} \newline<br>
+-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out4} &amp;=<br>
+\begin{bmatrix}<br>
+1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta} \newline<br>
+-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>⓹,⓸のビームが $\gamma$ 傾けたQWPで変換されたビーム</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out} &amp;=<br>
+J_{QWP(\gamma)} \boldsymbol{E} _ {out4} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+i \sin^2{\gamma} + \cos^2{\gamma} &amp; \sin{\gamma} \cos{\gamma} (1 - i) \newline<br>
+\sin{\gamma} \cos{\gamma} (1 - i) &amp; \sin^2{\gamma} + i \cos^2{\gamma}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta} \newline<br>
+-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+(1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + (-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin{\gamma} \cos{\gamma} (1 - i)) \newline<br>
+(1 -e^{-i\delta _ 2} \cos^2{2\beta} + \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + (-\frac{e^{-i\delta _ 2}}{2} \sin{4\beta} - \frac{\sin{4\beta}}{2}) (\sin^2{\gamma} + i \cos^2{\gamma})<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>天下り的に軸対称ビームを作るとき $\beta, \gamma$ をどうすればいいか考える。<br>
+例えば</p>
+<p>$$<br>
+\boldsymbol{a} = e^{i\theta}<br>
+\begin{bmatrix}<br>
+\cos{\varphi} \newline<br>
+\sin{\varphi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>というジョーンズベクトルを考えるとこれは各 $\varphi$ で半径方向を向く直線偏光を表している。今は半径:r=1とすると<br>
+偏光分布は以下のようになる。</p>
+<p>また</p>
+<p>$$<br>
+\boldsymbol{b} = e^{i\theta}<br>
+\begin{bmatrix}<br>
+-\sin{\varphi} \newline<br>
+\cos{\varphi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>というジョーンズベクトルは各 $\varphi$ で円の接線方向を向く直線偏光を表している。また、半径方向には依存性はないので偏光分布は以下のようになる。</p>
+<p>今は一つ目の偏光分布を作ることを考える。</p>
+<p>解くのは</p>
+<p>$$<br>
+\begin{aligned}<br>
+Re[(1 -e^{i\delta _ 2} \cos^2{2\beta} - \sin^2{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin4\beta}{2}(-e^{i\delta _ 2} + 1) (\sin{\gamma} \cos{\gamma} (1 - i))] &amp;= \cos{\varphi} \<br>
+Re[(1 -e^{i\delta _ 2} \cos^2{2\beta} - \sin^2{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) + \frac{\sin{4\beta}}{2}(-e^{i\delta _ 2} + 1) (\sin^2{\gamma} + i \cos^2{\gamma})] &amp;= \sin{\varphi}<br>
+\end{aligned}<br>
+$$</p>
+<p>まず</p>
+<p>$$<br>
+\delta _ 2 = 2\varphi - \frac{\pi}{2}<br>
+$$</p>
+<p>と仮定する。第一式は</p>
+<p>$$<br>
+Re[(1 - \sin{2\varphi} \cos^2{2\beta} - \sin^2{2\beta} -i\cos{2\varphi} \cos^2{2\beta}) (i\sin^2{\gamma} + \cos^2{\gamma}) + \frac{\sin{4\beta}}{2} (1 - \sin{2\varphi} - i\cos{2\varphi})]<br>
+$$</p>
+<br>
+<p><strong>[補足]</strong><br>
+もしSLM2に入射するビームのところのHWPが1回だけしか通らないとしたら</p>
+<p>$$<br>
+\boldsymbol{E} _ {out} = J_{QWP(\gamma)} [J_{SLM1} + J _ {SLM2} J_{HWP(\beta)}] J _ {PBS} J _ {HWP(\alpha)} \boldsymbol{E} _ {in}<br>
+$$</p>
+<p>となるので</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out3}<br>
+&amp;=<br>
+J_{SLM2} J_{HWP(\beta)} \boldsymbol{E} _ {out1}\<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\beta} &amp; \sin{2\beta} \newline<br>
+\sin{2\beta} &amp; -\cos{2\beta}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\beta} \newline<br>
+\sin{2\beta}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E }_ {out3} &amp;=<br>
+\begin{bmatrix}<br>
+-e^{i\delta _ 2} \cos{2\beta} \newline<br>
+\sin{2\beta}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>となり</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out4} &amp;= \boldsymbol{E} _ {out2} + \boldsymbol{E} _ {out3} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} +<br>
+\begin{bmatrix}<br>
+-e^{-i\delta_2} \cos{2\beta} \newline<br>
+\sin{2\beta}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out4} &amp;=<br>
+\begin{bmatrix}<br>
+1 -e^{-i\delta _ 2} \cos{2\beta} \newline<br>
+\sin{2\beta}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out} &amp;=<br>
+J_{QWP(\gamma)} \boldsymbol{E}_{out4} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+i \sin^2{\gamma} + \cos^2{\gamma} &amp; \sin{\gamma} \cos{\gamma} (1 - i) \newline<br>
+\sin{\gamma} \cos{\gamma} (1 - i) &amp; \sin^2{\gamma} + i \cos^2{\gamma}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 -e^{-i\delta_2} \cos{2\beta} \newline<br>
+\sin{2\beta}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+(1 -e^{-i\delta_2} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \newline<br>
+(1 -e^{-i\delta_2} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>ここで</p>
+<p>$$<br>
+\delta_2 = 2\varphi + \theta<br>
+$$</p>
+<p>とすると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\therefore \boldsymbol{E} _ {out} &amp;=<br>
+\begin{bmatrix}<br>
+(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \newline<br>
+(1 -\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} \cos{2\beta}) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+(1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (i \sin^2{\gamma} + \cos^2{\gamma}) + \sin{2\beta} (\sin{\gamma} \cos{\gamma} (1 - i)) \<br>
+(1 - \cos{2\varphi} \cos{\theta} + \sin{2\varphi} \sin{\theta} -i \cos{2\beta} (\sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta})) (\sin{\gamma} \cos{\gamma} (1 - i)) +\sin{2\beta} (\sin^2{\gamma} + i \cos^2{\gamma})<br>
+\end{bmatrix} \newline<br>
+\end{aligned}<br>
+$$</p>
+<h2 id="%E3%81%9D%E3%81%AE%EF%BC%92%E6%9C%AA%E5%AE%8C%E6%88%90">その２(未完成)</h2>
+<p>これは</p>
+<p>$$<br>
+\boldsymbol{E} _ {out} = J_{QWP(\gamma)} J _ {HWP(-\beta)} J_{SLM2(\delta _ 2)} J_{HWP(\beta)} J_{SLM1(\delta _ 1)}J _ {PBS} J _ {HWP(\alpha)} \boldsymbol{E} _ {in}<br>
+$$</p>
+<p>HWPが $\frac{\pi}{8}$, QWPが$\frac{\pi}{4}$ 傾いているとき</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; -1 \newline<br>
+-1 &amp; -1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; 1 \newline<br>
+1 &amp; -1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+i\sin{(\beta + \frac{\pi}{4})} \newline<br>
+-\cos{(\beta + \frac{\pi}{4})}<br>
+\end{bmatrix}<br>
+$$</p>
+<h2 id="%E3%81%9D%E3%81%AE%EF%BC%93%E6%9C%AA%E5%AE%8C%E6%88%90">その３(未完成)</h2>
+<p>$$<br>
+\boldsymbol{E} _ {out} = J _ {QWP(\frac{\pi}{4})} (J _ {SLM1} \boldsymbol{E} _ {1} + J _ {HWP(-\frac{\pi}{4})} J _ {SLM2} J _ {HWP(\frac{\pi}{4})} \boldsymbol{E} _ {2}) \<br>
+(\boldsymbol{E} _ {in} = \boldsymbol{E} _ {1} + \boldsymbol{E} _ {2})<br>
+$$</p>
+<p>今はPBSによって</p>
+<p>$$<br>
+\boldsymbol {E} _ {in} = \boldsymbol {E} _ {1} + \boldsymbol {E} _ {2} =<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
++<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>と分けられる。よって</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol {E} _ {out}<br>
+&amp;=<br>
+J _ {QWP(\frac{\pi}{4})} (J _ {SLM1}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
++J_{HWP(-\frac{\pi}{4})} J _ {SLM2} J _ {HWP(\frac{\pi}{4})}<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1<br>
+\end{bmatrix}<br>
+) \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix} \biggl(<br>
+\begin{bmatrix}<br>
+e^{i\delta _ 1} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
++\begin{bmatrix}<br>
+0 &amp; -1 \newline<br>
+-1 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\delta _ 2} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+0 &amp; 1 \newline<br>
+1 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1<br>
+\end{bmatrix} \biggr) \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix} \biggl(<br>
+\begin{bmatrix}<br>
+e^{i\delta _ 1} \newline<br>
+0<br>
+\end{bmatrix}<br>
++\begin{bmatrix}<br>
+0 &amp; -1 \newline<br>
+-1 &amp; 0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\delta _ 2} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} \biggr) \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix} \biggl(<br>
+\begin{bmatrix}<br>
+e^{i\delta _ 1} \newline<br>
+0<br>
+\end{bmatrix}<br>
++\begin{bmatrix}<br>
+0 &amp; -1 \newline<br>
+-1 &amp; -0<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\delta _ 2} \newline<br>
+0<br>
+\end{bmatrix}<br>
+\biggr)<br>
+\newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix} \biggl(<br>
+e^{i\delta _ 1}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
++e^{i\delta _ 2}<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1<br>
+\end{bmatrix}<br>
+\biggr)<br>
+\newline<br>
+&amp;=<br>
+e^{i\delta _ 1}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++e^{i\delta _ 2}<br>
+\begin{bmatrix}<br>
+-i \newline<br>
+1<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out} &amp;=<br>
+e^{i\delta _ 1}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++e^{i\delta _ 2}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+J _ {SLM1}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+= \begin{bmatrix}<br>
+\cos{\phi} + i \sin{\phi} \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+\frac{1}{\sqrt{2}}<br>
+\begin{bmatrix}<br>
+1 + i \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+\begin{bmatrix}<br>
+i \newline<br>
+0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$$<br>
+J _ {SLM2}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+= \begin{bmatrix}<br>
+\cos{\phi} - i \sin{\phi} \newline<br>
+0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>の $x, y$ 成分を入れ替えたもの</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+\cos{\phi} - i \sin{\phi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$$<br>
+0 \newline<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1<br>
+\end{bmatrix} \newline<br>
+45 \newline<br>
+\frac{1}{\sqrt{2}}<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1 + i<br>
+\end{bmatrix} \newline<br>
+90 \newline<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+i<br>
+\end{bmatrix}<br>
+$$</p>
+<p>足し合わせて</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+\cos{\phi} + i \sin{\phi} \newline<br>
+\cos{\phi} - i \sin{\phi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>これがQWPで変換されると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{\phi} + i \sin{\phi} \newline<br>
+\cos{\phi} - i \sin{\phi}<br>
+\end{bmatrix}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\phi} - \sin{\phi} + i(\sin{\phi} - \cos{\phi}) \newline<br>
+\cos{\phi} + \sin{\phi} - i(\cos{\phi} + \sin{\phi})<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{\phi} - \sin{\phi} \newline<br>
+\cos{\phi} + \sin{\phi}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\bigl (\phi + \frac{\pi}{4} \bigr )} \newline<br>
+\cos{\bigl ( \phi - \frac{\pi}{4} \bigr )}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\phi} \newline<br>
+\sin{\phi}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>このように位相変調された左右円偏光の重ね合わせで表現される。</p>
+<p>ここで</p>
+<p>$$<br>
+\begin{aligned}<br>
+\delta_{1} &amp;= \phi + \phi_{0} \<br>
+\delta_{2} &amp;= -(\phi + \phi_{0})<br>
+\end{aligned}<br>
+$$</p>
+<p>という位相をSLMに表示させることを考える。<br>
+例えば</p>
+<p>$$<br>
+\begin{aligned}<br>
+\delta _ 1 &amp;= \phi \newline<br>
+\delta _ 2 &amp;= -\phi<br>
+\end{aligned}<br>
+$$</p>
+<p>とすると</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+e^{i \phi} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out} &amp;= e^{i\phi}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++e^{-i\phi}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix} \newline<br>
+&amp;= (\cos{\phi} + i\sin{\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++(\cos{\phi} - i\sin{\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\phi} + i\sin{\phi} \newline<br>
+\sin{\phi} - i\cos{\phi}<br>
+\end{bmatrix}+<br>
+\begin{bmatrix}<br>
+\cos{\phi} - i\sin{\phi} \newline<br>
+\sin{\phi} + i\cos{\phi}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+2\cos{\phi} \newline<br>
+2\sin{\phi}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out} &amp; \propto<br>
+\begin{bmatrix}<br>
+\cos{\phi} \newline<br>
+\sin{\phi}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>これは各 $\phi$ でその点と原点を結ぶ方向の直線偏光を表している。<br>
+つまり中心から外側に向かうような偏光分布になる。</p>
+<p>SLM1</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+\cos{\phi} \cos{t} - \sin{\phi} \sin{t} \newline<br>
+\sin{\phi} \cos{t} + \cos{\phi} \sin{t}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E} _ {out}$ をプロットしたもの</p>
+<p>次に</p>
+<p>$$<br>
+\begin{aligned}<br>
+\delta_1 &amp;= \phi + \frac{\pi}{2} \newline<br>
+\delta_2 &amp;= -(\phi + \frac{\pi}{2})<br>
+\end{aligned}<br>
+$$</p>
+<p>とすると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out} &amp;= e^{i(\phi + \frac{\pi}{2})}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++e^{-i(\phi + \frac{\pi}{2})}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix} \newline<br>
+&amp;= \Bigl( \cos{(\phi + \frac{\pi}{2})} + i\sin{(\phi + \frac{\pi}{2})} \Bigr)<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++\Bigl(\cos{(\phi + \frac{\pi}{2})} - i\sin{(\phi + \frac{\pi}{2})} \Bigr)<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix} \newline<br>
+&amp;= \Bigl( -\sin{\phi} + i\cos{\phi} \Bigr)<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++\Bigl(-\sin{\phi} - i\cos{\phi} \Bigr)<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-\sin{\phi} + i\cos{\phi} \newline<br>
+\cos{\phi} + i\sin{\phi}<br>
+\end{bmatrix}+<br>
+\begin{bmatrix}<br>
+-\sin{\phi} - i\cos{\phi} \newline<br>
+\cos{\phi} - i\sin{\phi}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+-2\sin{\phi} \newline<br>
+2\cos{\phi}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out} &amp; \propto<br>
+\begin{bmatrix}<br>
+\sin{\phi} \newline<br>
+-\cos{\phi}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>これは各 $\phi$ で円の接線方向を向いた直線偏光を表している。確かに</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+\cos{\phi} \newline<br>
+\sin{\phi}<br>
+\end{bmatrix} \cdot<br>
+\begin{bmatrix}<br>
+\sin{\phi} \newline<br>
+-\cos{\phi}<br>
+\end{bmatrix}<br>
+= 0<br>
+$$</p>
+<p>直交している。</p>
+<p>$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E} _ {out}$ をプロットしたもの</p>
+<p>最後に</p>
+<p>$$<br>
+\begin{aligned}<br>
+\delta _ 1 &amp;= 2 \phi \newline<br>
+\delta _ 2 &amp;= -2 \phi<br>
+\end{aligned}<br>
+$$</p>
+<p>を考える。</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out} &amp;= e^{i2\phi}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++e^{-i2\phi}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix} \newline<br>
+&amp;= (\cos{2\phi} + i\sin{2\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++(\cos{2\phi} - i\sin{2\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{2\phi} + i\sin{2\phi} \newline<br>
+\sin{2\phi} - i\cos{2\phi}<br>
+\end{bmatrix}+<br>
+\begin{bmatrix}<br>
+\cos{2\phi} - i\sin{2\phi} \newline<br>
+\sin{2\phi} + i\cos{2\phi}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+2\cos{2\phi} \newline<br>
+2\sin{2\phi}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} _ {out} &amp;\propto<br>
+\begin{bmatrix}<br>
+\cos{2\phi} \newline<br>
+\sin{2\phi}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>$(\cos{\phi}, \sin{\phi})$ の点でのベクトル $\boldsymbol{E}_{out}$ をプロットしたもの</p>
+<h2 id="%E3%81%9D%E3%81%AE4">その4</h2>
+<!-- $$
+\begin{bmatrix}
+i\cos{\beta}-\sin{\beta}+1 \newline
+\cos{\beta}+i\sin{\beta}+i
+\end{bmatrix}
+$$
+
+$$
+\begin{aligned}
+\boldsymbol{E} _ {out}
+&= 
+\begin{bmatrix}
+1+i & 1-i \newline
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\beta} & 0 \newline
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1 \newline
+1 & -1
+\end{bmatrix}
+\begin{bmatrix}
+e^{i \alpha} & 0 \newline
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \newline
+0
+\end{bmatrix} \newline
+&=
+\begin{bmatrix}
+1+i & 1-i \newline
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\beta} & 0 \newline
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1 \newline
+1 & -1
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\alpha} \newline
+0
+\end{bmatrix} \newline
+&=
+\begin{bmatrix}
+1+i & 1-i \newline
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\beta} & 0 \newline
+0 & 1
+\end{bmatrix}
+e^{i\alpha}
+\begin{bmatrix}
+1 \newline
+1
+\end{bmatrix} \newline
+&=
+e^{i\alpha}
+\begin{bmatrix}
+1+i & 1-i \newline
+1-i & 1+i
+\end{bmatrix}
+\begin{bmatrix}
+e^{i\beta} \newline
+1
+\end{bmatrix} \newline
+&= 
+e^{i\alpha}
+\begin{bmatrix}
+e^{i\frac{\pi}{4}}e^{i\beta}+e^{-i\frac{\pi}{4}} \newline
+e^{-i\frac{\pi}{4}}e^{i\beta}+e^{i\frac{\pi}{4}}
+\end{bmatrix} \newline
+&=
+\begin{bmatrix}
+i \cos{\beta} - \sin{\beta} + 1 \newline
+\cos{\beta} + i\sin{\beta} + i
+\end{bmatrix}
+\end{aligned}
+$$ -->
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1+i &amp; 1-i \newline<br>
+1-i &amp; 1+i<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; 1 \newline<br>
+1 &amp; -1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i \alpha} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1+i &amp; 1-i \newline<br>
+1-i &amp; 1+i<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; 1 \newline<br>
+1 &amp; -1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\alpha} \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1+i &amp; 1-i \newline<br>
+1-i &amp; 1+i<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+1<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+1+i &amp; 1-i \newline<br>
+1-i &amp; 1+i<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} \newline<br>
+1<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+e^{i\frac{\pi}{4}}e^{i\beta}+e^{-i\frac{\pi}{4}} \newline<br>
+e^{-i\frac{\pi}{4}}e^{i\beta}+e^{i\frac{\pi}{4}}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+1<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<!-- \begin{bmatrix}
+i \cos{\beta} - \sin{\beta} + 1 \newline
+\cos{\beta} + i\sin{\beta} + i
+\end{bmatrix} -->
+<h2 id="%E3%81%9D%E3%81%AE5">その5</h2>
+<!-- ![Alt text](<shapes at 24-01-14 22.05.05.png>) -->
+<p>上の光学系で得られるジョーンズベクトルは</p>
+<p>$$<br>
+\sin{x} + \cos{x}<br>
+$$</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+1 - i \cos{2\theta _ Q} &amp; - i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} &amp;=<br>
+\begin{bmatrix}<br>
+1 -i \cos{2\theta _ Q} &amp; -i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\theta _ H} &amp; \sin{2\theta _ H} \newline<br>
+\sin{2\theta _ H} &amp; -\cos{2\theta _ H}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\alpha} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 - i \cos{2\theta _ Q} &amp; - i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\theta _ H} &amp; \sin{2\theta _ H} \newline<br>
+\sin{2\theta _ H} &amp; - \cos{2\theta _ H}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\alpha} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 - i \cos{2\theta _ Q} &amp; - i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\theta _ H} &amp; \sin{2\theta _ H} \newline<br>
+\sin{2\theta _ H} &amp; - \cos{2\theta _ H}<br>
+\end{bmatrix}<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>aa</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 - i \cos{2\theta _ Q} &amp; - i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\theta _ H} &amp; \sin{2\theta _ H} \newline<br>
+\sin{2\theta _ H} &amp; - \cos{2\theta _ H}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\alpha} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1 - i \cos{2\theta _ Q} &amp; - i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\theta _ H} &amp; \sin{2\theta _ H} \newline<br>
+\sin{2\theta _ H} &amp; - \cos{2\theta _ H}<br>
+\end{bmatrix}<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+1 - i \cos{2\theta _ Q} &amp; - i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta} &amp; 0 \newline<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+\cos{2\theta _ H} \newline<br>
+\sin{2\theta _ H}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+1 - i \cos{2\theta _ Q} &amp; - i \sin{2\theta _ Q} \newline<br>
+-i \sin{2\theta _ Q} &amp; 1 + i \cos{2\theta _ Q}<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{i\beta}\cos{2\theta _ H} \newline<br>
+\sin{2\theta _ H}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E}<br>
+&amp;=<br>
+e^{i\alpha}<br>
+\begin{bmatrix}<br>
+e^{i\beta}(1 - i \cos{2\theta _ Q})\cos{2\theta _ H} - i \sin{2\theta _ Q}\sin{2\theta _ H} \newline<br>
+-i e^{i\beta}\sin{2\theta _ Q}\cos{2\theta _ H} + (1 + i \cos{2\theta _ Q})\sin{2\theta _ H}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>となる。</p>
+<p>例えば</p>
+<p>$$<br>
+\theta _ H = \frac{\pi}{8}, \theta _ Q = \frac{\pi}{4}<br>
+$$</p>
+<p>のとき、ジョーンズベクトルは</p>
+<p>$$<br>
+\boldsymbol{E} = e^{i\alpha}<br>
+\begin{bmatrix}<br>
+e^{i\beta}-i \newline<br>
+-ie^{i\beta}+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となる。少し変形すると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}<br>
+&amp;=<br>
+e^{i\alpha}e^{i\frac{\beta}{2}}<br>
+\begin{bmatrix}<br>
+e^{i\frac{\beta}{2}}+e^{-i\frac{\beta+\pi}{2}} \newline<br>
+e^{i\frac{\beta-\pi}{2}}+e^{-i\frac{\beta}{2}}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}e^{i\frac{\beta}{2}}<br>
+\begin{bmatrix}<br>
+\cos{\frac{\beta}{2}}+i\sin{\frac{\beta}{2}}+\cos{\frac{\beta+\pi}{2}}-i\sin{\frac{\beta+\pi}{2}} \newline<br>
+\cos{\frac{\beta-\pi}{2}}+i\sin\frac{\beta-\pi}{2}+\cos{\frac{\beta}{2}}-i\sin{\frac{\beta}{2}}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}e^{i\frac{\beta}{2}}<br>
+\begin{bmatrix}<br>
+\cos{\frac{\beta}{2}}+i\sin{\frac{\beta}{2}}-\sin{\frac{\beta}{2}}-i\cos{\frac{\beta}{2}} \newline<br>
+\sin{\frac{\beta}{2}}-i\cos\frac{\beta}{2}+\cos{\frac{\beta}{2}}-i\sin{\frac{\beta}{2}}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}e^{i\frac{\beta}{2}}<br>
+\begin{bmatrix}<br>
+(1-i)\cos{\frac{\beta}{2}}-(1-i)\sin{\frac{\beta}{2}} \newline<br>
+(1-i)\cos{\frac{\beta}{2}}+(1-i)\sin{\frac{\beta}{2}}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+e^{i\alpha}e^{i\frac{\beta}{2}}(1-i)<br>
+\begin{bmatrix}<br>
+\cos{\frac{\beta}{2}}-\sin{\frac{\beta}{2}} \newline<br>
+\cos{\frac{\beta}{2}}+\sin{\frac{\beta}{2}}<br>
+\end{bmatrix} \newline<br>
+\therefore \boldsymbol{E} &amp;=<br>
+e^{i\alpha}e^{i\frac{\beta}{2}}(1-i)<br>
+\begin{bmatrix}<br>
+\cos({\frac{\beta}{2}+\frac{\pi}{4}}) \newline<br>
+\sin({\frac{\beta}{2}+\frac{\pi}{4}})<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>を得る。</p>
+<p>もし</p>
+<p>$$<br>
+\beta=2\phi-\frac{\pi}{2}<br>
+$$</p>
+<p>なら</p>
+<p>$$<br>
+\boldsymbol{E} =<br>
+\begin{bmatrix}<br>
+\cos{\phi} \newline<br>
+\sin{\phi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となりこれは径方向偏光ビームを表している。</p>
+<p>それぞれの偏光成分を取りたい</p>
+<p>１，垂直、水平、斜め　それぞれの偏光成分は直線偏光子をかませればいい</p>
+<p>２，円偏光をどうやって取り出すか</p>
+<p>QWPに入る前のビームは</p>
+<p>$$<br>
+\begin{aligned}<br>
+\begin{bmatrix}<br>
+e^{i(2\phi-\frac{\pi}{2})} \newline<br>
+1<br>
+\end{bmatrix}<br>
+&amp; \propto<br>
+\begin{bmatrix}<br>
+e^{i(\phi-\frac{\pi}{4})} \newline<br>
+e^{-i(\phi-\frac{\pi}{4})}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+e^{i\phi} \newline<br>
+ie^{-i\phi}<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\phi}+i\sin{\phi} \newline<br>
+i(\cos{\phi}-i\sin{\phi})<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>となるがこれを水平、垂直偏光の重ね合わせでかくと</p>
+<p>$$<br>
+(\cos{\phi}+i\sin{\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
++<br>
+i(\cos{\phi}-i\sin{\phi})<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>これが$\frac{\pi}{4}$傾けたQWPに入ると</p>
+<p>$$<br>
+\begin{aligned}<br>
+E_{out}<br>
+&amp;=<br>
+(\cos{\phi}+i\sin{\phi})<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+0<br>
+\end{bmatrix}<br>
++<br>
+\begin{bmatrix}<br>
+1 &amp; -i \newline<br>
+-i &amp; 1<br>
+\end{bmatrix}<br>
+i(\cos{\phi}-i\sin{\phi})<br>
+\begin{bmatrix}<br>
+0 \newline<br>
+1<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+(\cos{\phi}+i\sin{\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix}<br>
++<br>
+i(\cos{\phi}-i\sin{\phi})<br>
+\begin{bmatrix}<br>
+-i \newline<br>
+1<br>
+\end{bmatrix} \newline<br>
+&amp;=<br>
+(\cos{\phi}-i\sin{\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+i<br>
+\end{bmatrix}<br>
++<br>
+(\cos{\phi}+i\sin{\phi})<br>
+\begin{bmatrix}<br>
+1 \newline<br>
+-i<br>
+\end{bmatrix} \newline<br>
+&amp; \propto<br>
+\begin{bmatrix}<br>
+\cos{\phi} \newline<br>
+\sin{\phi}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>つまりQWPで変換される前のビームの水平偏光成分が最終的に得られるベクトルビームの左回り円偏光成分に、垂直成分が右回り円偏光成分に対応している</p>
+<p>また</p>
+<p>$$<br>
+\beta=2\phi+\frac{\pi}{2}<br>
+$$</p>
+<p>なら</p>
+<p>$$<br>
+\boldsymbol{E} =<br>
+\begin{bmatrix}<br>
+-\sin{\phi} \newline<br>
+\cos{\phi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>となり、これは方位角方向偏光ビームを表している。</p>
+<p>またこれらのビームを作るためにSLMに表示させたホログラムの位相分布は渦が2回繰り返して45°傾いてるものになる。</p>
+<p>角度を代入する前のジョーンズ行列を詳しく見ていく。</p>
+<p>任意のジョーンズベクトルは直交する2つのジョーンズベクトルで展開できる。その2つのジョーンズベクトルの選び方は無数にあり、ポアンカレ球上で真反対に位置する偏光を表すジョーンズベクトル(北極と南極、日本とブラジル、みたいな)がそのペアになる。</p>
+<h1 id="%E8%AB%96%E6%96%87">論文</h1>
+<h2 id="slm%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%82%92%E4%BD%9C%E3%82%8B">SLM使ってベクトルビームを作る</h2>
+<h3 id="%22polarization-distribution-control-of-parallel-femtosecond-pulses-with-spatial-light-modulators%22">&quot;Polarization distribution control of parallel femtosecond pulses with spatial light modulators&quot;</h3>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E} _ {out} &amp;=<br>
+J_{QWP(\frac{\pi}{4})} J_{SLM2(\beta)} J_{HWP(\frac{\pi}{8})} J_{SLM1(\alpha)} \boldsymbol{E}<em>{in}<br>
+\<br>
+&amp;\propto<br>
+\begin{bmatrix}<br>
+1+i &amp; 1-i \<br>
+1-i &amp; 1+i<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{-i\beta} &amp; 0 \<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 &amp; 1 \<br>
+1 &amp; -1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \<br>
+0<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1+i &amp; 1-i \<br>
+1-i &amp; 1+i<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{-i\beta} &amp; 0 \<br>
+0 &amp; 1<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+1 \<br>
+1<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+1+i &amp; 1-i \<br>
+1-i &amp; 1+i<br>
+\end{bmatrix}<br>
+\begin{bmatrix}<br>
+e^{-i\beta} \<br>
+1<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+e^{-i\beta}(1+i) + 1-i \<br>
+e^{-i\beta}(1-i) + 1+i<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{\beta} + \sin{\beta} + 1 \<br>
+\cos{\beta} - \sin{\beta} + 1<br>
+\end{bmatrix}<br>
++i<br>
+\begin{bmatrix}<br>
+\cos{\beta} - \sin{\beta} - 1 \<br>
+-(\cos{\beta} + \sin{\beta} - 1)<br>
+\end{bmatrix} \<br>
+\therefore \boldsymbol{E}</em>{out} &amp;=<br>
+\begin{bmatrix}<br>
+\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} \<br>
+\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}}<br>
+\end{bmatrix}<br>
++i<br>
+\begin{bmatrix}<br>
+\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}} - 2 \<br>
+-(\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} - 2)<br>
+\end{bmatrix} \<br>
+\therefore Re(\boldsymbol{E}_{out}) &amp;=<br>
+\begin{bmatrix}<br>
+\cos{\frac{\beta}{2}} + \sin{\frac{\beta}{2}} \<br>
+\cos{\frac{\beta}{2}} - \sin{\frac{\beta}{2}}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>$$<br>
+\beta = 2\varphi + \theta<br>
+$$</p>
+<p>とすると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}<em>{out} &amp;\propto<br>
+\begin{bmatrix}<br>
+\cos{(\frac{2\varphi + \theta}{2})} + \sin{(\frac{2\varphi + \theta}{2})} \<br>
+\cos{(\frac{2\varphi + \theta}{2})} - \sin{(\frac{2\varphi + \theta}{2})}<br>
+\end{bmatrix} \<br>
+&amp;=<br>
+\begin{bmatrix}<br>
+\cos{(\varphi + \frac{\theta}{2})} + \sin{(\varphi + \frac{\theta}{2})} \<br>
+\cos{(\varphi + \frac{\theta}{2})} - \sin{(\varphi + \frac{\theta}{2})}<br>
+\end{bmatrix} \<br>
+\therefore \boldsymbol{E}</em>{out} &amp;\propto<br>
+\begin{bmatrix}<br>
+\cos{\varphi}(\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}) + \sin{\varphi}(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}) \<br>
+\cos{\varphi}(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}) - \sin{\varphi}(\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}})<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>もし$\theta = -\frac{\pi}{2}$なら</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}_{out} &amp;\propto<br>
+\begin{bmatrix}<br>
+\cos{\varphi}(\cos{\frac{\pi}{4}} - \sin{\frac{\pi}{4}}) + \sin{\varphi}(\cos{\frac{\pi}{4}} + \sin{\frac{\pi}{4}}) \<br>
+\cos{\varphi}(\cos{\frac{\pi}{4}} + \sin{\frac{\pi}{4}}) - \sin{\varphi}(\cos{\frac{\pi}{4}} - \sin{\frac{\pi}{4}})<br>
+\end{bmatrix} \<br>
+&amp;\propto<br>
+\begin{bmatrix}<br>
+\sin{\varphi} \<br>
+\cos{\varphi}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<h3 id="%22holographic-femtosecond-laser-manipulation-for-advanced-material-processing%22">&quot;Holographic femtosecond laser manipulation for advanced material processing&quot;</h3>
+<p>$$<br>
+\boldsymbol{E}_{out} \propto<br>
+\begin{bmatrix}<br>
+-i\cos{\beta} + \sin{\beta} + 1 \<br>
+-\cos{\beta} -i\sin{\beta} + i<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$\beta = \varphi + \theta$とすると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}_{out} &amp;\propto<br>
+\begin{bmatrix}<br>
+-i\cos{(\varphi + \theta)} + \sin{(\varphi + \theta)} + 1 \<br>
+-\cos{(\varphi + \theta)} -i\sin{(\varphi + \theta)} + i<br>
+\end{bmatrix} \<br>
+&amp;\propto<br>
+\begin{bmatrix}<br>
+-i(\cos{\varphi} \cos{\theta} -\sin{\varphi} \sin{\theta}) + \sin{\varphi} \cos{\theta} + \cos{\varphi} \sin{\theta} + 1 \<br>
+-(\cos{\varphi} \cos{\theta} -\sin{\varphi} \sin{\theta}) -i(\sin{\varphi} \cos{\theta} +\cos{\varphi} \sin{\theta})+ i<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>$\beta = 2\varphi + \theta$とすると</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}_{out} &amp;\propto<br>
+\begin{bmatrix}<br>
+-i\cos{(2\varphi + \theta)} + \sin{(2\varphi + \theta)} + 1 \<br>
+-\cos{(2\varphi + \theta)} -i\sin{(2\varphi + \theta)} + i<br>
+\end{bmatrix} \<br>
+&amp;\propto<br>
+\begin{bmatrix}<br>
+-i(\cos{2\varphi} \cos{\theta} -\sin{2\varphi} \sin{\theta}) + \sin{2\varphi} \cos{\theta} + \cos{2\varphi} \sin{\theta} + 1 \<br>
+-(\cos{2\varphi} \cos{\theta} -\sin{2\varphi} \sin{\theta}) -i(\sin{2\varphi} \cos{\theta} +\cos{2\varphi} \sin{\theta})+ i<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>ここで$\theta = \frac{\pi}{2}$とすると</p>
+<p>$$<br>
+\boldsymbol{E}_{out} \propto<br>
+\begin{bmatrix}<br>
+i\sin{2\varphi} + \cos{2\varphi} +1 \<br>
+\sin{2\varphi} - i\cos{2\varphi} + i<br>
+\end{bmatrix}<br>
+$$</p>
+<p>これは</p>
+<p>を表す。</p>
+<h3 id="%22flexible-generation-of-the-generalized-vector-vortex-beams%222021">&quot;Flexible generation of the generalized vector vortex beams&quot;(2021)</h3>
+<p><img src="image-5.png" alt="Alt text"></p>
+<p>得られるビームのジョーンズベクトルは以下</p>
+<p>$$<br>
+\boldsymbol{E} =<br>
+e^{iA\varphi}[<br>
+\cos{2\alpha}<br>
+e^{-i(B\varphi+C)}<br>
+\boldsymbol{S_1}(2\gamma, 2(2\beta-\gamma))<br>
++\sin{2\alpha}<br>
+e^{i(B\varphi+C)}<br>
+\boldsymbol{S_2}(2\gamma+\pi, -2(2\beta-\gamma))]<br>
+$$</p>
+<p>ただし2つのベクトル$\boldsymbol{S}$は</p>
+<p>$$\boldsymbol{S}(2\psi, 2\chi) =<br>
+\begin{bmatrix}<br>
+\frac{1}{\sqrt{2}}[\sin{(\chi + \frac{\pi}{4})} e^{-i\psi} + \cos{(\chi + \frac{\pi}{4}) e^{i\psi}}] \<br>
+\frac{i}{\sqrt{2}}[\sin{(\chi + \frac{\pi}{4})} e^{-i\psi} - \cos{(\chi + \frac{\pi}{4}) e^{i\psi}}]<br>
+\end{bmatrix}<br>
+$$</p>
+<p>SLMに表示させるホログラムは</p>
+<ul>
+<li>SLM1: $\delta_1 = p\varphi + \delta_{10}$</li>
+<li>SLM2: $\delta_2 = q\varphi + \delta_{20}$</li>
+</ul>
+<p>パラメーターは</p>
+<ul>
+<li>$\alpha$:1つ目の半波長板を傾ける角度</li>
+<li>$\beta$:2つ目の半波長板を傾ける角度</li>
+<li>$\gamma$:4分の1波長板を傾ける角度</li>
+<li>$\boldsymbol{S_i}(i \in 1, 2)$は互いに直交するベクトル、<strong>波長板を傾けるということは直交基底を選ぶことに対応する。</strong></li>
+<li>$A = p + \frac{q}{2}$</li>
+<li>$B = -\frac{q}{2}$</li>
+<li>$C = -\frac{2\delta_{20} + \pi}{4}$</li>
+</ul>
+<p>ここで $\alpha = \frac{\pi}{8}, \beta = 0, \gamma = -\frac{\pi}{4}$ とすると</p>
+<p>$$<br>
+\boldsymbol{S_1}(-\frac{\pi}{2}, \frac{\pi}{2}) \propto<br>
+\begin{bmatrix}<br>
+1 \<br>
+-i<br>
+\end{bmatrix}(右回り円偏光)<br>
+$$</p>
+<p>$$<br>
+\boldsymbol{S_2}(\frac{\pi}{2}, -\frac{\pi}{2}) \propto<br>
+\begin{bmatrix}<br>
+1 \<br>
+i<br>
+\end{bmatrix}(左回り円偏光)<br>
+$$</p>
+<p>となる。<br>
+さらに $p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$<br>
+とすると<br>
+$A = 2, B = -1, C = 0$<br>
+となるので代入すると</p>
+<p>$$<br>
+\boldsymbol{E} =<br>
+\sqrt{2} e^{i2\varphi}<br>
+\begin{bmatrix}<br>
+\cos{\varphi} \<br>
+\sin{\varphi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$$<br>
+Re(\boldsymbol{E}) = \sqrt{2} \cos{2\varphi}<br>
+\begin{bmatrix}<br>
+\cos{\varphi}\<br>
+\sin{\varphi}<br>
+\end{bmatrix}<br>
+\propto<br>
+\begin{bmatrix}<br>
+\cos{\varphi}\<br>
+\sin{\varphi}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>この偏光分布が時々刻々と変化していくつまりこれに位相項 $e^{iX}$ をかけて実部を取ったものの形が偏光分布</p>
+<p>たしかに種々の $\varphi$ に値を代入してみると</p>
+<p>$$<br>
+\begin{aligned}<br>
+Re(\boldsymbol{E_{\varphi=0}}) &amp;=<br>
+\begin{bmatrix}<br>
+1 \<br>
+0<br>
+\end{bmatrix} (水平偏光)\<br>
+Re(\boldsymbol{E_{\varphi=\frac{\pi}{4}}}) &amp;\propto<br>
+\begin{bmatrix}<br>
+1 \<br>
+1<br>
+\end{bmatrix} (\frac{\pi}{4}傾いた直線偏光)\<br>
+Re(\boldsymbol{E_{\varphi=\frac{\pi}{2}}}) &amp;=<br>
+\begin{bmatrix}<br>
+0 \<br>
+1<br>
+\end{bmatrix} (垂直偏光) \<br>
+\end{aligned}<br>
+$$</p>
+<p>今は偏光分布が中心からの距離に依存しないので結局</p>
+<p>のような偏光分布が得られる。</p>
+<p>次にパラメーターを変えて同じように考えてみる。<br>
+今度は $\alpha = \frac{\pi}{8}, \beta = -\frac{\pi}{4}, \gamma = -\frac{3\pi}{16}$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{S_1}(-\frac{\pi}{2}, -\frac{\pi}{4}) &amp;\propto<br>
+\begin{bmatrix}<br>
+\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} + \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}} \<br>
+i[\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} - \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}]<br>
+\end{bmatrix}<br>
+\<br>
+\boldsymbol{S_2}(\frac{\pi}{2}, \frac{\pi}{4}) &amp;\propto<br>
+\begin{bmatrix}<br>
+\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} + \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}} \<br>
+i[\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} - \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}]<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>こっちは先ほどと同じで $p = 1, q = 2, \delta_{20} = -\frac{\pi}{2}$<br>
+ゆえ<br>
+$A = 2, B = -1, C = 0$ を代入</p>
+<p>$$<br>
+\boldsymbol{E} \propto<br>
+\begin{bmatrix}<br>
+e^{i\varphi} [\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} + \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}] + e^{-i\varphi} [\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} + \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}] \<br>
+i (e^{i\varphi} [\sin{\frac{\pi}{8} e^{i\frac{\pi}{4}}} - \cos{\frac{\pi}{8}} e^{-i\frac{\pi}{4}}] + e^{-i\varphi} [\sin{\frac{3\pi}{8} e^{-i\frac{\pi}{4}}} - \cos{\frac{3\pi}{8}} e^{i\frac{\pi}{4}}])<br>
+\end{bmatrix}<br>
+$$</p>
+<p>$$<br>
+\begin{aligned}<br>
+\boldsymbol{E}_{\varphi = \frac{\pi}{4}} &amp;\propto<br>
+\begin{bmatrix}<br>
+e^{i\frac{\pi}{2}} \sin{\frac{\pi}{8}} + e^{-\frac{i\pi}{2}} \sin{\frac{3\pi}{8}} + \cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}}\<br>
+i[e^{i\frac{\pi}{2}} \sin{\frac{\pi}{8}} + e^{-\frac{i\pi}{2}} \sin{\frac{3\pi}{8}} - \cos{\frac{\pi}{8}} - \cos{\frac{3\pi}{8}}]<br>
+\end{bmatrix} \<br>
+&amp;\propto<br>
+\begin{bmatrix}<br>
+\cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}} + i[\sin{\frac{\pi}{8}} - \sin{\frac{3\pi}{8}}]\<br>
+\sin{\frac{3\pi}{8}} - \sin{\frac{\pi}{8}} - i[\cos{\frac{\pi}{8}} + \cos{\frac{3\pi}{8}}]<br>
+\end{bmatrix} \<br>
+&amp;\propto<br>
+\begin{bmatrix}<br>
+1.3 - i0.54 \<br>
+0.54 - i1.3<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>ここで位相項 $e^{i\theta}$ をかけて実部を取って $\theta$を $0\rightarrow 2\pi$ と変化させたときの軌跡をプロットすると</p>
+<p>となりこのように傾いた左回りの楕円偏光が得られる。<br>
+論文中では</p>
+<p>であり確かに $\varphi = \frac{\pi}{4}$ の位置ではこのような楕円になっている。</p>
+<h3 id="%22generation-of-arbitrary-vector-fields-based-on-a-pair-of-orthogonal-elliptically-polarized-base-vectors%22">&quot;Generation of arbitrary vector fields based on a pair of orthogonal elliptically polarized base vectors&quot;</h3>
+<h3 id="%22a-new-type-of-vector-fields-with-hybrid-states-of-polarization%22">&quot;A new type of vector fields with hybrid states of polarization&quot;</h3>
+<h3 id="%22efficient-generation-of-vector-beams-by-calibrating-the-phase-response-of-a-spatial-light-modulator-%22">&quot;Efficient generation of vector beams by calibrating the phase response of a spatial light modulator &quot;</h3>
+<h3 id="%22flexible-method-for-generating-arbitrary-vector-beams-based-on-modified-off-axis-interference-type-hologram-encoding%22">&quot;Flexible Method for Generating Arbitrary Vector Beams Based on Modified Off-Axis Interference-Type Hologram Encoding&quot;</h3>
+<h3 id="%22cylindrical-vector-beam-multiplexer-demultiplexer-using-off-axis-polarization-control%22">&quot;Cylindrical vector beam multiplexer demultiplexer using off-axis polarization control&quot;</h3>
+<h3 id="%22efficient-on-axis-slm-engineering-of-optical-vector-modes%22">&quot;Efficient on-axis SLM engineering of optical vector modes&quot;</h3>
+<h3 id="%22generation-of-v-point-polarization-singularity-using-single-phase-encoding-with-a-spatial-light-modulator%22">&quot;Generation of V-point polarization singularity using single phase encoding with a spatial light modulator&quot;</h3>
+<h3 id="%22generation-of-arbitrary-cylindrical-vector-vortex-beams-with-cross-polarized-modulation%22">&quot;Generation of arbitrary cylindrical vector vortex beams with cross-polarized modulation&quot;</h3>
+<h3 id="%22self-referenced-interferometry-for-single-shot-detection-of-vector-vortex-beams%22">&quot;Self-referenced interferometry for single-shot detection of vector-vortex beams&quot;</h3>
+<p><img src="image-3.png" alt="Alt text"></p>
+<p><img src="image-4.png" alt="Alt text"></p>
+<h2 id="%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A8%E5%8A%A0%E5%B7%A5">ベクトルビームと加工</h2>
+<h3 id="%22%E5%81%8F%E5%85%89%E3%83%AC%E3%83%BC%E3%82%B6%E3%83%93%E3%83%BC%E3%83%A0%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E3%83%AC%E3%83%BC%E3%82%B6%E5%8A%A0%E5%B7%A5%E3%81%AE%E9%AB%98%E5%8A%B9%E7%8E%87%E5%8C%96%E3%81%A8%E9%AB%98%E6%A9%9F%E8%83%BD%E5%8C%96%22">&quot;偏光レーザビームを用いたレーザ加工の高効率化と高機能化&quot;</h3>
+<h3 id="%22femtosecond-laser-processing-by-using-patterned-vector-optical-fields%22">&quot;Femtosecond Laser Processing by Using Patterned Vector Optical Fields&quot;</h3>
+<h2 id="%E5%85%89%E5%AD%A6%E3%81%A8%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92">光学と強化学習</h2>
+<h3 id=""></h3>
+<h2 id="%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A8%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92">ベクトルビームと機械学習</h2>
+<h3 id="%22machine-learning-based-classification-of-vector-vortex-beams%22">&quot;Machine learning-based classification of vector vortex beams&quot;</h3>
+<p>https://github.com/Chen-Cai-OSU/awesome-equivariant-network</p>
+<p>https://ds-notes.com/%E5%90%8C%E5%A4%89%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E8%A7%A3%E8%AA%AC%EF%BC%9A%E3%81%9D%E3%81%AE-%EF%BC%91-%E7%BE%A4/</p>
+<p>手書きの数字を見分けるという課題を考えた時に同じ数字を描いたものでもちょっとだけずれたものは画素値の場所もずれてしまうので別の画像と認識してしまう。(おんなじ数字を表しているのに。)<br>
+これを解決するために畳み込みという操作を行うことにより領域で画像を見ることによって画素値の平行移動について同じものであるとみなす。<strong>(最後にプーリングを行わない場合)</strong><br>
+これは <strong>畳み込みをしたとに平行移動させたもの、と平行移動した後に畳み込みをしたものを同一とみなすということ。</strong></p>
+<p>ここで以下を満たすとき</p>
+<p>変換 $\Phi$ と変換 $g$ は <strong>同変:equivariant</strong> である、と言う。<br>
+また、変換 $\pi(g)$ が恒等写像、つまり $\pi(g) = g$ であるとき変換 $\Phi$ と変換 $g$ は <strong>不変:variant</strong> である、という。</p>
+<h3 id="%22single-shot-polarimetry-of-vector-beams-by-supervised-learning%22">&quot;Single-shot polarimetry of vector beams by supervised learning&quot;</h3>
+<h3 id="%22vectorial-adaptive-optics%22">&quot;Vectorial adaptive optics&quot;</h3>
+<h2 id="%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%A8%E5%B9%BE%E4%BD%95%E5%AD%A6">ベクトルビームと幾何学</h2>
+<h3 id="%22observation-of-optical-polarization-m%C3%B6bius-strips%22">&quot;Observation of optical polarization Möbius strips&quot;</h3>
+<h3 id="%22full-poincare%C2%B4-beams%22">&quot;Full Poincare´ beams&quot;</h3>
+<h3 id="%22generation-of-a-space-variant-vector-beam-with-catenary-shaped-polarization-states%22">&quot;Generation of A Space-Variant Vector Beam with Catenary-Shaped Polarization States&quot;</h3>
+<h2 id="gouy%E4%BD%8D%E7%9B%B8">Gouy位相</h2>
+<h3 id="%E3%83%91%E3%83%B3%E3%83%81%E3%83%A3%E3%83%A9%E3%83%88%E3%83%8A%E3%83%A0%E3%83%99%E3%83%AA%E3%83%BC%E4%BD%8D%E7%9B%B8">パンチャラトナムベリー位相</h3>
+<h3 id="%22%E5%85%89%E5%AD%A6%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%83%99%E3%83%AA%E3%83%BC%E4%BD%8D%E7%9B%B8%22">&quot;光学におけるベリー位相&quot;</h3>
+<h3 id="%22manifestation-of-the-gouy-phase-in-strongly-focused-radially-polarized-beams%22">&quot;Manifestation of the Gouy phase in strongly focused, radially polarized beams&quot;</h3>
+<h3 id="%22manifestation-of-the-gouy-phase-in-vector-vortex-beams%22">&quot;Manifestation of the Gouy phase in vector-vortex beams&quot;</h3>
+<h3 id="%22gouy-phase-effects-on-propagation-of-pure-and-hybrid-vector-beams%22">&quot;Gouy phase effects on propagation of pure and hybrid vector beams&quot;</h3>
+<h2 id="%E9%AB%98%E6%AC%A1%E5%85%83%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC%E7%90%83">高次元ポアンカレ球</h2>
+<h3 id="%22higher-order-poincar%C3%A9-sphere-stokes-parameters-and-the-angular-momentum-of-light%22">&quot;Higher-Order Poincaré Sphere, Stokes Parameters, and the Angular Momentum of Light&quot;</h3>
+<h3 id="%22generalized-poincare-sphere%22">&quot;Generalized Poincare sphere&quot;</h3>
+<h3 id="%22encoding-higher-order-polarization-states-into-robust-partially-coherent-optical-beams%22">&quot;Encoding Higher-Order Polarization States into Robust Partially Coherent Optical Beams&quot;</h3>
+<h2 id="%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0%E3%81%AE%E8%A9%95%E4%BE%A1%E6%96%B9%E6%B3%95">ベクトルビームの評価方法</h2>
+<h3 id="%22simultaneous-generation-of-multiple-vector-beams-on-a-single-slm%22">&quot;Simultaneous generation of multiple vector beams on a single SLM&quot;</h3>
+<h3 id="%22arbitrary-complex-retarders-using-a-sequence-of-spatial-light-modulators-as-the-basis-for-adaptive-polarisation-compensation%22">&quot;Arbitrary complex retarders using a sequence of spatial light modulators as the basis for adaptive polarisation compensation&quot;</h3>
+<h3 id="%22measuring-the-nonseparability-of-vector-vortex-beams%22">&quot;Measuring the nonseparability of vector vortex beams&quot;</h3>
+<h3 id="%22beam-quality-measure-for-vector-beams%22">&quot;Beam quality measure for vector beams&quot;</h3>
+<h3 id="%22basis-independent-tomography-and-nonseparability-witnesses-of-pure-complex-vectorial-light-fields-by-stokes-projections%22">&quot;Basis-independent tomography and nonseparability witnesses of pure complex vectorial light fields by Stokes projections&quot;</h3>
+<h3 id="%22high-order-cylindrical-vector-beams-with-tunable-topologicalcharge-up-to-14-directly-generated-from-a-microchip-laser-with-high-beam-quality-and-high-efficiency%22">&quot;High-order cylindrical vector beams with tunable topologicalcharge up to 14 directly generated  from a microchip laser with high beam quality and high efficiency&quot;</h3>
+<h3 id="%22high-quality-vector-vortex-arrays-by-holographic-and-geometric-phase-control%22">&quot;High-quality vector vortex arrays by holographic and geometric phase control&quot;</h3>
+<h3 id="%22comprehensive-quantitative-analysis-of-vector-beam-states-based-on-vector-field-reconstruction%22">&quot;Comprehensive quantitative analysis of vector beam states based on vector field reconstruction&quot;</h3>
+<h3 id="%22generation-of-fractional-and-ultra-high-polarization-order-vector-vortex%22">&quot;Generation of fractional and ultra-high polarization-order vector vortex&quot;</h3>
+<h3 id="%22entanglement-of-formation-and-concurrence%22">&quot;ENTANGLEMENT OF FORMATION AND CONCURRENCE&quot;</h3>
+<h3 id="%22concepts-in-quantum-state-tomography-and-classical-implementation-with-intense-light-a-tutorial%22">&quot;Concepts in quantum state tomography and classical implementation with intense light a tutorial&quot;</h3>
+<h3 id="%22quantum-entanglement-of-high-angular-momenta%22">&quot;Quantum Entanglement of High Angular Momenta&quot;</h3>
+<h3 id="%22quantum%E2%88%92like-nonseparable-structures-in-optical-beams%22">&quot;Quantum−like nonseparable structures in optical beams&quot;</h3>
+<h3 id="%22generation-and-detection-of-structured-light-a-review%22">&quot;Generation and Detection of Structured Light A Review&quot;</h3>
+<h3 id="%22generation-of-fractional-and-ultra-high-polarization-order-vector-vortex-beams-on-hybrid-order-poincar%C2%B4e-spheres%22">&quot;Generation of fractional and ultra-high polarization-order vector vortex beams on hybrid-order Poincar´e spheres&quot;</h3>
+<h3 id="%22generating-arbitrary-non-separable-states-with-polarization-and-orbital-angular-momentum-of-light%22">&quot;Generating arbitrary non-separable states with polarization and orbital angular momentum of light&quot;</h3>
+<h2 id="%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似のもとでスカラー場に対するヘルムホルツ方程式を解く</h2>
+<h3 id="%22from-maxwell-to-paraxial-wave-optics%22">&quot;From Maxwell to paraxial wave optics&quot;</h3>
+<h3 id="%22gaussian-beam-%E8%A8%88%E7%AE%97%E3%83%A1%E3%83%A2%22">&quot;Gaussian Beam 計算メモ&quot;</h3>
+<h3 id="httpsolidstatephysicsblogfc2comblog-entry-47html">http://solidstatephysics.blog.fc2.com/blog-entry-47.html</h3>
+<h2 id="%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E5%A0%B4%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似のもとでベクトル場に対するヘルムホルツ方程式を解く</h2>
+<h3 id="%E5%8F%82%E8%80%83%22separability-and-applications%22">参考:&quot;Separability and Applications&quot;</h3>
+<h3 id="%22vector-beam-solutions-of-maxwells-wave-equation%22">&quot;Vector-beam solutions of Maxwell's wave equation&quot;</h3>
+<h3 id="%22vector-helmholtz%E2%80%93gauss-and-vector-laplace%E2%80%93gauss-beams%22">&quot;Vector Helmholtz–Gauss and vector Laplace–Gauss beams&quot;</h3>
+<h3 id="httpsolidstatephysicsblogfc2comblog-entry-31html">http://solidstatephysics.blog.fc2.com/blog-entry-31.html</h3>
+<h3 id="%22%E8%85%B0%E3%82%82%E7%A0%95%E3%81%91%E3%82%88-%E8%86%9D%E3%82%82%E6%8A%98%E3%82%8C%E3%82%88%22httpsdecafishblogss-blogjparchivec2305062484-1">&quot;腰も砕けよ 膝も折れよ&quot;https://decafish.blog.ss-blog.jp/archive/c2305062484-1</h3>
+<h2 id="%E8%BF%91%E8%BB%B8%E8%BF%91%E4%BC%BC%E3%81%9B%E3%81%9A%E3%81%AB%E3%82%B9%E3%82%AB%E3%83%A9%E3%83%BC%E5%A0%B4%E3%81%AE%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%82%92%E8%A7%A3%E3%81%8F">近軸近似せずにスカラー場のヘルムホルツ方程式を解く</h2>
+<h3 id="%22nonparaxial-propagation-properties-of-specially-correlated-radially-polarized-beams-in-free-space%22">&quot;Nonparaxial Propagation Properties of Specially Correlated Radially Polarized Beams in Free Space&quot;</h3>
+<h3 id="%22closed-form-bases-for-the-description-of-monochromatic-strongly-focused-electromagnetic-fields%22">&quot;Closed-form bases for the description of monochromatic, strongly focused, electromagnetic fields&quot;</h3>
+<h3 id="%22measuring-the-nonseparability-of-vector-vortex-beams%22">&quot;Measuring the nonseparability of vector vortex beams&quot;</h3>
+<h2 id="%E3%83%93%E3%83%BC%E3%83%A0%E3%81%AE%E6%9C%80%E9%81%A9%E5%8C%96">ビームの最適化</h2>
+<h3 id="%22a-practical-algorithm-for-the-determination-of-phase-from-image-and-diffraction-plane-pictures%22">&quot;A practical algorithm for the determination of phase from image and diffraction plane pictures&quot;</h3>
+<h3 id="%22kinoform-design-with-an-optimal-rotation-angle-method%22">&quot;Kinoform design with an optimal-rotation-angle method&quot;</h3>
+<h3 id="%22new-iterative-algorithm-for-the-design-of-phaseonly-gratings%22">&quot;New iterative algorithm for the design of phaseonly gratings&quot;</h3>
+<h3 id="%22continuous-relief-diffractive-optical-elements-for-two-dimensional-array-generation%22">&quot;Continuous-relief diffractive optical elements for two-dimensional array generation&quot;</h3>
+<h1 id="%E6%95%99%E7%A7%91%E6%9B%B8%E7%9A%84%E3%81%AA%E7%AB%8B%E3%81%A1%E4%BD%8D%E7%BD%AE">教科書的な立ち位置</h1>
+<h2 id="%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB%E3%83%93%E3%83%BC%E3%83%A0">ベクトルビーム</h2>
+<h3 id="%22cylindrical-vector-beams-from-mathematical-concepts-to-applications%22">&quot;Cylindrical vector beams: from mathematical concepts to applications&quot;</h3>
+<h3 id="%22vector-beams-for-fundamental-physics-and-applications%22">&quot;Vector Beams for Fundamental Physics and Applications&quot;</h3>
+<h3 id="%22polarization-control-of-light-with-a-liquid-crystal-display-spatial-light-modulator%22">&quot;POLARIZATION CONTROL OF LIGHT WITH A LIQUID CRYSTAL DISPLAY SPATIAL LIGHT MODULATOR&quot;</h3>
+<h3 id="%22phase-and-polarization-modulations-based-on-lcos-slm%22">&quot;Phase and polarization modulations based on LCOS SLM&quot;</h3>
+<h2 id="%E5%85%89%E6%B8%A6">光渦</h2>
+<h3 id="%22orbital-angular-momentum-origins-behavior-and-applications%22">&quot;Orbital angular momentum: origins, behavior and applications&quot;</h3>
+<h2 id="slm">SLM</h2>
+<h3 id="%22creation-and-detection-of-optical-modes-with-spatial-light-modulators%22">&quot;Creation and detection of optical modes with spatial light modulators&quot;</h3>
+<p>$( i^2 = -1)$</p>
+<p>$$<br>
+\frac{1}{\sqrt{2}}<br>
+\begin{bmatrix}<br>
+1 \<br>
+1<br>
+\end{bmatrix}<br>
+$$</p>
+<p><img src="all_hori4.gif" alt="Alt text"></p>
+
+</body>
+</html>
